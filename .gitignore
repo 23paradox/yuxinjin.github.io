@@ -1,0 +1,13 @@
+node_modules/
+.pnpm-store/
+dist/
+.astro/
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+
+# Local CV source and outdated export; publish only an explicitly updated CV.
+/main.tex
+/main.pdf

@@ -1,0 +1,44 @@
+---
+import { placeholders } from "../data/placeholders";
+import { siteData } from "../data/site";
+import { withBase } from "../lib/paths";
+
+const homeHref = withBase("/");
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="site-shell site-header__inner">
+    <a class="site-identity" href={homeHref}>
+      <span>{siteData.profile.name ?? placeholders.name}</span>
+      <small>{siteData.profile.researchIdentity}</small>
+    </a>
+
+    <nav aria-label="Primary navigation">
+      <ul>
+        {
+          siteData.navigation.map((item) => {
+            const href = withBase(item.href);
+            const isCurrent = currentPath === href;
+
+            return (
+              <li>
+                <a href={href} aria-current={isCurrent ? "page" : undefined}>
+                  {item.label}
+                </a>
+              </li>
+            );
+          })
+        }
+        {
+          siteData.profile.cvPath && (
+            <li>
+              <a href={withBase(siteData.profile.cvPath)}>CV</a>
+            </li>
+          )
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+

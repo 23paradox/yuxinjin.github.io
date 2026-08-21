@@ -1,0 +1,124 @@
+---
+import SectionHeading from "../components/SectionHeading.astro";
+import { placeholders } from "../data/placeholders";
+import { siteData } from "../data/site";
+import {
+  getSelectedPublications,
+  getSelectedResearchProjects,
+  loadPublications,
+  loadResearchProjects,
+} from "../lib/content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const [publicationEntries, researchProjectEntries] = await Promise.all([
+  loadPublications(),
+  loadResearchProjects(),
+]);
+
+const selectedPublications = getSelectedPublications(publicationEntries);
+const selectedResearch = getSelectedResearchProjects(researchProjectEntries);
+---
+
+<BaseLayout>
+  <section class="page-section" aria-labelledby="hero-heading">
+    <p>Academic homepage</p>
+    <h1 id="hero-heading">{siteData.profile.name ?? placeholders.name}</h1>
+    <p data-placeholder={!siteData.profile.academicTitle}>
+      {siteData.profile.academicTitle ?? placeholders.academicTitle}
+    </p>
+    <p data-placeholder={!siteData.profile.institution}>
+      {siteData.profile.institution ?? placeholders.institution}
+    </p>
+    {siteData.profile.department && <p>{siteData.profile.department}</p>}
+    <p>{siteData.profile.researchIdentity}</p>
+  </section>
+
+  <section class="page-section" aria-labelledby="research-agenda-heading">
+    <SectionHeading id="research-agenda-heading" title="Research Agenda" />
+    <p data-placeholder={!siteData.research.agendaSummary}>
+      {siteData.research.agendaSummary ?? placeholders.researchAgenda}
+    </p>
+    <ol class="research-arc">
+      {siteData.research.arc.map((stage) => <li>{stage}</li>)}
+    </ol>
+  </section>
+
+  <section class="page-section" aria-labelledby="selected-research-heading">
+    <SectionHeading id="selected-research-heading" title="Selected Research" />
+    {
+      selectedResearch.length > 0 ? (
+        <div>
+          {selectedResearch.map((project) => (
+            <article>
+              <h3>{project.data.title}</h3>
+              {project.data.researchQuestion && (
+                <p>
+                  <strong>Research question:</strong> {project.data.researchQuestion}
+                </p>
+              )}
+              {project.data.contribution && <p>{project.data.contribution}</p>}
+            </article>
+          ))}
+        </div>
+      ) : (
+        <p data-placeholder>{placeholders.selectedResearch}</p>
+      )
+    }
+  </section>
+
+  <section class="page-section" aria-labelledby="selected-publications-heading">
+    <SectionHeading
+      id="selected-publications-heading"
+      title="Selected Publications"
+    />
+    {
+      selectedPublications.length > 0 ? (
+        <ol class="record-list">
+          {selectedPublications.map((publication) => (
+            <li>
+              <article>
+                <h3>{publication.data.title}</h3>
+                <p>{publication.data.authors.join(", ")}</p>
+                {(publication.data.venue || publication.data.year) && (
+                  <p>
+                    {[publication.data.venue, publication.data.year]
+                      .filter(Boolean)
+                      .join(", ")}
+                  </p>
+                )}
+              </article>
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <p data-placeholder>{placeholders.publications}</p>
+      )
+    }
+  </section>
+
+  <section class="page-section" aria-labelledby="recognition-heading">
+    <SectionHeading id="recognition-heading" title="Selected Recognition" />
+    {
+      siteData.selectedRecognition.length > 0 ? (
+        <ul>
+          {siteData.selectedRecognition.map((item) => (
+            <li>
+              <strong>{item.title}</strong>
+              {item.detail && ` — ${item.detail}`}
+              {item.year && ` (${item.year})`}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p data-placeholder>{placeholders.recognition}</p>
+      )
+    }
+  </section>
+
+  <section class="page-section" aria-labelledby="beyond-research-heading">
+    <SectionHeading id="beyond-research-heading" title="Beyond Research" />
+    <p data-placeholder={!siteData.about.beyondResearch}>
+      {siteData.about.beyondResearch ?? placeholders.beyondResearch}
+    </p>
+  </section>
+</BaseLayout>

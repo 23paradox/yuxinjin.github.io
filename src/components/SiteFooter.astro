@@ -1,0 +1,34 @@
+---
+import { siteData } from "../data/site";
+---
+
+<footer class="site-footer">
+  <div class="site-shell">
+    <p>{siteData.profile.researchIdentity}</p>
+    {
+      siteData.profile.email && (
+        <p>
+          <a href={`mailto:${siteData.profile.email}`}>{siteData.profile.email}</a>
+        </p>
+      )
+    }
+    <nav aria-label="External profiles">
+      <ul>
+        {
+          siteData.profile.googleScholarUrl && (
+            <li>
+              <a href={siteData.profile.googleScholarUrl}>Google Scholar</a>
+            </li>
+          )
+        }
+        {
+          siteData.profile.researchGateUrl && (
+            <li>
+              <a href={siteData.profile.researchGateUrl}>ResearchGate</a>
+            </li>
+          )
+        }
+      </ul>
+    </nav>
+  </div>
+</footer>

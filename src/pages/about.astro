@@ -1,0 +1,37 @@
+---
+import SectionHeading from "../components/SectionHeading.astro";
+import { placeholders } from "../data/placeholders";
+import { siteData } from "../data/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout pageTitle="About">
+  <header class="page-section">
+    <h1>About</h1>
+    <p data-placeholder={!siteData.about.personalIntroduction}>
+      {siteData.about.personalIntroduction ?? placeholders.personalIntroduction}
+    </p>
+  </header>
+
+  <section class="page-section" aria-labelledby="academic-path-heading">
+    <SectionHeading id="academic-path-heading" title="Academic Path" />
+    <p data-placeholder={!siteData.about.academicPath}>
+      {siteData.about.academicPath ?? placeholders.academicPath}
+    </p>
+  </section>
+
+  <section class="page-section" aria-labelledby="visiting-experience-heading">
+    <SectionHeading id="visiting-experience-heading" title="Visiting Experience" />
+    <p data-placeholder={!siteData.about.visitingExperience}>
+      {siteData.about.visitingExperience ?? placeholders.visitingExperience}
+    </p>
+  </section>
+
+  <section class="page-section" aria-labelledby="about-beyond-research-heading">
+    <SectionHeading id="about-beyond-research-heading" title="Beyond Research" />
+    <p data-placeholder={!siteData.about.beyondResearch}>
+      {siteData.about.beyondResearch ?? placeholders.beyondResearch}
+    </p>
+  </section>
+</BaseLayout>
+

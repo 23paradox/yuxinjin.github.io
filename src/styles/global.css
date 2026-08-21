@@ -1,0 +1,149 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  min-width: 0;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+}
+
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+pre,
+code {
+  max-width: 100%;
+}
+
+pre {
+  overflow-x: auto;
+}
+
+p,
+li,
+a {
+  overflow-wrap: anywhere;
+}
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.site-shell {
+  width: min(calc(100% - 2rem), 72rem);
+  margin-inline: auto;
+}
+
+.skip-link {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 1rem;
+  padding: 0.5rem;
+  transform: translateY(-150%);
+  background: Canvas;
+  color: CanvasText;
+  z-index: 1;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.site-header,
+.site-footer {
+  border-block: 1px solid currentColor;
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 1rem;
+}
+
+.site-identity {
+  display: grid;
+  text-decoration: none;
+}
+
+.site-header nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-header a[aria-current="page"] {
+  font-weight: 700;
+}
+
+main {
+  padding-block: 2rem;
+}
+
+.page-section {
+  padding-block: 1rem 2rem;
+}
+
+.section-heading > :first-child {
+  margin-block-start: 0;
+}
+
+.research-arc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  padding-inline-start: 1.25rem;
+}
+
+.record-list {
+  padding-inline-start: 1.5rem;
+}
+
+.record-list article > :first-child {
+  margin-block-start: 0;
+}
+
+[data-placeholder] {
+  font-style: italic;
+}
+
+.site-footer {
+  padding-block: 1rem;
+}
+
+@media (max-width: 40rem) {
+  .site-header__inner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+}
+

@@ -1,0 +1,57 @@
+---
+import SectionHeading from "../components/SectionHeading.astro";
+import { placeholders } from "../data/placeholders";
+import { siteData } from "../data/site";
+import {
+  getSelectedResearchProjects,
+  loadResearchProjects,
+} from "../lib/content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const researchProjects = getSelectedResearchProjects(
+  await loadResearchProjects(),
+);
+---
+
+<BaseLayout pageTitle="Research">
+  <header class="page-section">
+    <h1>Research</h1>
+    <p>{siteData.profile.researchIdentity}</p>
+  </header>
+
+  <section class="page-section" aria-labelledby="agenda-heading">
+    <SectionHeading id="agenda-heading" title="Research Agenda" />
+    <p data-placeholder={!siteData.research.agendaSummary}>
+      {siteData.research.agendaSummary ?? placeholders.researchAgenda}
+    </p>
+    <ol class="research-arc">
+      {siteData.research.arc.map((stage) => <li>{stage}</li>)}
+    </ol>
+  </section>
+
+  <section class="page-section" aria-labelledby="representative-work-heading">
+    <SectionHeading
+      id="representative-work-heading"
+      title="Representative Research"
+    />
+    {
+      researchProjects.length > 0 ? (
+        <div>
+          {researchProjects.map((project) => (
+            <article>
+              <h3>{project.data.title}</h3>
+              {project.data.researchQuestion && (
+                <p>
+                  <strong>Research question:</strong> {project.data.researchQuestion}
+                </p>
+              )}
+              {project.data.contribution && <p>{project.data.contribution}</p>}
+            </article>
+          ))}
+        </div>
+      ) : (
+        <p data-placeholder>{placeholders.selectedResearch}</p>
+      )
+    }
+  </section>
+</BaseLayout>

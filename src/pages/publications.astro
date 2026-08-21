@@ -1,0 +1,69 @@
+---
+import { placeholders } from "../data/placeholders";
+import {
+  loadPublications,
+  sortPublicationsChronologically,
+} from "../lib/content";
+import { publicationStatusLabel } from "../data/publication-status";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const publications = sortPublicationsChronologically(
+  await loadPublications(),
+);
+---
+
+<BaseLayout pageTitle="Publications">
+  <header class="page-section">
+    <h1>Publications</h1>
+    <p>Complete public publication record.</p>
+  </header>
+
+  <section class="page-section" aria-label="All publications">
+    {
+      publications.length > 0 ? (
+        <ol class="record-list">
+          {publications.map((publication) => (
+            <li>
+              <article>
+                <h2>{publication.data.title}</h2>
+                <p>{publication.data.authors.join(", ")}</p>
+                {(publication.data.venue ||
+                  publication.data.status ||
+                  publication.data.year) && (
+                  <p>
+                    {[
+                      publication.data.venue,
+                      publication.data.status
+                        ? publicationStatusLabel(publication.data.status)
+                        : undefined,
+                      publication.data.acceptance
+                        ? `Accepted: ${publication.data.acceptance}`
+                        : undefined,
+                      publication.data.year,
+                    ]
+                      .filter(Boolean)
+                      .join(" · ")}
+                  </p>
+                )}
+                {publication.data.researchSummary && (
+                  <p>{publication.data.researchSummary}</p>
+                )}
+                {publication.data.links && publication.data.links.length > 0 && (
+                  <ul>
+                    {publication.data.links.map((link) => (
+                      <li>
+                        <a href={link.url}>{link.label ?? link.purpose}</a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </article>
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <p data-placeholder>{placeholders.publications}</p>
+      )
+    }
+  </section>
+</BaseLayout>

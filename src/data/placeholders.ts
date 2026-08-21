@@ -1,0 +1,14 @@
+export const placeholders = {
+  name: "TODO: provide verified name",
+  academicTitle: "TODO: provide verified academic title",
+  institution: "TODO: provide verified institution",
+  researchAgenda: "TODO: provide verified research agenda summary",
+  selectedResearch: "TODO: add verified public selected research",
+  publications: "TODO: add verified public publication records",
+  recognition: "TODO: provide verified selected recognition",
+  academicPath: "TODO: provide verified academic path",
+  visitingExperience: "TODO: provide verified visiting experience",
+  personalIntroduction: "TODO: provide verified personal introduction",
+  beyondResearch: "TODO: provide approved Beyond Research content",
+  updatedCv: "TODO: provide updated public CV",
+} as const;
