@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { placeholders } from "../data/placeholders";
 import { siteData } from "../data/site";
 import { withBase } from "../lib/paths";
@@ -11,9 +12,28 @@ const headerClass = isHomepage
   ? "site-shell site-header__inner site-header__inner--home"
   : "site-shell site-header__inner";
 const displayName = siteData.profile.name ?? (showDevelopmentPlaceholders ? placeholders.name : null);
+const mastheadPhoto = siteData.about.photography.find(
+  (photo) => photo.headerMasthead,
+);
+
+if (isHomepage && !mastheadPhoto) {
+  throw new Error("Homepage header masthead photo is not configured.");
+}
 ---
 
-<header class="site-header">
+<header class:list={["site-header", isHomepage && "site-header--home-masthead"]}>
+  {isHomepage && mastheadPhoto && (
+    <Image
+      class="site-header__masthead-image"
+      src={mastheadPhoto.src}
+      alt={mastheadPhoto.alt}
+      widths={[480, 768, 1024, 1440, 1920]}
+      sizes="100vw"
+      format="webp"
+      quality={85}
+      priority
+    />
+  )}
   <div class={headerClass}>
     {!isHomepage && displayName && (
       <a class="site-identity" href={homeHref}>

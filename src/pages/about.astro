@@ -136,17 +136,15 @@ const landscapePhotos = siteData.about.photography.filter(
         matrix theory, and mathematical logic.
       </p>
       {teaching.length > 0 ? (
-        <ol class="editorial-record-list teaching-list">
+        <ol class="teaching-list">
           {teaching.map((record) => {
             const period = formatTeachingPeriod(record);
 
             return (
-              <li class:list={["editorial-record", !period && "editorial-record--no-period"]}>
-                {period && <p class="editorial-record__period">{period}</p>}
-                <div class="editorial-record__body">
-                  <h3>{record.course}</h3>
-                  <p class="editorial-record__institution">{record.unit}</p>
-                </div>
+              <li class="teaching-list__item">
+                <h3>{record.course}</h3>
+                {period && <p class="teaching-list__period">{period}</p>}
+                <p class="teaching-list__unit">{record.unit}</p>
               </li>
             );
           })}
