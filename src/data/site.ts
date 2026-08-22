@@ -116,7 +116,7 @@ export interface ResearchNarrativeMilestone {
   year: string;
   title: string;
   description: string;
-  publicationId: string;
+  publicationIds: readonly string[];
 }
 
 export interface ResearchNarrative {
@@ -125,8 +125,7 @@ export interface ResearchNarrative {
   opening: string;
   loop: {
     steps: readonly string[];
-    feedback: string;
-    difficulty: string;
+    caption: string;
   };
   questions: readonly ResearchNarrativeQuestion[];
   difficultySettings: readonly ResearchDifficultySetting[];
@@ -270,10 +269,8 @@ export const siteData: SiteData = {
           "Inference / Updating",
           "Strategy Revision",
         ],
-        feedback:
-          "The emphasis of the loop varies across problems: some of my work focuses on propagation, some on inference, and some on strategy revision.",
-        difficulty:
-          "A central difficulty is that information errors can alter the behavior and system evolution from which later observations are obtained.",
+        caption:
+          "Different problems emphasize different parts of this loop. A recurring challenge is that misspecified information can change the behavior and system evolution from which later observations are generated.",
       },
       questions: [
         {
@@ -308,9 +305,9 @@ export const siteData: SiteData = {
             "Decision-relevant population information may not be directly observable. Agents may therefore need to infer information errors or population-level quantities from their own trajectories or other locally available observations, under both continuous and discrete observation structures.",
         },
         {
-          title: "Major–Minor Asymmetry",
+          title: "Asymmetric Information and Strategic Beliefs",
           description:
-            "Major–minor systems introduce persistent asymmetry. Minor agents may observe the major state without knowing the major's possibly misspecified belief or the future strategy induced by that belief. Moreover, the major agent remains non-negligible in the mean-field limit, so its process noise does not average out and the limiting population dynamics remain stochastic.",
+            "In strategic systems, observing the physical state does not necessarily reveal what other agents believe or how those beliefs will shape their future actions. When information is asymmetric, misspecified, or privately updated, an agent may need to infer not only the underlying state of the system but also other agents' beliefs and the strategies induced by those beliefs. Major–minor systems provide one concrete example: the major state may be observable while the major's belief and the strategy induced by that belief remain opaque to the minor agents.",
         },
       ],
       milestones: [
@@ -319,36 +316,30 @@ export const siteData: SiteData = {
           title: "From information errors to strategy correction",
           description:
             "I first studied how incorrect information about other populations changes the realized mean-field evolution and when an intermediate strategy modification can correct the resulting deviation.",
-          publicationId: "initial-error-affection-strategy-modification",
+          publicationIds: ["initial-error-affection-strategy-modification"],
         },
         {
-          year: "2024",
-          title: "From common errors to heterogeneous information",
+          year: "2024–2025",
+          title: "From heterogeneous information to inference",
           description:
-            "I then extended the problem to heterogeneous erroneous information across agents, including settings in which information correction and estimation are based on continuously observed system evolution.",
-          publicationId:
+            "I then extended the problem from population-level information errors to heterogeneous information across agents, and began studying how agents can recover decision-relevant information from the system they observe. This includes both continuously observed dynamics and settings with partial, local, or discrete observations, where information identification, state estimation, and control revision become coupled.",
+          publicationIds: [
             "lq-mean-field-games-heterogeneous-erroneous-information",
-        },
-        {
-          year: "2025",
-          title: "From observation to inference and revised control",
-          description:
-            "I studied how individual agents can identify information errors and estimate relevant population quantities from limited local observations before adapting their control.",
-          publicationId:
             "initial-error-tolerant-distributed-mean-field-control",
+          ],
         },
         {
           year: "2026",
-          title:
-            "From symmetric populations to asymmetric information structures",
+          title: "Toward asymmetric information and strategic beliefs",
           description:
-            "My recent work studies how information correction changes when a non-negligible major agent introduces asymmetric beliefs, strategic dependence, and persistent stochasticity in the limiting population dynamics.",
-          publicationId:
+            "My recent work moves toward asymmetric information structures in which understanding the physical state is not sufficient to predict strategic behavior. Agents may also need to reason about other agents' possibly misspecified or privately updated beliefs and the strategies induced by those beliefs. Major–minor systems provide one setting where this difficulty is coupled with persistent stochasticity in the mean-field limit.",
+          publicationIds: [
             "major-minor-lq-mean-field-games-erroneous-initial-information",
+          ],
         },
       ],
       lookingForward:
-        "More broadly, I am interested in stochastic decision-making and strategic interaction in systems where agents learn, adapt, or operate under imperfect models. I would like to extend my current work toward richer stochastic games, information acquisition, learning-enabled multi-agent systems, and related questions in intelligent and AI-agent systems.",
+        "More broadly, I am interested in stochastic decision-making and strategic interaction in systems where agents learn, adapt, reason about privately evolving beliefs, or operate under imperfect models. I would like to extend my current work toward richer stochastic games, information acquisition, learning-enabled multi-agent systems, and related questions in intelligent and AI-agent systems.",
     },
     structuredInformationNote:
       "Major–minor systems provide one setting in which information asymmetry becomes especially pronounced. Although minor agents can directly observe the major state, this does not reveal the major's possibly erroneous belief or the future strategy induced by that belief. Moreover, because the major agent remains non-negligible in the mean-field limit, its process noise does not average out, and the limiting population dynamics remain stochastic.",

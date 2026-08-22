@@ -748,21 +748,13 @@ main {
   display: none;
 }
 
-.research-loop__feedback,
-.research-loop__difficulty {
+.research-loop__caption {
   max-width: var(--measure-prose);
-}
-
-.research-loop__feedback {
   margin: var(--space-4) 0 0;
   color: var(--accent-slate-blue);
   font-size: var(--type-meta);
   font-weight: 600;
   line-height: var(--leading-meta);
-}
-
-.research-loop__difficulty {
-  margin: var(--space-2) 0 0;
 }
 
 .research-question-list {
@@ -886,6 +878,24 @@ main {
   font-size: 12px;
 }
 
+.research-difficulty-diagram__inference-box {
+  fill: none;
+  stroke: var(--rule);
+  stroke-width: 1.2;
+}
+
+.research-difficulty-diagram--strategic-beliefs circle {
+  fill: var(--accent-forest);
+}
+
+.research-difficulty-diagram--strategic-beliefs .research-difficulty-diagram__label {
+  font-size: 16px;
+}
+
+.research-difficulty-diagram--strategic-beliefs .research-difficulty-diagram__note {
+  font-size: 14px;
+}
+
 @media (max-width: 60rem) {
   .research-difficulty-list {
     grid-template-columns: minmax(0, 1fr);
@@ -975,11 +985,25 @@ main {
   margin: var(--space-2) 0 0;
 }
 
-.research-evolution-list__paper {
-  display: inline-block;
+.research-evolution-list__related {
   margin-block-start: var(--space-3);
-  font-size: var(--type-navigation);
+}
+
+.research-evolution-list__related-label {
+  margin: 0;
+  color: var(--accent-slate-blue);
+  font-size: var(--type-meta);
   font-weight: 600;
+  line-height: var(--leading-meta);
+}
+
+.research-evolution-list__related-list {
+  display: grid;
+  gap: var(--space-1);
+  margin: var(--space-1) 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--type-navigation);
   line-height: var(--leading-content);
 }
 
@@ -1396,6 +1420,14 @@ main {
     --type-content-title: clamp(1.125rem, 5.25vw, 1.25rem);
     --type-record-title: clamp(1.125rem, 5vw, 1.1875rem);
     --type-body-large: 1rem;
+  }
+
+  .research-difficulty-diagram--strategic-beliefs .research-difficulty-diagram__label {
+    font-size: 20px;
+  }
+
+  .research-difficulty-diagram--strategic-beliefs .research-difficulty-diagram__note {
+    font-size: 17px;
   }
 
   main {

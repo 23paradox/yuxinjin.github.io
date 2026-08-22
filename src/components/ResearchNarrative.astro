@@ -18,29 +18,37 @@ function getPublicPaperLink(publication: PublicationEntry): string | undefined {
   )?.url;
 }
 
+const publicationsById = new Map(publications.map((publication) => [publication.id, publication]));
+
 const milestones = narrative.milestones.map((milestone) => {
-  const publication = publications.find(
-    (entry) => entry.id === milestone.publicationId,
-  );
+  const relatedWorks = milestone.publicationIds.map((publicationId) => {
+    const publication = publicationsById.get(publicationId);
 
-  if (!publication) {
-    throw new Error(
-      `Research narrative milestone references a missing publication: ${milestone.publicationId}`,
-    );
-  }
+    if (!publication) {
+      throw new Error(
+        `Research narrative milestone references a missing publication: ${publicationId}`,
+      );
+    }
 
-  const paperUrl = getPublicPaperLink(publication);
+    const paperUrl = getPublicPaperLink(publication);
 
-  if (!paperUrl) {
-    throw new Error(
-      `Research narrative milestone has no public paper link: ${publication.data.title}`,
-    );
-  }
+    if (!paperUrl) {
+      throw new Error(
+        `Research narrative milestone has no public paper link: ${publication.data.title}`,
+      );
+    }
 
-  return { ...milestone, paperTitle: publication.data.title, paperUrl };
+    return { title: publication.data.title, url: paperUrl };
+  });
+
+  return { ...milestone, relatedWorks };
 });
 
-const difficultyDiagramTypes = ["heterogeneous", "observations", "major-minor"] as const;
+const difficultyDiagramTypes = [
+  "heterogeneous",
+  "observations",
+  "strategic-beliefs",
+] as const;
 ---
 
 <div class="research-narrative">
@@ -50,8 +58,7 @@ const difficultyDiagramTypes = ["heterogeneous", "observations", "major-minor"] 
       title="The Information–Decision Loop"
     />
     <ResearchLoopDiagram steps={narrative.loop.steps} />
-    <p class="research-loop__feedback">{narrative.loop.feedback}</p>
-    <p class="research-loop__difficulty">{narrative.loop.difficulty}</p>
+    <p class="research-loop__caption">{narrative.loop.caption}</p>
   </section>
 
   <section class="page-section research-narrative__questions" aria-labelledby="research-questions-heading">
@@ -101,13 +108,16 @@ const difficultyDiagramTypes = ["heterogeneous", "observations", "major-minor"] 
           <div class="research-evolution-list__body">
             <h3>{milestone.title}</h3>
             <p>{milestone.description}</p>
-            <a
-              class="research-evolution-list__paper"
-              href={milestone.paperUrl}
-              aria-label={`Read ${milestone.paperTitle}`}
-            >
-              Paper <span aria-hidden="true">→</span>
-            </a>
+            <div class="research-evolution-list__related">
+              <p class="research-evolution-list__related-label">Related work</p>
+              <ul class="research-evolution-list__related-list">
+                {milestone.relatedWorks.map((work) => (
+                  <li>
+                    <a href={work.url}>{work.title} <span aria-hidden="true">→</span></a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </li>
       ))}
