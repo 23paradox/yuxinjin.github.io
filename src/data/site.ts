@@ -110,7 +110,6 @@ export interface ResearchNarrativeQuestion {
 export interface ResearchDifficultySetting {
   title: string;
   description: string;
-  detail?: string;
 }
 
 export interface ResearchNarrativeMilestone {
@@ -119,6 +118,7 @@ export interface ResearchNarrativeMilestone {
   description: string;
   note?: string;
   publicationIds: readonly string[];
+  relatedWorkLabels?: readonly string[];
 }
 
 export interface ResearchNarrative {
@@ -137,6 +137,7 @@ export interface ResearchNarrative {
     directions: readonly {
       title: string;
       description: string;
+      status: string;
     }[];
     broaderInterest: string;
   };
@@ -318,8 +319,6 @@ export const siteData: SiteData = {
           title: "Asymmetric Information and Strategic Beliefs",
           description:
             "In strategic systems, observing the physical state does not necessarily reveal what other agents believe or how those beliefs will shape their future actions. When information is asymmetric, misspecified, or privately updated, an agent may need to infer not only the underlying state of the system but also other agents' beliefs and the strategies induced by those beliefs.",
-          detail:
-            "Major–minor systems provide one concrete setting in which the major state may be observable while the major's belief and the strategy induced by that belief remain opaque to the minor agents.",
         },
       ],
       milestones: [
@@ -329,6 +328,7 @@ export const siteData: SiteData = {
           description:
             "I first studied how incorrect information about other populations changes the realized mean-field evolution and when an intermediate strategy modification can reduce or correct the resulting deviation.",
           publicationIds: ["initial-error-affection-strategy-modification"],
+          relatedWorkLabels: ["CDC 2024 paper"],
         },
         {
           year: "2024–2025",
@@ -338,6 +338,10 @@ export const siteData: SiteData = {
           publicationIds: [
             "lq-mean-field-games-heterogeneous-erroneous-information",
             "initial-error-tolerant-distributed-mean-field-control",
+          ],
+          relatedWorkLabels: [
+            "Heterogeneous-information preprint",
+            "CDC 2025 paper",
           ],
         },
         {
@@ -350,25 +354,28 @@ export const siteData: SiteData = {
           publicationIds: [
             "major-minor-lq-mean-field-games-erroneous-initial-information",
           ],
+          relatedWorkLabels: ["Major–minor paper"],
         },
       ],
       doctoralNote:
-        "This page highlights the main research agenda developed through my doctoral work.",
+        "The sections above summarize the main research agenda developed through my doctoral work.",
       broaderDirections: {
         directions: [
           {
             title: "Repeated and Asynchronous Strategy Revision",
+            status: "Current exploration",
             description:
               "I am currently exploring two-population settings in which agents may revise their strategies repeatedly and at asynchronous opportunities, with particular interest in how successive information updates and corrections interact over time.",
           },
           {
             title: "Imperfect Information beyond Linear–Quadratic Models",
+            status: "Next direction",
             description:
               "A natural next direction is to study how information errors, inference, and strategy revision behave in nonlinear stochastic models, where the linear–quadratic structure that supports much of the current analysis is no longer available.",
           },
         ],
         broaderInterest:
-          "More broadly, I am interested in stochastic control, games, and multi-agent decision-making in systems where agents learn, adapt, acquire information, or operate under imperfect models.",
+          "Beyond the doctoral agenda above, I am broadly interested in stochastic control, games, and multi-agent decision-making in systems where agents learn, adapt, acquire information, or operate under imperfect models.",
       },
     },
     structuredInformationNote:
@@ -426,7 +433,7 @@ export const siteData: SiteData = {
       },
     ],
     researchPractice:
-      "My work combines theoretical analysis with computational implementation. In my first-author projects, I typically develop the mathematical analysis together with the numerical experiments and manuscript preparation. In collaborative work, I have built project-specific LQ mean field game solver frameworks and adapted existing GAN-based mean field game solvers to nonlinear and multi-population settings.",
+      "Alongside theoretical analysis, I build and adapt numerical mean field game solvers and design computational experiments for both linear–quadratic and nonlinear multi-agent models.",
     teaching: [
       {
         course: "Game Theory",

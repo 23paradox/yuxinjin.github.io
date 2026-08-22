@@ -147,11 +147,6 @@ const landscapePhotos = siteData.about.photography.filter(
   {(teaching.length > 0 || showDevelopmentPlaceholders) && (
     <section class="page-section" aria-labelledby="teaching-heading">
       <SectionHeading id="teaching-heading" title="Teaching" />
-      <p>
-        My teaching-assistant work has included tutorials, assignment grading, and student
-        support across courses in analysis, differential equations, game theory, cryptography,
-        matrix theory, and mathematical logic.
-      </p>
       {teaching.length > 0 ? (
         <ol class="teaching-list">
           {teaching.map((record) => {

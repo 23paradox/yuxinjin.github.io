@@ -37,7 +37,11 @@ const milestones = narrative.milestones.map((milestone) => {
       );
     }
 
-    return { title: publication.data.title, url: paperUrl };
+    return {
+      title: publication.data.title,
+      url: paperUrl,
+      label: milestone.relatedWorkLabels?.[milestone.publicationIds.indexOf(publicationId)] ?? publication.data.title,
+    };
   });
 
   return { ...milestone, relatedWorks };
@@ -80,11 +84,6 @@ const difficultyDiagramTypes = [
           <div class="research-difficulty-list__copy">
             <h3>{setting.title}</h3>
             <p>{setting.description}</p>
-            {setting.detail && (
-              <p class="research-difficulty-list__example">
-                <span>Example.</span> {setting.detail}
-              </p>
-            )}
           </div>
         </article>
       ))}
@@ -109,7 +108,13 @@ const difficultyDiagramTypes = [
               <ul class="research-evolution-list__related-list">
                 {milestone.relatedWorks.map((work) => (
                   <li>
-                    <a href={work.url}>{work.title} <span aria-hidden="true">→</span></a>
+                    <a
+                      href={work.url}
+                      aria-label={`${work.title}: ${work.label}`}
+                      title={work.title}
+                    >
+                      {work.label} <span aria-hidden="true">→</span>
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -120,18 +125,19 @@ const difficultyDiagramTypes = [
     </ol>
   </section>
 
+  <p class="research-narrative__doctoral-note">{narrative.doctoralNote}</p>
+
   <section class="page-section research-narrative__directions" aria-labelledby="broader-directions-heading">
     <SectionHeading id="broader-directions-heading" title="Ongoing & Broader Directions" />
+    <p class="research-direction-list__intro">{narrative.broaderDirections.broaderInterest}</p>
     <div class="research-direction-list">
       {narrative.broaderDirections.directions.map((direction) => (
         <article>
+          <p class="research-direction-list__status">{direction.status}</p>
           <h3>{direction.title}</h3>
           <p>{direction.description}</p>
         </article>
       ))}
-      <p class="research-direction-list__broader">
-        {narrative.broaderDirections.broaderInterest}
-      </p>
     </div>
   </section>
 </div>
