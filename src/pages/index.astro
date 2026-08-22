@@ -4,14 +4,11 @@ import { Image } from "astro:assets";
 import portrait from "../assets/images/portrait-venice.jpg";
 import PublicationList from "../components/PublicationList.astro";
 import RecognitionList from "../components/RecognitionList.astro";
-import ResearchThreadList from "../components/ResearchThreadList.astro";
 import { placeholders } from "../data/placeholders";
 import { siteData } from "../data/site";
 import {
   getSelectedPublications,
-  getSelectedResearchProjects,
   loadPublications,
-  loadResearchProjects,
 } from "../lib/content";
 import { withBase } from "../lib/paths";
 import { getSelectedRecognition } from "../lib/profile";
@@ -21,15 +18,11 @@ import {
 } from "../lib/rendering";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const [publicationEntries, researchProjectEntries] = await Promise.all([
-  loadPublications(),
-  loadResearchProjects(),
-]);
-
+const publicationEntries = await loadPublications();
 const selectedPublications = getSelectedPublications(publicationEntries);
-const selectedResearch = getSelectedResearchProjects(researchProjectEntries);
 const homepagePublications = selectedPublications.slice(0, 3);
 const selectedRecognition = getSelectedRecognition(siteData.about.recognition);
+const mastheadPhoto = siteData.about.photography.find((photo) => photo.homepageMasthead);
 const heroName = developmentFallback(siteData.profile.name, placeholders.name);
 const heroIdentity = developmentFallback(
   siteData.profile.academicTitle,
@@ -47,6 +40,10 @@ const aboutTeaser = developmentFallback(
   siteData.about.biography.teaser,
   placeholders.personalIntroduction,
 );
+
+if (!mastheadPhoto) {
+  throw new Error("Homepage masthead photo is not configured.");
+}
 ---
 
 <BaseLayout isHomepage>
@@ -133,22 +130,44 @@ const aboutTeaser = developmentFallback(
     </figure>
   </section>
 
-  {selectedResearch.length > 0 && (
-    <section class="page-section" aria-labelledby="research-heading">
-      <SectionHeading id="research-heading" title="Research" />
-      <ResearchThreadList
-        items={selectedResearch}
-        compact
-      />
-      <a class="text-link" href={withBase("/research/")}>Explore my research →</a>
-    </section>
-  )}
+  <figure class="home-masthead">
+    <Image
+      class="home-masthead__image"
+      src={mastheadPhoto.src}
+      alt={mastheadPhoto.alt}
+      widths={[480, 768, 1024, 1440]}
+      sizes="(max-width: 44rem) calc(100vw - 2rem), min(100vw - 2rem, 73.75rem)"
+      format="webp"
+      quality={85}
+    />
+  </figure>
+
+  <section class="page-section home-section home-section--research" aria-labelledby="research-heading">
+    <SectionHeading id="research-heading" number="01" title="Research" />
+    <p class="home-research-flow" aria-label="Research flow: Misspecification, Inference, Revision">
+      <span>Misspecification</span>
+      <span aria-hidden="true">→</span>
+      <span>Inference</span>
+      <span aria-hidden="true">→</span>
+      <span>Revision</span>
+    </p>
+    <div class="home-research-questions">
+      {siteData.research.homeQuestions.map((question) => (
+        <article class="home-research-question">
+          <h3>{question.title}</h3>
+          <p>{question.description}</p>
+        </article>
+      ))}
+    </div>
+    <a class="text-link" href={withBase("/research/")}>Explore my research →</a>
+  </section>
 
   {(homepagePublications.length > 0 || showDevelopmentPlaceholders) && (
-    <section class="page-section" aria-labelledby="selected-publications-heading">
+    <section class="page-section home-section home-section--work" aria-labelledby="selected-work-heading">
       <SectionHeading
-        id="selected-publications-heading"
-        title="Selected Publications"
+        id="selected-work-heading"
+        number="02"
+        title="Selected Work"
       />
       {homepagePublications.length > 0 ? (
         <>
@@ -162,8 +181,8 @@ const aboutTeaser = developmentFallback(
   )}
 
   {(selectedRecognition.length > 0 || showDevelopmentPlaceholders) && (
-    <section class="page-section" aria-labelledby="recognition-heading">
-      <SectionHeading id="recognition-heading" title="Selected Recognition" />
+    <section class="page-section home-section home-section--recognition" aria-labelledby="recognition-heading">
+      <SectionHeading id="recognition-heading" number="03" title="Recognition" />
       {selectedRecognition.length > 0 ? (
         <RecognitionList items={selectedRecognition} showDetails={false} />
       ) : (
@@ -173,8 +192,8 @@ const aboutTeaser = developmentFallback(
   )}
 
   {(aboutTeaser || showDevelopmentPlaceholders) && (
-    <section class="page-section about-teaser" aria-labelledby="about-teaser-heading">
-      <SectionHeading id="about-teaser-heading" title="About" />
+    <section class="page-section home-section home-section--about about-teaser" aria-labelledby="about-teaser-heading">
+      <SectionHeading id="about-teaser-heading" number="04" title="About" />
       {aboutTeaser && (
         <p data-placeholder={!siteData.about.biography.teaser || undefined}>
           {aboutTeaser}

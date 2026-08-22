@@ -4,14 +4,15 @@ interface Props {
   description?: string;
   id?: string;
   level?: "h2" | "h3";
+  number?: string;
 }
 
-const { title, description, id, level = "h2" } = Astro.props;
+const { title, description, id, level = "h2", number } = Astro.props;
 const Heading = level;
 ---
 
-<header class="section-heading">
+<header class:list={["section-heading", number && "section-heading--numbered"]}>
+  {number && <span class="section-heading__number" aria-hidden="true">{number}</span>}
   <Heading id={id}>{title}</Heading>
   {description && <p>{description}</p>}
 </header>
-
