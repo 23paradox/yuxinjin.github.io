@@ -11,6 +11,7 @@ year: 2024
 venue: "arXiv:2409.09375"
 status: preprint
 selected: true
+displayOrder: 2
 themes:
   - Imperfect Information
   - Strategy Revision

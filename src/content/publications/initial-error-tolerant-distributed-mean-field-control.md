@@ -11,6 +11,7 @@ year: 2025
 venue: "IEEE Conference on Decision and Control (CDC), Rio de Janeiro, Brazil"
 status: published
 selected: true
+displayOrder: 3
 themes:
   - Imperfect Information
   - Information Identification

@@ -10,7 +10,7 @@ authors:
 year: 2025
 venue: "2024 IEEE 63rd Conference on Decision and Control (CDC), Milan, Italy"
 status: published
-selected: true
+selected: false
 themes:
   - Imperfect Information
   - Strategy Revision

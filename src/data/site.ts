@@ -153,7 +153,7 @@ export const siteData: SiteData = {
     heroSummary:
       "I study stochastic control and game-theoretic problems in which agents make decisions under incorrect, incomplete, or delayed information. My current work asks how agents can identify information discrepancies and revise their strategies as new information becomes available, primarily in mean field games and large-population stochastic systems.",
     agendaSummary:
-      "My research is organized around a recurring question: how should strategic agents respond when the information underlying their decisions is imperfect?",
+      "I organize this work around three connected questions.",
     arc: [
       {
         number: "01",
@@ -223,7 +223,7 @@ export const siteData: SiteData = {
         institution: "Beihang University",
         startDate: "2018",
         endDate: "2022",
-        note: "Course in Information Security.",
+        note: "Study track in Information Security.",
       },
     ],
     visiting: [
@@ -385,8 +385,6 @@ export const siteData: SiteData = {
         year: 2024,
         selected: false,
         displayOrder: 3,
-        detail:
-          "An annual graduate academic scholarship at Beihang University, awarded on the basis of academic and research performance.",
       },
     ],
     beyondResearch:

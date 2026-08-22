@@ -59,9 +59,22 @@ export function groupPublicationsByTheme(
 export function getSelectedPublications(
   entries: PublicationEntry[],
 ): PublicationEntry[] {
-  return sortPublicationsChronologically(
-    entries.filter((entry) => entry.data.selected === true),
-  );
+  return entries
+    .filter((entry) => entry.data.selected === true)
+    .sort((left, right) => {
+      const displayOrderDifference =
+        (left.data.displayOrder ?? Number.MAX_SAFE_INTEGER) -
+        (right.data.displayOrder ?? Number.MAX_SAFE_INTEGER);
+
+      if (displayOrderDifference !== 0) {
+        return displayOrderDifference;
+      }
+
+      return (
+        (right.data.year ?? 0) - (left.data.year ?? 0) ||
+        left.data.title.localeCompare(right.data.title)
+      );
+    });
 }
 
 export function getSelectedResearchProjects(

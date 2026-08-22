@@ -12,6 +12,7 @@ venue: "arXiv:2607.22558"
 status: preprint
 acceptance: "CDC 2026"
 selected: true
+displayOrder: 1
 themes:
   - Imperfect Information
   - Information Identification
