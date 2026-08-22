@@ -93,6 +93,39 @@ export interface HomeResearchQuestion {
   description: string;
 }
 
+export interface ResearchNarrativeQuestion {
+  number: string;
+  question: string;
+  description: string;
+}
+
+export interface ResearchDifficultySetting {
+  title: string;
+  description: string;
+}
+
+export interface ResearchNarrativeMilestone {
+  year: string;
+  title: string;
+  description: string;
+  publicationId: string;
+}
+
+export interface ResearchNarrative {
+  subtitle: string;
+  openingQuestion: string;
+  opening: string;
+  loop: {
+    steps: readonly string[];
+    feedback: string;
+    difficulty: string;
+  };
+  questions: readonly ResearchNarrativeQuestion[];
+  difficultySettings: readonly ResearchDifficultySetting[];
+  milestones: readonly ResearchNarrativeMilestone[];
+  lookingForward: string;
+}
+
 export interface ResearchArcStage {
   number: string;
   title: string;
@@ -118,7 +151,10 @@ export interface SiteData {
     agendaSummary: string | null;
     arc: readonly ResearchArcStage[];
     keywords: readonly string[];
+    homeHook: string;
+    homeIntroduction: string;
     homeQuestions: readonly HomeResearchQuestion[];
+    narrative: ResearchNarrative;
     structuredInformationNote: string | null;
   };
   about: {
@@ -189,23 +225,123 @@ export const siteData: SiteData = {
       "Decision-Making under Uncertainty",
       "Information Structures",
     ],
+    homeHook:
+      "What happens when strategic decisions are built on information that turns out to be wrong?",
+    homeIntroduction:
+      "I study how information errors affect strategic behavior, what agents can recover from the observations available to them, and when updated information should lead to a change in strategy.",
     homeQuestions: [
       {
-        title: "How does wrong information propagate?",
+        title: "How does wrong information change collective behavior?",
         description:
-          "How erroneous or heterogeneous information changes predicted and realized population dynamics.",
+          "I study how erroneous or heterogeneous information creates discrepancies between predicted and realized population dynamics.",
       },
       {
-        title: "What can agents infer?",
+        title: "What can agents recover from what they observe?",
         description:
-          "What agents can recover when decision-relevant information is missing, limited, or misspecified.",
+          "I study what decision-relevant information can be inferred when population states, beliefs, or other relevant quantities are only partially available.",
       },
       {
-        title: "When should strategies be revised?",
+        title: "When is new information enough to change a strategy?",
         description:
-          "How decisions should change as information is corrected, inferred, or updated.",
+          "I study how controls and strategic responses should be revised as information is corrected, inferred, or updated.",
       },
     ],
+    narrative: {
+      subtitle:
+        "Information, Inference, and Strategic Revision in Stochastic Systems",
+      openingQuestion:
+        "My research begins with a simple question: what should strategic agents do when the information behind their decisions turns out to be wrong?",
+      opening:
+        "In stochastic games and large-population systems, information misspecification can change the strategies agents choose and therefore the dynamics the system actually realizes. Information and control are consequently coupled: agents may need to learn from subsequent observations, update their view of the system, and decide whether and how to revise their actions. I study the mathematical structure of this interaction between information, strategic behavior, inference, and decision revision, primarily through mean field games and stochastic control.",
+      loop: {
+        steps: [
+          "Information / Belief",
+          "Strategy",
+          "System Dynamics",
+          "Observation",
+          "Inference / Updating",
+          "Strategy Revision",
+        ],
+        feedback:
+          "Strategy revision feeds into subsequent strategies and system evolution.",
+        difficulty:
+          "A central difficulty is that information errors can alter the behavior and system evolution from which later observations are obtained.",
+      },
+      questions: [
+        {
+          number: "01",
+          question: "How do information errors become system-level deviations?",
+          description:
+            "I study how misspecified information changes strategic responses and propagates through population interactions, producing discrepancies between predicted and realized dynamics. This includes both population-level information errors and heterogeneous information across agents.",
+        },
+        {
+          number: "02",
+          question:
+            "What can an agent infer from the information it actually observes?",
+          description:
+            "I study how agents identify information discrepancies and estimate decision-relevant quantities when the information required for control is not directly available. The observation structure may be continuous or discrete, local or population-dependent, and may require inference about the information or anticipated behavior of other strategic agents.",
+        },
+        {
+          number: "03",
+          question: "When and how should a strategy be changed?",
+          description:
+            "I study how controls and strategies should be revised after information is corrected or updated, and when such revisions can mitigate the effects of earlier misspecification. The resulting strategy modification may depend on newly inferred states, population quantities, or beliefs about other agents.",
+        },
+      ],
+      difficultySettings: [
+        {
+          title: "Heterogeneous Information",
+          description:
+            "Agents need not share the same misspecified view of the population. Heterogeneous information changes strategic responses at the individual level and can produce aggregate behavior that cannot be represented by a single common information error.",
+        },
+        {
+          title: "Limited and Local Observations",
+          description:
+            "Decision-relevant population information may not be directly observable. Agents may therefore need to infer information errors or population-level quantities from their own trajectories or other locally available observations, under both continuous and discrete observation structures.",
+        },
+        {
+          title: "Major–Minor Asymmetry",
+          description:
+            "Major–minor systems introduce persistent asymmetry. Minor agents may observe the major state without knowing the major's possibly misspecified belief or the future strategy induced by that belief. Moreover, the major agent remains non-negligible in the mean-field limit, so its process noise does not average out and the limiting population dynamics remain stochastic.",
+        },
+      ],
+      milestones: [
+        {
+          year: "2024",
+          title: "From information errors to strategy correction",
+          description:
+            "I first studied how incorrect information about other populations changes the realized mean-field evolution and when an intermediate strategy modification can correct the resulting deviation.",
+          publicationId: "initial-error-affection-strategy-modification",
+        },
+        {
+          year: "2024",
+          title: "From common errors to heterogeneous information",
+          description:
+            "I then extended the problem to heterogeneous erroneous information across agents, including settings in which information correction and estimation are based on continuously observed system evolution.",
+          publicationId:
+            "lq-mean-field-games-heterogeneous-erroneous-information",
+        },
+        {
+          year: "2025",
+          title: "From observation to inference and revised control",
+          description:
+            "I studied how individual agents can identify information errors and estimate relevant population quantities from limited local observations before adapting their control.",
+          publicationId:
+            "initial-error-tolerant-distributed-mean-field-control",
+        },
+        {
+          year: "2026",
+          title:
+            "From symmetric populations to asymmetric information structures",
+          description:
+            "My recent work studies how information correction changes when a non-negligible major agent introduces asymmetric beliefs, strategic dependence, and persistent stochasticity in the limiting population dynamics.",
+          publicationId:
+            "major-minor-lq-mean-field-games-erroneous-initial-information",
+        },
+      ],
+      lookingForward:
+        "I am interested in extending these questions beyond current linear-quadratic mean field models to richer stochastic games and learning-enabled multi-agent systems. In particular, I am interested in settings where agents must reason about evolving beliefs, decide what information to use or acquire, and determine when new information is sufficient to justify a change in policy.",
+    },
     structuredInformationNote:
       "Major–minor systems provide one setting in which information asymmetry becomes especially pronounced. Although minor agents can directly observe the major state, this does not reveal the major's possibly erroneous belief or the future strategy induced by that belief. Moreover, because the major agent remains non-negligible in the mean-field limit, its process noise does not average out, and the limiting population dynamics remain stochastic.",
   },

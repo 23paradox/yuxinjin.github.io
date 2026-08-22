@@ -1,0 +1,114 @@
+---
+import type { ResearchNarrative } from "../data/site";
+import type { PublicationEntry } from "../lib/content";
+import SectionHeading from "./SectionHeading.astro";
+
+interface Props {
+  narrative: ResearchNarrative;
+  publications: readonly PublicationEntry[];
+}
+
+const { narrative, publications } = Astro.props;
+
+function getPublicPaperLink(publication: PublicationEntry): string | undefined {
+  return publication.data.links?.find((link) =>
+    ["paper", "preprint", "journal", "doi"].includes(link.purpose),
+  )?.url;
+}
+
+const milestones = narrative.milestones.map((milestone) => {
+  const publication = publications.find(
+    (entry) => entry.id === milestone.publicationId,
+  );
+
+  if (!publication) {
+    throw new Error(
+      `Research narrative milestone references a missing publication: ${milestone.publicationId}`,
+    );
+  }
+
+  const paperUrl = getPublicPaperLink(publication);
+
+  if (!paperUrl) {
+    throw new Error(
+      `Research narrative milestone has no public paper link: ${publication.data.title}`,
+    );
+  }
+
+  return { ...milestone, paperTitle: publication.data.title, paperUrl };
+});
+---
+
+<div class="research-narrative">
+  <section class="page-section research-narrative__loop-section" aria-labelledby="information-decision-loop-heading">
+    <SectionHeading
+      id="information-decision-loop-heading"
+      title="The Information–Decision Loop"
+    />
+    <ol class="research-loop" aria-label="Information–decision loop">
+      {narrative.loop.steps.map((step) => <li>{step}</li>)}
+    </ol>
+    <p class="research-loop__feedback">{narrative.loop.feedback}</p>
+    <p class="research-loop__difficulty">{narrative.loop.difficulty}</p>
+  </section>
+
+  <section class="page-section" aria-labelledby="research-questions-heading">
+    <SectionHeading id="research-questions-heading" title="Three Questions I Study" />
+    <ol class="research-question-list">
+      {narrative.questions.map((item) => (
+        <li class="research-question-list__item">
+          <span class="research-question-list__number" aria-hidden="true">
+            {item.number}
+          </span>
+          <h3>{item.question}</h3>
+          <p>{item.description}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="page-section" aria-labelledby="research-difficulty-heading">
+    <SectionHeading
+      id="research-difficulty-heading"
+      title="Where the Difficulty Comes From"
+    />
+    <div class="research-difficulty-list">
+      {narrative.difficultySettings.map((setting) => (
+        <article class="research-difficulty-list__item">
+          <h3>{setting.title}</h3>
+          <p>{setting.description}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="page-section" aria-labelledby="research-evolution-heading">
+    <SectionHeading
+      id="research-evolution-heading"
+      title="How This Agenda Has Evolved"
+    />
+    <ol class="research-evolution-list">
+      {milestones.map((milestone) => (
+        <li class="research-evolution-list__item">
+          <p class="research-evolution-list__year">{milestone.year}</p>
+          <div class="research-evolution-list__body">
+            <h3>{milestone.title}</h3>
+            <p>{milestone.description}</p>
+            <a
+              class="research-evolution-list__paper"
+              href={milestone.paperUrl}
+              aria-label={`Read ${milestone.paperTitle}`}
+            >
+              Paper <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="page-section research-narrative__forward" aria-labelledby="looking-forward-heading">
+    <SectionHeading id="looking-forward-heading" title="Looking Forward" />
+    <p>{narrative.lookingForward}</p>
+  </section>
+</div>
