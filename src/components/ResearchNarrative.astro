@@ -80,7 +80,11 @@ const difficultyDiagramTypes = [
           <div class="research-difficulty-list__copy">
             <h3>{setting.title}</h3>
             <p>{setting.description}</p>
-            {setting.detail && <p>{setting.detail}</p>}
+            {setting.detail && (
+              <p class="research-difficulty-list__example">
+                <span>Example.</span> {setting.detail}
+              </p>
+            )}
           </div>
         </article>
       ))}
@@ -99,6 +103,7 @@ const difficultyDiagramTypes = [
           <div class="research-evolution-list__body">
             <h3>{milestone.title}</h3>
             <p>{milestone.description}</p>
+            {milestone.note && <p class="research-evolution-list__note">{milestone.note}</p>}
             <div class="research-evolution-list__related">
               <p class="research-evolution-list__related-label">Related work</p>
               <ul class="research-evolution-list__related-list">
@@ -115,8 +120,18 @@ const difficultyDiagramTypes = [
     </ol>
   </section>
 
-  <section class="page-section research-narrative__forward" aria-labelledby="looking-forward-heading">
-    <SectionHeading id="looking-forward-heading" title="Looking Forward" />
-    <p>{narrative.lookingForward}</p>
+  <section class="page-section research-narrative__directions" aria-labelledby="broader-directions-heading">
+    <SectionHeading id="broader-directions-heading" title="Ongoing & Broader Directions" />
+    <div class="research-direction-list">
+      {narrative.broaderDirections.directions.map((direction) => (
+        <article>
+          <h3>{direction.title}</h3>
+          <p>{direction.description}</p>
+        </article>
+      ))}
+      <p class="research-direction-list__broader">
+        {narrative.broaderDirections.broaderInterest}
+      </p>
+    </div>
   </section>
 </div>

@@ -9,6 +9,12 @@ import { showDevelopmentPlaceholders } from "../lib/rendering";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const publications = sortPublicationsChronologically(await loadPublications());
+const firstAuthorPublications = publications.filter(
+  (publication) => publication.data.authorship === "first-author",
+);
+const collaborativePublications = publications.filter(
+  (publication) => publication.data.authorship === "collaborative",
+);
 ---
 
 <BaseLayout pageTitle="Publications">
@@ -17,9 +23,28 @@ const publications = sortPublicationsChronologically(await loadPublications());
   </header>
 
   {(publications.length > 0 || showDevelopmentPlaceholders) && (
-    <section class="page-section" aria-label="All publications">
+    <section class="page-section publications-page" aria-label="All publications">
       {publications.length > 0 ? (
-        <PublicationList items={publications} headingLevel="h2" />
+        <>
+          {firstAuthorPublications.length > 0 && (
+            <section class="publications-page__group" aria-labelledby="first-author-research-heading">
+              <h2 id="first-author-research-heading">First-author Research</h2>
+              <p class="publications-page__introduction">
+                In my first-author projects, I typically lead the theoretical development, numerical implementation and experiments, and manuscript preparation.
+              </p>
+              <PublicationList items={firstAuthorPublications} headingLevel="h3" />
+            </section>
+          )}
+          {collaborativePublications.length > 0 && (
+            <section class="publications-page__group" aria-labelledby="collaborative-work-heading">
+              <h2 id="collaborative-work-heading">Collaborative Work</h2>
+              <p class="publications-page__introduction">
+                My contributions to collaborative projects have primarily involved numerical solver development, computational modeling, experiment design, and implementation.
+              </p>
+              <PublicationList items={collaborativePublications} headingLevel="h3" />
+            </section>
+          )}
+        </>
       ) : (
         <p data-placeholder>{placeholders.publications}</p>
       )}

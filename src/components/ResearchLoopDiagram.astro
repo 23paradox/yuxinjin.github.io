@@ -11,7 +11,7 @@ const { steps, caption } = Astro.props;
   <p class="research-loop-figure__label">Information–Decision Loop</p>
   <svg
     class="research-loop-figure__diagram"
-    viewBox="0 0 360 350"
+    viewBox="0 0 430 300"
     role="img"
     aria-labelledby="research-loop-figure-title research-loop-figure-description"
   >
@@ -25,72 +25,65 @@ const { steps, caption } = Astro.props;
       <marker id="research-loop-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
         <path d="M 0 0 L 7 4 L 0 8 z" class="research-loop-figure__arrowhead" />
       </marker>
+      <marker id="research-loop-feedback-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+        <path d="M 0 0 L 7 4 L 0 8 z" class="research-loop-figure__feedback-arrowhead" />
+      </marker>
     </defs>
 
     <path
       class="research-loop-figure__path"
-      d="M 165 58 L 112 106"
+      d="M 103 56 V 79"
       marker-end="url(#research-loop-arrow)"
     />
     <path
       class="research-loop-figure__path"
-      d="M 106 120 H 253"
+      d="M 165 106 H 256"
       marker-end="url(#research-loop-arrow)"
     />
     <path
       class="research-loop-figure__path"
-      d="M 260 127 V 198"
+      d="M 326 132 V 164"
       marker-end="url(#research-loop-arrow)"
     />
     <path
       class="research-loop-figure__path"
-      d="M 246 217 L 192 272"
+      d="M 286 203 L 246 238"
       marker-end="url(#research-loop-arrow)"
     />
     <path
       class="research-loop-figure__path"
-      d="M 164 278 L 112 218"
+      d="M 178 253 L 142 207"
       marker-end="url(#research-loop-arrow)"
     />
     <path
       class="research-loop-figure__feedback-path"
-      d="M 83 202 C 48 181 48 139 84 122"
-      marker-end="url(#research-loop-arrow)"
+      d="M 103 174 V 137"
+      marker-end="url(#research-loop-feedback-arrow)"
     />
 
-    <g class="research-loop-figure__node" transform="translate(180 46)">
-      <circle r="5" />
-      <text y="-28" text-anchor="middle">Information</text>
-      <text y="-12" text-anchor="middle">/ Belief</text>
+    <g class="research-loop-figure__node" transform="translate(103 25)">
+      <text y="0" text-anchor="middle">Information</text>
+      <text y="18" text-anchor="middle">/ Belief</text>
     </g>
-    <g class="research-loop-figure__node" transform="translate(98 120)">
-      <circle r="5" />
-      <text y="-30" text-anchor="middle">Decision</text>
-      <text y="-14" text-anchor="middle">/ Strategy</text>
+    <g class="research-loop-figure__node" transform="translate(103 104)">
+      <text y="0" text-anchor="middle">Decision</text>
+      <text y="18" text-anchor="middle">/ Strategy</text>
     </g>
-    <g class="research-loop-figure__node" transform="translate(260 120)">
-      <circle r="5" />
-      <text y="-30" text-anchor="middle">System / Population</text>
-      <text y="-14" text-anchor="middle">Dynamics</text>
+    <g class="research-loop-figure__node" transform="translate(326 104)">
+      <text y="0" text-anchor="middle">System / Population</text>
+      <text y="18" text-anchor="middle">Dynamics</text>
     </g>
-    <g class="research-loop-figure__node" transform="translate(260 206)">
-      <circle r="5" />
-      <text y="30" text-anchor="middle">Observation</text>
+    <g class="research-loop-figure__node" transform="translate(326 195)">
+      <text y="0" text-anchor="middle">Observation</text>
     </g>
-    <g class="research-loop-figure__node" transform="translate(180 284)">
-      <circle r="5" />
-      <text y="30" text-anchor="middle">Inference</text>
-      <text y="46" text-anchor="middle">/ Updating</text>
+    <g class="research-loop-figure__node" transform="translate(210 267)">
+      <text y="0" text-anchor="middle">Inference</text>
+      <text y="18" text-anchor="middle">/ Updating</text>
     </g>
-    <g class="research-loop-figure__node" transform="translate(98 206)">
-      <circle r="5" />
-      <text y="30" text-anchor="middle">Strategy</text>
-      <text y="46" text-anchor="middle">Revision</text>
+    <g class="research-loop-figure__node" transform="translate(103 195)">
+      <text y="0" text-anchor="middle">Strategy</text>
+      <text y="18" text-anchor="middle">Revision</text>
     </g>
-
-    <text class="research-loop-figure__feedback-label" x="24" y="160">
-      feeds future decisions
-    </text>
   </svg>
 
   <ol class="research-loop-figure__mobile" aria-label="Information–decision loop">

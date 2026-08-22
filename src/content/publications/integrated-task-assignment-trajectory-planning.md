@@ -12,4 +12,7 @@ authors:
 year: 2024
 venue: "IEEE Transactions on Automation Science and Engineering, pp. 1–20"
 status: published
+authorship: collaborative
+highlightAuthor: "Y. Jin"
+contribution: "adapted an existing GAN-based mean field game solver for the continuous multi-population MFG component and carried out the corresponding numerical experiments."
 ---

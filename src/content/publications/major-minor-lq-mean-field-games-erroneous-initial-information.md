@@ -10,6 +10,8 @@ authors:
 year: 2026
 venue: "arXiv:2607.22558"
 status: preprint
+authorship: first-author
+highlightAuthor: "Y. Jin"
 acceptance: "CDC 2026"
 selected: true
 displayOrder: 1

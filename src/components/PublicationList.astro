@@ -16,7 +16,16 @@ const Heading = headingLevel;
     <li class="publication-list__item">
       <article>
         <Heading>{publication.data.title}</Heading>
-        <p class="publication-list__authors">{publication.data.authors.join(", ")}</p>
+        <p class="publication-list__authors">
+          {publication.data.authors.map((author, index) => (
+            <>
+              {index > 0 && ", "}
+              <span class:list={{ "publication-list__author--highlighted": author === publication.data.highlightAuthor }}>
+                {author}
+              </span>
+            </>
+          ))}
+        </p>
         {(publication.data.venue || publication.data.status || publication.data.year) && (
           <p class="publication-list__meta">
             {[
@@ -35,6 +44,11 @@ const Heading = headingLevel;
         )}
         {publication.data.researchSummary && (
           <p>{publication.data.researchSummary}</p>
+        )}
+        {publication.data.contribution && (
+          <p class="publication-list__contribution">
+            <span>Contributions:</span> {publication.data.contribution}
+          </p>
         )}
         {publication.data.links && publication.data.links.length > 0 && (
           <ul class="inline-links" aria-label={`Links for ${publication.data.title}`}>

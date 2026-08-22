@@ -12,11 +12,12 @@ const publications = await loadPublications();
   <header class="page-section research-hero">
     <div class="research-hero__copy">
       <h1>Research</h1>
-      <p class="research-page__subtitle">{siteData.research.narrative.subtitle}</p>
       <p class="research-page__lead">{siteData.research.narrative.leadStatement}</p>
       <p class="research-page__supporting">
         {siteData.research.narrative.supportingParagraph}
       </p>
+      <p class="research-page__doctoral-note">{siteData.research.narrative.doctoralNote}</p>
+      <p class="research-page__subtitle">{siteData.research.narrative.subtitle}</p>
     </div>
     <ResearchLoopDiagram
       steps={siteData.research.narrative.loop.steps}
