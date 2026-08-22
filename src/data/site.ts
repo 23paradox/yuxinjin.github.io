@@ -82,9 +82,15 @@ export interface PhotographyAsset {
   alt: string;
   displayOrder: number;
   orientation: "portrait" | "landscape";
+  homepageMasthead?: boolean;
   caption?: string;
   year?: number;
   location?: string;
+}
+
+export interface HomeResearchQuestion {
+  title: string;
+  description: string;
 }
 
 export interface ResearchArcStage {
@@ -112,6 +118,7 @@ export interface SiteData {
     agendaSummary: string | null;
     arc: readonly ResearchArcStage[];
     keywords: readonly string[];
+    homeQuestions: readonly HomeResearchQuestion[];
     structuredInformationNote: string | null;
   };
   about: {
@@ -181,6 +188,23 @@ export const siteData: SiteData = {
       "Multi-Agent Systems",
       "Decision-Making under Uncertainty",
       "Information Structures",
+    ],
+    homeQuestions: [
+      {
+        title: "How does wrong information propagate?",
+        description:
+          "How erroneous or heterogeneous information changes predicted and realized population dynamics.",
+      },
+      {
+        title: "What can agents infer?",
+        description:
+          "What agents can recover when decision-relevant information is missing, limited, or misspecified.",
+      },
+      {
+        title: "When should strategies be revised?",
+        description:
+          "How decisions should change as information is corrected, inferred, or updated.",
+      },
     ],
     structuredInformationNote:
       "Major–minor systems provide one setting in which information asymmetry becomes especially pronounced. Although minor agents can directly observe the major state, this does not reveal the major's possibly erroneous belief or the future strategy induced by that belief. Moreover, because the major agent remains non-negligible in the mean-field limit, its process noise does not average out, and the limiting population dynamics remain stochastic.",
@@ -420,6 +444,7 @@ export const siteData: SiteData = {
         alt: "A small wooden building among snow-covered trees under a warm winter sky.",
         displayOrder: 4,
         orientation: "landscape",
+        homepageMasthead: true,
       },
       {
         src: nightSkyPhoto,
