@@ -8,9 +8,10 @@ import "../styles/global.css";
 interface Props {
   pageTitle?: string;
   description?: string;
+  isHomepage?: boolean;
 }
 
-const { pageTitle, description = siteData.siteDescription } = Astro.props;
+const { pageTitle, description = siteData.siteDescription, isHomepage = false } = Astro.props;
 const siteLabel = siteData.profile.name ?? "Academic homepage";
 const documentTitle = pageTitle ? `${pageTitle} | ${siteLabel}` : siteLabel;
 const canonicalUrl = Astro.site
@@ -31,7 +32,7 @@ const canonicalUrl = Astro.site
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
     <title>{documentTitle}</title>
   </head>
-  <body>
+  <body class={isHomepage ? "page-home" : undefined}>
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <SiteHeader />
     <main id="main-content" class="site-shell">
