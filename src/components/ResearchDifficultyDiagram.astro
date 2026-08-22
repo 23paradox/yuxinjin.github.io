@@ -1,5 +1,5 @@
 ---
-type DiagramType = "heterogeneous" | "observations" | "major-minor";
+type DiagramType = "heterogeneous" | "observations" | "strategic-beliefs";
 
 interface Props {
   type: DiagramType;
@@ -95,42 +95,60 @@ const { type } = Astro.props;
   </figure>
 )}
 
-{type === "major-minor" && (
-  <figure class="research-difficulty-diagram">
+{type === "strategic-beliefs" && (
+  <figure class="research-difficulty-diagram research-difficulty-diagram--strategic-beliefs">
     <svg
-      viewBox="0 0 520 250"
+      viewBox="0 0 480 330"
       role="img"
-      aria-labelledby="major-minor-title major-minor-description"
+      aria-labelledby="strategic-beliefs-title strategic-beliefs-description"
     >
-      <title id="major-minor-title">Major–minor asymmetry</title>
-      <desc id="major-minor-description">
-        Minor agents observe the major state but do not directly know the major belief or induced
-        strategy. Major randomness persists in the limiting population dynamics.
+      <title id="strategic-beliefs-title">Asymmetric information and strategic beliefs</title>
+      <desc id="strategic-beliefs-description">
+        Two agents form different beliefs about an underlying system and choose strategies. From
+        observations, agent i may need to infer the system state, agent j's belief, and the
+        strategy induced by that belief. New or private information can update agent j's belief
+        and induce a revised strategy.
       </desc>
       <defs>
-        <marker id="major-minor-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+        <marker id="strategic-beliefs-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
           <path d="M 0 0 L 7 4 L 0 8 z" class="research-difficulty-diagram__arrowhead" />
         </marker>
       </defs>
-      <text class="research-difficulty-diagram__label" x="118" y="24" text-anchor="middle">Major agent</text>
-      <circle class="research-difficulty-diagram__major" cx="118" cy="48" r="6" />
-      <text class="research-difficulty-diagram__note" x="118" y="77" text-anchor="middle">state X⁰ₜ</text>
-      <path class="research-difficulty-diagram__path" d="M 145 48 H 318" marker-end="url(#major-minor-arrow)" />
-      <text class="research-difficulty-diagram__note" x="232" y="39" text-anchor="middle">state observed</text>
-      <text class="research-difficulty-diagram__label" x="382" y="53">minor agents</text>
 
-      <text class="research-difficulty-diagram__note" x="118" y="112" text-anchor="middle">belief / information θ̂⁰</text>
-      <path class="research-difficulty-diagram__dashed-path" d="M 118 122 V 148" marker-end="url(#major-minor-arrow)" />
-      <text class="research-difficulty-diagram__note" x="118" y="170" text-anchor="middle">major strategy α⁰</text>
-      <path class="research-difficulty-diagram__dashed-path" d="M 160 158 H 332" marker-end="url(#major-minor-arrow)" />
-      <text class="research-difficulty-diagram__note" x="252" y="146" text-anchor="middle">anticipated / inferred</text>
-      <text class="research-difficulty-diagram__note" x="362" y="171">belief / induced strategy</text>
-      <text class="research-difficulty-diagram__note" x="362" y="188">not directly known</text>
+      <text class="research-difficulty-diagram__label" x="240" y="20" text-anchor="middle">
+        underlying system
+      </text>
+      <text class="research-difficulty-diagram__note" x="240" y="42" text-anchor="middle">θ</text>
+      <path class="research-difficulty-diagram__path" d="M 240 52 V 65 H 110 V 78" marker-end="url(#strategic-beliefs-arrow)" />
+      <path class="research-difficulty-diagram__path" d="M 240 65 H 285 V 78" marker-end="url(#strategic-beliefs-arrow)" />
 
-      <text class="research-difficulty-diagram__note" x="118" y="208" text-anchor="middle">major noise W⁰</text>
-      <path class="research-difficulty-diagram__path" d="M 118 216 V 230" marker-end="url(#major-minor-arrow)" />
-      <text class="research-difficulty-diagram__label" x="278" y="224">limiting population dynamics</text>
-      <text class="research-difficulty-diagram__note" x="278" y="242">persistent randomness as N → ∞</text>
+      <text class="research-difficulty-diagram__label" x="110" y="95" text-anchor="middle">Agent i</text>
+      <circle cx="110" cy="109" r="5" />
+      <text class="research-difficulty-diagram__note" x="110" y="132" text-anchor="middle">belief θ̂ᶦ</text>
+      <path class="research-difficulty-diagram__path" d="M 110 140 V 154" marker-end="url(#strategic-beliefs-arrow)" />
+      <text class="research-difficulty-diagram__note" x="110" y="174" text-anchor="middle">strategy αᶦ</text>
+
+      <text class="research-difficulty-diagram__label" x="285" y="95" text-anchor="middle">Agent j</text>
+      <circle cx="285" cy="109" r="5" />
+      <text class="research-difficulty-diagram__note" x="285" y="132" text-anchor="middle">belief θ̂ʲ</text>
+      <path class="research-difficulty-diagram__path" d="M 285 140 V 154" marker-end="url(#strategic-beliefs-arrow)" />
+      <text class="research-difficulty-diagram__note" x="285" y="174" text-anchor="middle">strategy αʲ</text>
+
+      <text class="research-difficulty-diagram__note" x="407" y="94" text-anchor="middle">new / private</text>
+      <text class="research-difficulty-diagram__note" x="407" y="110" text-anchor="middle">information</text>
+      <path class="research-difficulty-diagram__dashed-path" d="M 407 118 V 132" marker-end="url(#strategic-beliefs-arrow)" />
+      <text class="research-difficulty-diagram__note" x="407" y="151" text-anchor="middle">updated belief θ̂ʲ+</text>
+      <path class="research-difficulty-diagram__dashed-path" d="M 407 158 V 172" marker-end="url(#strategic-beliefs-arrow)" />
+      <text class="research-difficulty-diagram__note" x="407" y="191" text-anchor="middle">revised strategy</text>
+
+      <path class="research-difficulty-diagram__path" d="M 110 184 L 215 214" marker-end="url(#strategic-beliefs-arrow)" />
+      <path class="research-difficulty-diagram__path" d="M 285 184 L 230 214" marker-end="url(#strategic-beliefs-arrow)" />
+      <text class="research-difficulty-diagram__label" x="222" y="229" text-anchor="middle">observations</text>
+      <path class="research-difficulty-diagram__path" d="M 222 238 V 250" marker-end="url(#strategic-beliefs-arrow)" />
+      <text class="research-difficulty-diagram__label" x="222" y="268" text-anchor="middle">Agent i may infer</text>
+      <rect class="research-difficulty-diagram__inference-box" x="87" y="278" width="270" height="44" />
+      <text class="research-difficulty-diagram__note" x="105" y="295">system state</text>
+      <text class="research-difficulty-diagram__note" x="105" y="310">Agent j’s belief · induced strategy</text>
     </svg>
   </figure>
 )}
