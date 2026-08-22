@@ -1,6 +1,8 @@
 ---
 import type { ResearchNarrative } from "../data/site";
 import type { PublicationEntry } from "../lib/content";
+import ResearchDifficultyDiagram from "./ResearchDifficultyDiagram.astro";
+import ResearchLoopDiagram from "./ResearchLoopDiagram.astro";
 import SectionHeading from "./SectionHeading.astro";
 
 interface Props {
@@ -37,6 +39,8 @@ const milestones = narrative.milestones.map((milestone) => {
 
   return { ...milestone, paperTitle: publication.data.title, paperUrl };
 });
+
+const difficultyDiagramTypes = ["heterogeneous", "observations", "major-minor"] as const;
 ---
 
 <div class="research-narrative">
@@ -45,14 +49,12 @@ const milestones = narrative.milestones.map((milestone) => {
       id="information-decision-loop-heading"
       title="The Information–Decision Loop"
     />
-    <ol class="research-loop" aria-label="Information–decision loop">
-      {narrative.loop.steps.map((step) => <li>{step}</li>)}
-    </ol>
+    <ResearchLoopDiagram steps={narrative.loop.steps} />
     <p class="research-loop__feedback">{narrative.loop.feedback}</p>
     <p class="research-loop__difficulty">{narrative.loop.difficulty}</p>
   </section>
 
-  <section class="page-section" aria-labelledby="research-questions-heading">
+  <section class="page-section research-narrative__questions" aria-labelledby="research-questions-heading">
     <SectionHeading id="research-questions-heading" title="Three Questions I Study" />
     <ol class="research-question-list">
       {narrative.questions.map((item) => (
@@ -67,16 +69,21 @@ const milestones = narrative.milestones.map((milestone) => {
     </ol>
   </section>
 
-  <section class="page-section" aria-labelledby="research-difficulty-heading">
+  <section class="page-section research-narrative__difficulty" aria-labelledby="research-difficulty-heading">
     <SectionHeading
       id="research-difficulty-heading"
       title="Where the Difficulty Comes From"
     />
     <div class="research-difficulty-list">
-      {narrative.difficultySettings.map((setting) => (
+      {narrative.difficultySettings.map((setting, index) => (
         <article class="research-difficulty-list__item">
-          <h3>{setting.title}</h3>
-          <p>{setting.description}</p>
+          <ResearchDifficultyDiagram
+            type={difficultyDiagramTypes[index] ?? "heterogeneous"}
+          />
+          <div class="research-difficulty-list__copy">
+            <h3>{setting.title}</h3>
+            <p>{setting.description}</p>
+          </div>
         </article>
       ))}
     </div>

@@ -9,6 +9,7 @@ import moonRiverPhoto from "../assets/images/photography/moon-river.jpg";
 import nightSkyPhoto from "../assets/images/photography/night-sky.jpg";
 import powerlinesSunsetPhoto from "../assets/images/photography/powerlines-sunset.jpg";
 import snowCabinPhoto from "../assets/images/photography/snow-cabin.jpg";
+import streetBirdsPhoto from "../assets/images/photography/street-birds.jpg";
 
 export type InternalRoute = "/" | "/research/" | "/publications/" | "/about/";
 
@@ -89,7 +90,7 @@ export interface PhotographyAsset {
   displayOrder: number;
   orientation: "portrait" | "landscape";
   carousel?: "portrait" | "landscape";
-  homepageMasthead?: boolean;
+  headerMasthead?: boolean;
   caption?: string;
   year?: number;
   location?: string;
@@ -201,7 +202,7 @@ export const siteData: SiteData = {
   },
   research: {
     heroSummary:
-      "I study stochastic control and game-theoretic problems in which agents make decisions under incorrect, incomplete, or delayed information. My current work asks how agents can identify information discrepancies and revise their strategies as new information becomes available, primarily in mean field games and large-population stochastic systems.",
+      "I am broadly interested in stochastic control, games, and decision-making under uncertainty in interacting systems. My current work studies how imperfect or misspecified information affects strategic behavior, what can be inferred from observations, and how decisions should be revised as information evolves.",
     agendaSummary:
       "I organize this work around three connected questions.",
     arc: [
@@ -257,20 +258,20 @@ export const siteData: SiteData = {
       subtitle:
         "Information, Inference, and Strategic Revision in Stochastic Systems",
       openingQuestion:
-        "My research begins with a simple question: what should strategic agents do when the information behind their decisions turns out to be wrong?",
+        "I am broadly interested in stochastic decision-making and strategic interaction in systems where agents operate under uncertainty, incomplete information, or imperfect models.",
       opening:
-        "In stochastic games and large-population systems, information misspecification can change the strategies agents choose and therefore the dynamics the system actually realizes. Information and control are consequently coupled: agents may need to learn from subsequent observations, update their view of the system, and decide whether and how to revise their actions. I study the mathematical structure of this interaction between information, strategic behavior, inference, and decision revision, primarily through mean field games and stochastic control.",
+        "A recurring question in my current work is what strategic agents should do when the information behind their decisions turns out to be wrong or incomplete. In stochastic games and large-population systems, information misspecification can change the strategies agents choose and therefore the dynamics the system actually realizes. Information and control are consequently coupled: agents may need to learn from subsequent observations, update their view of the system, and decide whether and how to revise their actions. I study the mathematical structure of this interaction between information, strategic behavior, inference, and decision revision, primarily through mean field games and stochastic control.",
       loop: {
         steps: [
           "Information / Belief",
-          "Strategy",
-          "System Dynamics",
+          "Decision / Strategy",
+          "System / Population Dynamics",
           "Observation",
           "Inference / Updating",
           "Strategy Revision",
         ],
         feedback:
-          "Strategy revision feeds into subsequent strategies and system evolution.",
+          "The emphasis of the loop varies across problems: some of my work focuses on propagation, some on inference, and some on strategy revision.",
         difficulty:
           "A central difficulty is that information errors can alter the behavior and system evolution from which later observations are obtained.",
       },
@@ -347,7 +348,7 @@ export const siteData: SiteData = {
         },
       ],
       lookingForward:
-        "I am interested in extending these questions beyond current linear-quadratic mean field models to richer stochastic games and learning-enabled multi-agent systems. In particular, I am interested in settings where agents must reason about evolving beliefs, decide what information to use or acquire, and determine when new information is sufficient to justify a change in policy.",
+        "More broadly, I am interested in stochastic decision-making and strategic interaction in systems where agents learn, adapt, or operate under imperfect models. I would like to extend my current work toward richer stochastic games, information acquisition, learning-enabled multi-agent systems, and related questions in intelligent and AI-agent systems.",
     },
     structuredInformationNote:
       "Major–minor systems provide one setting in which information asymmetry becomes especially pronounced. Although minor agents can directly observe the major state, this does not reveal the major's possibly erroneous belief or the future strategy induced by that belief. Moreover, because the major agent remains non-negligible in the mean-field limit, its process noise does not average out, and the limiting population dynamics remain stochastic.",
@@ -602,7 +603,14 @@ export const siteData: SiteData = {
         alt: "Long shadows from repeating columns across stone paving beside bright reflected water.",
         displayOrder: 1,
         orientation: "landscape",
-        homepageMasthead: true,
+      },
+      {
+        id: "street-birds",
+        src: streetBirdsPhoto,
+        alt: "A curved street beside low buildings beneath a pale sky with birds in flight.",
+        displayOrder: 1,
+        orientation: "landscape",
+        headerMasthead: true,
       },
       {
         id: "powerlines-sunset",

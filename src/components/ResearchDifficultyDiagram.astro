@@ -1,0 +1,136 @@
+---
+type DiagramType = "heterogeneous" | "observations" | "major-minor";
+
+interface Props {
+  type: DiagramType;
+}
+
+const { type } = Astro.props;
+---
+
+{type === "heterogeneous" && (
+  <figure class="research-difficulty-diagram">
+    <svg
+      viewBox="0 0 480 220"
+      role="img"
+      aria-labelledby="heterogeneous-information-title heterogeneous-information-description"
+    >
+      <title id="heterogeneous-information-title">Heterogeneous information</title>
+      <desc id="heterogeneous-information-description">
+        Three agents hold different beliefs. Their strategic responses jointly shape population
+        dynamics.
+      </desc>
+      <defs>
+        <marker id="heterogeneous-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+          <path d="M 0 0 L 7 4 L 0 8 z" class="research-difficulty-diagram__arrowhead" />
+        </marker>
+      </defs>
+      <g class="research-difficulty-diagram__agent">
+        <circle cx="82" cy="42" r="5" />
+        <text x="96" y="38">Agent 1</text>
+        <text x="96" y="56">belief θ̂₁</text>
+        <circle cx="232" cy="42" r="5" />
+        <text x="246" y="38">Agent 2</text>
+        <text x="246" y="56">belief θ̂₂</text>
+        <circle cx="382" cy="42" r="5" />
+        <text x="396" y="38">Agent 3</text>
+        <text x="396" y="56">belief θ̂₃</text>
+      </g>
+      <path class="research-difficulty-diagram__path" d="M 82 72 L 224 118" marker-end="url(#heterogeneous-arrow)" />
+      <path class="research-difficulty-diagram__path" d="M 232 72 V 118" marker-end="url(#heterogeneous-arrow)" />
+      <path class="research-difficulty-diagram__path" d="M 382 72 L 240 118" marker-end="url(#heterogeneous-arrow)" />
+      <text class="research-difficulty-diagram__label" x="232" y="144" text-anchor="middle">
+        strategic responses
+      </text>
+      <path class="research-difficulty-diagram__path" d="M 232 155 V 184" marker-end="url(#heterogeneous-arrow)" />
+      <text class="research-difficulty-diagram__label" x="232" y="210" text-anchor="middle">
+        population dynamics
+      </text>
+    </svg>
+  </figure>
+)}
+
+{type === "observations" && (
+  <figure class="research-difficulty-diagram">
+    <svg
+      viewBox="0 0 480 220"
+      role="img"
+      aria-labelledby="limited-observations-title limited-observations-description"
+    >
+      <title id="limited-observations-title">Limited and local observations</title>
+      <desc id="limited-observations-description">
+        A population state is not directly available to an individual agent, which instead uses a
+        local trajectory and observations for inference or estimation.
+      </desc>
+      <defs>
+        <marker id="observations-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+          <path d="M 0 0 L 7 4 L 0 8 z" class="research-difficulty-diagram__arrowhead" />
+        </marker>
+      </defs>
+      <text class="research-difficulty-diagram__label" x="240" y="20" text-anchor="middle">
+        population state / mean field
+      </text>
+      <g class="research-difficulty-diagram__population">
+        <circle cx="102" cy="48" r="4" /><circle cx="132" cy="48" r="4" /><circle cx="162" cy="48" r="4" />
+        <circle cx="192" cy="48" r="4" /><circle cx="222" cy="48" r="4" /><circle cx="252" cy="48" r="4" />
+        <circle cx="282" cy="48" r="4" /><circle cx="312" cy="48" r="4" /><circle cx="342" cy="48" r="4" />
+        <circle cx="372" cy="48" r="4" />
+      </g>
+      <path class="research-difficulty-diagram__dashed-path" d="M 240 66 V 90" />
+      <text class="research-difficulty-diagram__note" x="252" y="83">not directly available</text>
+      <text class="research-difficulty-diagram__label" x="44" y="122">Agent i</text>
+      <path class="research-difficulty-diagram__path" d="M 109 120 H 316" marker-end="url(#observations-arrow)" />
+      <g class="research-difficulty-diagram__trajectory">
+        <circle cx="128" cy="120" r="4" /><circle cx="192" cy="120" r="4" />
+        <circle cx="256" cy="120" r="4" /><circle cx="320" cy="120" r="4" />
+      </g>
+      <text class="research-difficulty-diagram__note" x="128" y="145" text-anchor="middle">Xᵢ(t₀)</text>
+      <text class="research-difficulty-diagram__note" x="192" y="145" text-anchor="middle">Xᵢ(t₁)</text>
+      <text class="research-difficulty-diagram__note" x="256" y="145" text-anchor="middle">…</text>
+      <text class="research-difficulty-diagram__note" x="320" y="145" text-anchor="middle">Xᵢ(t)</text>
+      <text class="research-difficulty-diagram__label" x="224" y="174" text-anchor="middle">local observations</text>
+      <path class="research-difficulty-diagram__path" d="M 224 182 V 198" marker-end="url(#observations-arrow)" />
+      <text class="research-difficulty-diagram__label" x="224" y="217" text-anchor="middle">inference / estimation</text>
+    </svg>
+  </figure>
+)}
+
+{type === "major-minor" && (
+  <figure class="research-difficulty-diagram">
+    <svg
+      viewBox="0 0 520 250"
+      role="img"
+      aria-labelledby="major-minor-title major-minor-description"
+    >
+      <title id="major-minor-title">Major–minor asymmetry</title>
+      <desc id="major-minor-description">
+        Minor agents observe the major state but do not directly know the major belief or induced
+        strategy. Major randomness persists in the limiting population dynamics.
+      </desc>
+      <defs>
+        <marker id="major-minor-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+          <path d="M 0 0 L 7 4 L 0 8 z" class="research-difficulty-diagram__arrowhead" />
+        </marker>
+      </defs>
+      <text class="research-difficulty-diagram__label" x="118" y="24" text-anchor="middle">Major agent</text>
+      <circle class="research-difficulty-diagram__major" cx="118" cy="48" r="6" />
+      <text class="research-difficulty-diagram__note" x="118" y="77" text-anchor="middle">state X⁰ₜ</text>
+      <path class="research-difficulty-diagram__path" d="M 145 48 H 318" marker-end="url(#major-minor-arrow)" />
+      <text class="research-difficulty-diagram__note" x="232" y="39" text-anchor="middle">state observed</text>
+      <text class="research-difficulty-diagram__label" x="382" y="53">minor agents</text>
+
+      <text class="research-difficulty-diagram__note" x="118" y="112" text-anchor="middle">belief / information θ̂⁰</text>
+      <path class="research-difficulty-diagram__dashed-path" d="M 118 122 V 148" marker-end="url(#major-minor-arrow)" />
+      <text class="research-difficulty-diagram__note" x="118" y="170" text-anchor="middle">major strategy α⁰</text>
+      <path class="research-difficulty-diagram__dashed-path" d="M 160 158 H 332" marker-end="url(#major-minor-arrow)" />
+      <text class="research-difficulty-diagram__note" x="252" y="146" text-anchor="middle">anticipated / inferred</text>
+      <text class="research-difficulty-diagram__note" x="362" y="171">belief / induced strategy</text>
+      <text class="research-difficulty-diagram__note" x="362" y="188">not directly known</text>
+
+      <text class="research-difficulty-diagram__note" x="118" y="208" text-anchor="middle">major noise W⁰</text>
+      <path class="research-difficulty-diagram__path" d="M 118 216 V 230" marker-end="url(#major-minor-arrow)" />
+      <text class="research-difficulty-diagram__label" x="278" y="224">limiting population dynamics</text>
+      <text class="research-difficulty-diagram__note" x="278" y="242">persistent randomness as N → ∞</text>
+    </svg>
+  </figure>
+)}
