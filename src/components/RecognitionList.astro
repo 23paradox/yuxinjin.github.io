@@ -1,0 +1,32 @@
+---
+import type { RecognitionItem } from "../data/site";
+import { formatRecognitionDate } from "../lib/profile";
+
+interface Props {
+  items: readonly RecognitionItem[];
+  showDetails?: boolean;
+}
+
+const { items, showDetails = true } = Astro.props;
+---
+
+<ul class="recognition-list">
+  {items.map((item) => {
+    const date = formatRecognitionDate(item);
+
+    return (
+      <li class="recognition-list__item">
+        {date && <span class="recognition-list__date">{date}</span>}
+        <div>
+          <strong>{item.title}</strong>
+          {showDetails && item.issuer && (
+            <span class="recognition-list__meta">{item.issuer}</span>
+          )}
+          {showDetails && item.detail && (
+            <span class="recognition-list__meta">{item.detail}</span>
+          )}
+        </div>
+      </li>
+    );
+  })}
+</ul>

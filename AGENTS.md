@@ -122,24 +122,23 @@ dismissed as an unnecessary lifestyle page.
 Do not add Teaching, Blog, News, or a separate Awards page unless explicitly
 requested later.
 
-The approved initial homepage hierarchy is:
+The approved homepage hierarchy is:
 
 1. Hero;
-2. Research Agenda;
-3. Selected Research;
-4. Selected Publications;
-5. Selected Recognition;
-6. Beyond Research;
-7. Footer.
+2. Research — three compact research threads, without full overviews or
+   related-work lists;
+3. Selected Publications;
+4. Selected Recognition;
+5. About teaser;
+6. Footer.
 
 The Hero establishes academic identity and current research focus. Research
-Agenda communicates the coherent intellectual program. Selected Research
-explains a small number of representative public first-author works as research
-questions and factual results, rather than only as citations. Selected
+on the homepage provides a concise overview; the full Research Agenda and full
+Research Threads with related work belong on `/research/`. Selected
 Publications supplies conventional bibliographic information. Selected
-Recognition contains only a small number of verified distinctions. Beyond
-Research adds restrained personal warmth and may later include user-supplied
-travel photography. Never fabricate content to fill any section.
+Recognition contains only a small number of verified distinctions. The About
+page contains the fuller academic path and restrained personal warmth, including
+user-supplied travel photography. Never fabricate content to fill any section.
 
 ## Recommended repository shape
 
@@ -260,12 +259,9 @@ real implementation or content need appears.
 
 ## Current implementation phase boundary
 
-Phase 2 is approved only for the structural skeleton and technical foundation:
-Astro setup, strict TypeScript, static routing, typed global data, empty
-validated content collections, shared semantic structure, basic reset/global
-CSS, functional navigation, and sound desktop/mobile document flow.
-
-Until the user explicitly approves Phase 3, do not implement final typography,
-the final palette, portrait composition, publication visual styling, research
-diagrams, a gallery, animations, decorative cards, or the final spacing system.
+Phase 3 visual and content presentation work is approved for the current branch.
+Preserve the existing typography, palette, portrait composition, editorial
+spacing, publication styling, research presentation, and photography treatment
+unless the user explicitly requests a focused change. Do not introduce a broad
+redesign, decorative cards, unnecessary animation, or new public sections.
 Do not create a CV or public academic records from placeholder information.

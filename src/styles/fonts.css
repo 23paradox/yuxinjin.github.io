@@ -1,0 +1,10 @@
+/*
+ * Bundled through Fontsource 5.3.0. The font files are OFL-1.1 licensed and
+ * originate from the Fontsource font-files repository. Imports are resolved
+ * at build time; no runtime font request is made.
+ */
+@import "@fontsource/source-serif-4/400.css";
+@import "@fontsource/ibm-plex-sans/400.css";
+@import "@fontsource/ibm-plex-sans/400-italic.css";
+@import "@fontsource/ibm-plex-sans/600.css";
+@import "@fontsource/ibm-plex-sans/700.css";
