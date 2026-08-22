@@ -10,6 +10,8 @@ authors:
 year: 2025
 venue: "IEEE Conference on Decision and Control (CDC), Rio de Janeiro, Brazil"
 status: published
+authorship: first-author
+highlightAuthor: "Y. Jin"
 selected: true
 displayOrder: 3
 themes:

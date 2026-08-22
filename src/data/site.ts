@@ -117,6 +117,7 @@ export interface ResearchNarrativeMilestone {
   year: string;
   title: string;
   description: string;
+  note?: string;
   publicationIds: readonly string[];
 }
 
@@ -131,7 +132,14 @@ export interface ResearchNarrative {
   questions: readonly ResearchNarrativeQuestion[];
   difficultySettings: readonly ResearchDifficultySetting[];
   milestones: readonly ResearchNarrativeMilestone[];
-  lookingForward: string;
+  doctoralNote: string;
+  broaderDirections: {
+    directions: readonly {
+      title: string;
+      description: string;
+    }[];
+    broaderInterest: string;
+  };
 }
 
 export interface ResearchArcStage {
@@ -174,6 +182,7 @@ export interface SiteData {
     education: readonly EducationRecord[];
     visiting: readonly VisitingRecord[];
     teaching: readonly TeachingRecord[];
+    researchPractice: string | null;
     presentations: readonly PresentationRecord[];
     recognition: readonly RecognitionItem[];
     beyondResearch: string | null;
@@ -258,9 +267,9 @@ export const siteData: SiteData = {
       subtitle:
         "Information, Inference, and Strategic Revision in Stochastic Systems",
       leadStatement:
-        "I study how strategic decisions change when the information behind them is incomplete, misspecified, or unevenly distributed.",
+        "How should strategic agents make and revise decisions when the information available to them is incomplete, misspecified, or asymmetric?",
       supportingParagraph:
-        "A recurring question in my work is what agents should do when the information guiding their decisions turns out to be wrong, limited, or only partially observable. In stochastic games and large-population systems, such informational imperfections can alter both individual behavior and the collective dynamics that emerge. I am interested in the mathematical structure of this interaction between information, inference, and decision revision, primarily through mean field games and stochastic control.",
+        "A recurring theme in my current work is the feedback between information and strategic behavior. In stochastic games and large-population systems, imperfect information changes the decisions agents make and therefore the dynamics they later observe. I study what can be inferred from those observations and when new information should lead agents to revise their strategies, primarily through mean field games and stochastic control.",
       loop: {
         steps: [
           "Information / Belief",
@@ -271,7 +280,7 @@ export const siteData: SiteData = {
           "Strategy Revision",
         ],
         caption:
-          "Different problems emphasize different parts of this loop. A recurring challenge is that misspecified information can change the behavior and system evolution from which later observations are generated.",
+          "Different problems emphasize different parts of this loop; the interaction between information, behavior, observation, and revision is the recurring theme.",
       },
       questions: [
         {
@@ -310,7 +319,7 @@ export const siteData: SiteData = {
           description:
             "In strategic systems, observing the physical state does not necessarily reveal what other agents believe or how those beliefs will shape their future actions. When information is asymmetric, misspecified, or privately updated, an agent may need to infer not only the underlying state of the system but also other agents' beliefs and the strategies induced by those beliefs.",
           detail:
-            "Major–minor systems provide one concrete example: the major state may be observable while the major's belief and the strategy induced by that belief remain opaque to the minor agents.",
+            "Major–minor systems provide one concrete setting in which the major state may be observable while the major's belief and the strategy induced by that belief remain opaque to the minor agents.",
         },
       ],
       milestones: [
@@ -318,14 +327,14 @@ export const siteData: SiteData = {
           year: "2024",
           title: "From information errors to strategy correction",
           description:
-            "I first studied how incorrect information about other populations changes the realized mean-field evolution and when an intermediate strategy modification can correct the resulting deviation.",
+            "I first studied how incorrect information about other populations changes the realized mean-field evolution and when an intermediate strategy modification can reduce or correct the resulting deviation.",
           publicationIds: ["initial-error-affection-strategy-modification"],
         },
         {
           year: "2024–2025",
           title: "From heterogeneous information to inference",
           description:
-            "I then extended the problem from population-level information errors to heterogeneous information across agents, and began studying how agents can recover decision-relevant information from the system they observe. This includes both continuously observed dynamics and settings with partial, local, or discrete observations, where information identification, state estimation, and control revision become coupled.",
+            "I then extended the problem to heterogeneous information across agents and to settings where decision-relevant information must be recovered from observed system evolution, under both continuous and limited/local observation structures.",
           publicationIds: [
             "lq-mean-field-games-heterogeneous-erroneous-information",
             "initial-error-tolerant-distributed-mean-field-control",
@@ -335,14 +344,32 @@ export const siteData: SiteData = {
           year: "2026",
           title: "Toward asymmetric information and strategic beliefs",
           description:
-            "My recent work moves toward asymmetric information structures in which understanding the physical state is not sufficient to predict strategic behavior. Agents may also need to reason about other agents' possibly misspecified or privately updated beliefs and the strategies induced by those beliefs. Major–minor systems provide one setting where this difficulty is coupled with persistent stochasticity in the mean-field limit.",
+            "My recent work moves toward asymmetric information structures, where understanding the physical state may not be enough to predict strategic behavior and agents may also need to reason about others' beliefs and belief-dependent strategies.",
+          note:
+            "Major–minor systems provide a setting where this issue is coupled with persistent stochasticity in the mean-field limit.",
           publicationIds: [
             "major-minor-lq-mean-field-games-erroneous-initial-information",
           ],
         },
       ],
-      lookingForward:
-        "More broadly, I am interested in stochastic decision-making and strategic interaction in systems where agents learn, adapt, reason about privately evolving beliefs, or operate under imperfect models. I would like to extend my current work toward richer stochastic games, information acquisition, learning-enabled multi-agent systems, and related questions in intelligent and AI-agent systems.",
+      doctoralNote:
+        "This page highlights the main research agenda developed through my doctoral work.",
+      broaderDirections: {
+        directions: [
+          {
+            title: "Repeated and Asynchronous Strategy Revision",
+            description:
+              "I am currently exploring two-population settings in which agents may revise their strategies repeatedly and at asynchronous opportunities, with particular interest in how successive information updates and corrections interact over time.",
+          },
+          {
+            title: "Imperfect Information beyond Linear–Quadratic Models",
+            description:
+              "A natural next direction is to study how information errors, inference, and strategy revision behave in nonlinear stochastic models, where the linear–quadratic structure that supports much of the current analysis is no longer available.",
+          },
+        ],
+        broaderInterest:
+          "More broadly, I am interested in stochastic control, games, and multi-agent decision-making in systems where agents learn, adapt, acquire information, or operate under imperfect models.",
+      },
     },
     structuredInformationNote:
       "Major–minor systems provide one setting in which information asymmetry becomes especially pronounced. Although minor agents can directly observe the major state, this does not reveal the major's possibly erroneous belief or the future strategy induced by that belief. Moreover, because the major agent remains non-negligible in the mean-field limit, its process noise does not average out, and the limiting population dynamics remain stochastic.",
@@ -398,6 +425,8 @@ export const siteData: SiteData = {
         current: true,
       },
     ],
+    researchPractice:
+      "My work combines theoretical analysis with computational implementation. In my first-author projects, I typically develop the mathematical analysis together with the numerical experiments and manuscript preparation. In collaborative work, I have built project-specific LQ mean field game solver frameworks and adapted existing GAN-based mean field game solvers to nonlinear and multi-population settings.",
     teaching: [
       {
         course: "Game Theory",
@@ -515,16 +544,12 @@ export const siteData: SiteData = {
         year: 2025,
         selected: false,
         displayOrder: 2,
-        detail:
-          "Travel support from the IEEE Control Systems Society for participation in the IEEE Conference on Decision and Control.",
       },
       {
         title: "First-Class Graduate Academic Scholarship",
         year: 2025,
         selected: false,
         displayOrder: 3,
-        detail:
-          "A first-class graduate academic scholarship at Beihang University.",
       },
       {
         title: "CAST Young Talent Lifting Project — Doctoral Special Program",
@@ -539,8 +564,6 @@ export const siteData: SiteData = {
         year: 2024,
         selected: false,
         displayOrder: 2,
-        detail:
-          "Travel support from the IEEE Control Systems Society for participation in the IEEE Conference on Decision and Control.",
       },
       {
         title: "First-Class Graduate Academic Scholarship",

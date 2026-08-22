@@ -72,7 +72,7 @@ a {
 }
 
 a:hover {
-  color: var(--accent-burgundy);
+  color: var(--accent-forest);
 }
 
 img,
@@ -220,7 +220,7 @@ h3 {
 }
 
 .site-header nav a:hover {
-  color: var(--accent-burgundy);
+  color: var(--accent-forest);
   text-decoration: underline;
 }
 
@@ -487,6 +487,22 @@ main {
   margin: 0;
 }
 
+.about-page-index {
+  max-width: var(--measure-wide);
+  padding-block: var(--space-3) var(--space-5);
+  color: var(--text-secondary);
+  font-size: var(--type-small-body);
+  line-height: var(--leading-body);
+}
+
+.about-page-index a {
+  color: inherit;
+}
+
+.about-page-index a:hover {
+  color: var(--accent-forest);
+}
+
 .section-heading {
   margin-block-end: var(--space-4);
 }
@@ -682,20 +698,21 @@ main {
 
 .research-page__subtitle {
   max-width: 56ch;
-  margin: 0;
+  margin: var(--space-3) 0 0;
   color: var(--accent-slate-blue);
-  font-size: clamp(1.05rem, 1.3vw, 1.15rem);
-  font-weight: 500;
-  line-height: 1.5;
+  font-size: var(--type-small-body);
+  font-weight: 400;
+  line-height: var(--leading-body);
 }
 
 .research-page__lead {
-  max-width: 50ch;
-  margin: var(--space-5) 0 0;
+  max-width: 40ch;
+  margin: var(--space-4) 0 0;
   color: var(--accent-forest);
-  font-size: clamp(1.15rem, 1.5vw, 1.3rem);
-  font-weight: 500;
-  line-height: 1.4;
+  font-family: var(--font-display);
+  font-size: clamp(1.65rem, 2.4vw, 1.9rem);
+  font-weight: 400;
+  line-height: 1.3;
 }
 
 .research-page__supporting {
@@ -703,16 +720,23 @@ main {
   margin: var(--space-4) 0 0;
 }
 
+.research-page__doctoral-note {
+  max-width: var(--measure-prose);
+  margin: var(--space-3) 0 0;
+  color: var(--text-secondary);
+  font-size: var(--type-small-body);
+  line-height: var(--leading-body);
+}
+
 .research-narrative {
   max-width: none;
 }
 
 .research-loop-figure {
-  width: min(100%, 23.75rem);
-  margin: var(--space-1) 0 0;
-  padding: var(--space-4);
+  width: min(100%, 26rem);
+  margin: var(--space-3) 0 0;
+  padding: var(--space-2) 0;
   justify-self: end;
-  background: var(--surface-work);
 }
 
 .research-loop-figure__label {
@@ -735,31 +759,25 @@ main {
 .research-loop-figure__feedback-path {
   fill: none;
   stroke: var(--accent-slate-blue);
-  stroke-width: 1.25;
+  stroke-width: 1.2;
 }
 
 .research-loop-figure__feedback-path {
   stroke: var(--accent-forest);
-  stroke-dasharray: 3 3;
 }
 
 .research-loop-figure__arrowhead {
   fill: var(--accent-slate-blue);
 }
 
-.research-loop-figure__node circle {
+.research-loop-figure__feedback-arrowhead {
   fill: var(--accent-forest);
 }
 
 .research-loop-figure__node text {
   fill: var(--text-primary);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
-}
-
-.research-loop-figure__feedback-label {
-  fill: var(--text-secondary);
-  font-size: 10px;
 }
 
 .research-loop-figure__mobile {
@@ -867,6 +885,16 @@ main {
 .research-difficulty-list__copy p {
   max-width: var(--measure-prose);
   margin: var(--space-2) 0 0;
+}
+
+.research-difficulty-list__copy .research-difficulty-list__example {
+  color: var(--text-secondary);
+  font-size: var(--type-small-body);
+  line-height: var(--leading-body);
+}
+
+.research-difficulty-list__example span {
+  font-weight: 400;
 }
 
 .research-difficulty-diagram {
@@ -1030,6 +1058,12 @@ main {
   margin: var(--space-2) 0 0;
 }
 
+.research-evolution-list__body .research-evolution-list__note {
+  color: var(--text-secondary);
+  font-size: var(--type-small-body);
+  line-height: var(--leading-body);
+}
+
 .research-evolution-list__related {
   margin-block-start: var(--space-3);
 }
@@ -1061,32 +1095,57 @@ main {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--space-5);
   }
+
+  .research-direction-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .research-direction-list__broader {
+    grid-column: auto;
+  }
 }
 
-.research-narrative__forward > p {
-  max-width: var(--measure-prose);
+.research-narrative__directions {
+  padding-block: var(--space-7) var(--space-8);
 }
 
-.research-narrative__forward {
-  position: relative;
-  isolation: isolate;
-  padding-block: clamp(2rem, 4vw, 3rem);
+.research-narrative__directions .section-heading {
+  margin-block-end: var(--space-5);
 }
 
-.research-narrative__forward .section-heading {
-  margin-block-end: var(--space-3);
-}
-
-.research-narrative__forward .section-heading h2 {
+.research-narrative__directions .section-heading h2 {
   font-size: clamp(1.5rem, 1.9vw, 1.75rem);
 }
 
-.research-narrative__forward::before {
-  position: absolute;
-  z-index: -1;
-  inset: 0 calc(50% - 50vw);
-  background: var(--surface-work);
-  content: "";
+.research-direction-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5) clamp(var(--space-5), 6vw, var(--space-7));
+}
+
+.research-direction-list article,
+.research-direction-list__broader {
+  min-width: 0;
+}
+
+.research-direction-list h3 {
+  margin: 0;
+  color: var(--accent-forest);
+  font-family: var(--font-body);
+  font-size: var(--type-content-title);
+  font-weight: 600;
+  line-height: var(--leading-content);
+}
+
+.research-direction-list p {
+  max-width: var(--measure-prose);
+  margin: var(--space-2) 0 0;
+}
+
+.research-direction-list__broader {
+  grid-column: 1 / -1;
+  border-block-start: var(--border-width) solid var(--rule);
+  padding-block-start: var(--space-3);
 }
 
 .publication-list {
@@ -1095,6 +1154,27 @@ main {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.publications-page__group + .publications-page__group {
+  margin-block-start: var(--space-8);
+}
+
+.publications-page__group > h2 {
+  margin: 0;
+  color: var(--accent-forest);
+  font-family: var(--font-display);
+  font-size: var(--type-section-title);
+  font-weight: 400;
+  line-height: var(--leading-display);
+}
+
+.publications-page__introduction {
+  max-width: 65ch;
+  margin: var(--space-3) 0 var(--space-5);
+  color: var(--text-secondary);
+  font-size: var(--type-small-body);
+  line-height: var(--leading-body);
 }
 
 .publication-list__item {
@@ -1122,6 +1202,22 @@ main {
 .publication-list__authors,
 .publication-list__meta {
   margin-block: var(--space-1) 0;
+}
+
+.publication-list__author--highlighted {
+  font-weight: 600;
+}
+
+.publication-list__contribution {
+  max-width: var(--measure-prose);
+  margin: var(--space-2) 0 0;
+  color: var(--text-secondary);
+  font-size: var(--type-small-body);
+  line-height: var(--leading-body);
+}
+
+.publication-list__contribution span {
+  font-weight: 600;
 }
 
 .publication-list__meta,

@@ -10,6 +10,8 @@ authors:
 year: 2025
 venue: "2024 IEEE 63rd Conference on Decision and Control (CDC), Milan, Italy"
 status: published
+authorship: first-author
+highlightAuthor: "Y. Jin"
 selected: false
 themes:
   - Imperfect Information

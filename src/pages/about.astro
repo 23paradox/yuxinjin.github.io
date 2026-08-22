@@ -59,6 +59,16 @@ const landscapePhotos = siteData.about.photography.filter(
     )}
   </header>
 
+  <nav class="page-section about-page-index" aria-label="About page contents">
+    <a href="#academic-path-heading">Academic Path</a><span aria-hidden="true"> · </span>
+    <a href="#visiting-experience-heading">Visiting</a><span aria-hidden="true"> · </span>
+    <a href="#research-practice-heading">Research Practice</a><span aria-hidden="true"> · </span>
+    <a href="#teaching-heading">Teaching</a><span aria-hidden="true"> · </span>
+    <a href="#presentations-heading">Talks</a><span aria-hidden="true"> · </span>
+    <a href="#recognition-heading">Recognition</a><span aria-hidden="true"> · </span>
+    <a href="#about-beyond-research-heading">Beyond Research</a>
+  </nav>
+
   {(education.length > 0 || showDevelopmentPlaceholders) && (
     <section class="page-section" aria-labelledby="academic-path-heading">
       <SectionHeading id="academic-path-heading" title="Academic Path" />
@@ -127,14 +137,10 @@ const landscapePhotos = siteData.about.photography.filter(
     </section>
   )}
 
-  {(recognition.length > 0 || showDevelopmentPlaceholders) && (
-    <section class="page-section" aria-labelledby="recognition-heading">
-      <SectionHeading id="recognition-heading" title="Awards & Recognition" />
-      {recognition.length > 0 ? (
-        <RecognitionList items={recognition} />
-      ) : (
-        <p data-placeholder>{placeholders.recognition}</p>
-      )}
+  {siteData.about.researchPractice && (
+    <section class="page-section" aria-labelledby="research-practice-heading">
+      <SectionHeading id="research-practice-heading" title="Research Practice" />
+      <p>{siteData.about.researchPractice}</p>
     </section>
   )}
 
@@ -227,6 +233,17 @@ const landscapePhotos = siteData.about.photography.filter(
         </ol>
       ) : (
         <p data-placeholder>{placeholders.presentations}</p>
+      )}
+    </section>
+  )}
+
+  {(recognition.length > 0 || showDevelopmentPlaceholders) && (
+    <section class="page-section" aria-labelledby="recognition-heading">
+      <SectionHeading id="recognition-heading" title="Awards & Recognition" />
+      {recognition.length > 0 ? (
+        <RecognitionList items={recognition} />
+      ) : (
+        <p data-placeholder>{placeholders.recognition}</p>
       )}
     </section>
   )}

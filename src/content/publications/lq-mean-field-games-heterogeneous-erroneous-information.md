@@ -10,6 +10,8 @@ authors:
 year: 2024
 venue: "arXiv:2409.09375"
 status: preprint
+authorship: first-author
+highlightAuthor: "Y. Jin"
 selected: true
 displayOrder: 2
 themes:
