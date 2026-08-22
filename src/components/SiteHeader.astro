@@ -2,17 +2,24 @@
 import { placeholders } from "../data/placeholders";
 import { siteData } from "../data/site";
 import { withBase } from "../lib/paths";
+import { showDevelopmentPlaceholders } from "../lib/rendering";
 
 const homeHref = withBase("/");
 const currentPath = Astro.url.pathname;
+const isHomepage = currentPath === homeHref;
+const headerClass = isHomepage
+  ? "site-shell site-header__inner site-header__inner--home"
+  : "site-shell site-header__inner";
+const displayName = siteData.profile.name ?? (showDevelopmentPlaceholders ? placeholders.name : null);
 ---
 
 <header class="site-header">
-  <div class="site-shell site-header__inner">
-    <a class="site-identity" href={homeHref}>
-      <span>{siteData.profile.name ?? placeholders.name}</span>
-      <small>{siteData.profile.researchIdentity}</small>
-    </a>
+  <div class={headerClass}>
+    {!isHomepage && displayName && (
+      <a class="site-identity" href={homeHref}>
+        <span>{displayName}</span>
+      </a>
+    )}
 
     <nav aria-label="Primary navigation">
       <ul>
@@ -41,4 +48,3 @@ const currentPath = Astro.url.pathname;
     </nav>
   </div>
 </header>
-

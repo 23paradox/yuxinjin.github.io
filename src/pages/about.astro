@@ -1,37 +1,235 @@
 ---
+import RecognitionList from "../components/RecognitionList.astro";
+import PhotoCarousel from "../components/PhotoCarousel.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import { placeholders } from "../data/placeholders";
 import { siteData } from "../data/site";
+import { loadPublications } from "../lib/content";
+import {
+  formatEducationPeriod,
+  formatPresentationDate,
+  formatTeachingPeriod,
+  formatVisitingPeriod,
+  getPresentationsInDisplayOrder,
+  getRecognitionInDisplayOrder,
+} from "../lib/profile";
+import { showDevelopmentPlaceholders } from "../lib/rendering";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const biographyParagraphs =
+  siteData.about.biography.long ??
+  (siteData.about.biography.short ? [siteData.about.biography.short] : null);
+const biographyIsPlaceholder = !biographyParagraphs && showDevelopmentPlaceholders;
+const biography = biographyParagraphs ??
+  (showDevelopmentPlaceholders ? [placeholders.personalIntroduction] : null);
+const education = siteData.about.education;
+const visiting = siteData.about.visiting;
+const teaching = siteData.about.teaching;
+const presentations = getPresentationsInDisplayOrder(siteData.about.presentations);
+const publications = await loadPublications();
+const publicationsById = new Map(
+  publications.map((publication) => [publication.id, publication]),
+);
+const recognition = getRecognitionInDisplayOrder(siteData.about.recognition);
 ---
 
 <BaseLayout pageTitle="About">
-  <header class="page-section">
+  <header class="page-section page-intro">
     <h1>About</h1>
-    <p data-placeholder={!siteData.about.personalIntroduction}>
-      {siteData.about.personalIntroduction ?? placeholders.personalIntroduction}
-    </p>
+    {biography &&
+      biography.map((paragraph) => (
+        <p data-placeholder={biographyIsPlaceholder || undefined}>{paragraph}</p>
+      ))}
   </header>
 
-  <section class="page-section" aria-labelledby="academic-path-heading">
-    <SectionHeading id="academic-path-heading" title="Academic Path" />
-    <p data-placeholder={!siteData.about.academicPath}>
-      {siteData.about.academicPath ?? placeholders.academicPath}
-    </p>
-  </section>
+  {(education.length > 0 || showDevelopmentPlaceholders) && (
+    <section class="page-section" aria-labelledby="academic-path-heading">
+      <SectionHeading id="academic-path-heading" title="Academic Path" />
+      {education.length > 0 ? (
+        <ol class="editorial-record-list">
+          {education.map((record) => {
+            const period = formatEducationPeriod(record);
+            const degreeLabel = record.field
+              ? `${record.degree} in ${record.field}`
+              : record.degree;
 
-  <section class="page-section" aria-labelledby="visiting-experience-heading">
-    <SectionHeading id="visiting-experience-heading" title="Visiting Experience" />
-    <p data-placeholder={!siteData.about.visitingExperience}>
-      {siteData.about.visitingExperience ?? placeholders.visitingExperience}
-    </p>
-  </section>
+            return (
+              <li class:list={["editorial-record", !period && "editorial-record--no-period"]}>
+                {period && <p class="editorial-record__period">{period}</p>}
+                <div class="editorial-record__body">
+                  <h3>{degreeLabel}</h3>
+                  <p class="editorial-record__institution">
+                    {record.institution}
+                    {record.department && ` · ${record.department}`}
+                  </p>
+                  {record.note && <p>{record.note}</p>}
+                  {record.advisors && record.advisors.length > 0 && (
+                    <p class="editorial-record__meta">
+                      Advisor{record.advisors.length > 1 ? "s" : ""}: {record.advisors.join(", ")}
+                    </p>
+                  )}
+                </div>
+              </li>
+            );
+          })}
+        </ol>
+      ) : (
+        <p data-placeholder>{placeholders.academicPath}</p>
+      )}
+    </section>
+  )}
 
-  <section class="page-section" aria-labelledby="about-beyond-research-heading">
-    <SectionHeading id="about-beyond-research-heading" title="Beyond Research" />
-    <p data-placeholder={!siteData.about.beyondResearch}>
-      {siteData.about.beyondResearch ?? placeholders.beyondResearch}
-    </p>
-  </section>
+  {(visiting.length > 0 || showDevelopmentPlaceholders) && (
+    <section class="page-section" aria-labelledby="visiting-experience-heading">
+      <SectionHeading id="visiting-experience-heading" title="Visiting Experience" />
+      {visiting.length > 0 ? (
+        <ol class="editorial-record-list">
+          {visiting.map((record) => {
+            const period = formatVisitingPeriod(record);
+
+            return (
+              <li class:list={["editorial-record", !period && "editorial-record--no-period"]}>
+                {period && <p class="editorial-record__period">{period}</p>}
+                <div class="editorial-record__body">
+                  <h3>{record.role}</h3>
+                  <p class="editorial-record__institution">
+                    {record.institution}
+                    {record.department && ` · ${record.department}`}
+                  </p>
+                  {record.location && <p class="editorial-record__meta">{record.location}</p>}
+                  {record.host && <p class="editorial-record__meta">Host: {record.host}</p>}
+                  {record.description && <p>{record.description}</p>}
+                </div>
+              </li>
+            );
+          })}
+        </ol>
+      ) : (
+        <p data-placeholder>{placeholders.visitingExperience}</p>
+      )}
+    </section>
+  )}
+
+  {(teaching.length > 0 || showDevelopmentPlaceholders) && (
+    <section class="page-section" aria-labelledby="teaching-heading">
+      <SectionHeading id="teaching-heading" title="Teaching" />
+      <p>
+        My teaching-assistant work has included tutorials, assignment grading, and student
+        support across courses in analysis, differential equations, game theory, cryptography,
+        matrix theory, and mathematical logic.
+      </p>
+      {teaching.length > 0 ? (
+        <ol class="editorial-record-list teaching-list">
+          {teaching.map((record) => {
+            const period = formatTeachingPeriod(record);
+
+            return (
+              <li class:list={["editorial-record", !period && "editorial-record--no-period"]}>
+                {period && <p class="editorial-record__period">{period}</p>}
+                <div class="editorial-record__body">
+                  <h3>{record.course}</h3>
+                  <p class="editorial-record__institution">{record.unit}</p>
+                </div>
+              </li>
+            );
+          })}
+        </ol>
+      ) : (
+        <p data-placeholder>{placeholders.teaching}</p>
+      )}
+    </section>
+  )}
+
+  {(presentations.length > 0 || showDevelopmentPlaceholders) && (
+    <section class="page-section" aria-labelledby="presentations-heading">
+      <SectionHeading
+        id="presentations-heading"
+        title="Selected Talks & Presentations"
+      />
+      {presentations.length > 0 ? (
+        <ol class="editorial-record-list">
+          {presentations.map((record) => {
+            const date = formatPresentationDate(record);
+            const publication = record.relatedPublicationId
+              ? publicationsById.get(record.relatedPublicationId)
+              : undefined;
+            const paperLink = publication?.data.links?.find(
+              (link) =>
+                link.purpose === "paper" ||
+                link.purpose === "preprint" ||
+                link.purpose === "journal" ||
+                link.purpose === "doi",
+            );
+            const paperHref = paperLink?.url ?? record.paperUrl;
+            const presentationLabel = record.invited
+              ? `Invited ${record.presentationType}`
+              : record.presentationType;
+
+            return (
+              <li class:list={["editorial-record", !date && "editorial-record--no-period"]}>
+                {date && <p class="editorial-record__period">{date}</p>}
+                <div class="editorial-record__body">
+                  <h3>{record.title}</h3>
+                  <p class="editorial-record__institution">
+                    {record.event}
+                    {record.location && ` · ${record.location}`}
+                  </p>
+                  <p class="editorial-record__meta">
+                    {presentationLabel}
+                    {record.presentationMode &&
+                      ` (${record.presentationMode.toLowerCase()})`}
+                  </p>
+                  {paperHref && (
+                    <p class="editorial-record__meta">
+                      <a href={paperHref}>Paper →</a>
+                    </p>
+                  )}
+                  {record.slidesUrl && (
+                    <p class="editorial-record__meta">
+                      <a href={record.slidesUrl}>Slides →</a>
+                    </p>
+                  )}
+                  {record.videoUrl && (
+                    <p class="editorial-record__meta">
+                      <a href={record.videoUrl}>Video →</a>
+                    </p>
+                  )}
+                </div>
+              </li>
+            );
+          })}
+        </ol>
+      ) : (
+        <p data-placeholder>{placeholders.presentations}</p>
+      )}
+    </section>
+  )}
+
+  {(recognition.length > 0 || showDevelopmentPlaceholders) && (
+    <section class="page-section" aria-labelledby="recognition-heading">
+      <SectionHeading id="recognition-heading" title="Awards & Recognition" />
+      {recognition.length > 0 ? (
+        <RecognitionList items={recognition} />
+      ) : (
+        <p data-placeholder>{placeholders.recognition}</p>
+      )}
+    </section>
+  )}
+
+  {(siteData.about.beyondResearch ||
+    siteData.about.photography.length > 0 ||
+    showDevelopmentPlaceholders) && (
+    <section class="page-section beyond-research" aria-labelledby="about-beyond-research-heading">
+      <SectionHeading id="about-beyond-research-heading" title="Beyond Research" />
+      {siteData.about.beyondResearch ? (
+        <p>{siteData.about.beyondResearch}</p>
+      ) : (
+        <p data-placeholder>{placeholders.beyondResearch}</p>
+      )}
+
+      {siteData.about.photography.length > 0 && (
+        <PhotoCarousel photos={siteData.about.photography} />
+      )}
+    </section>
+  )}
 </BaseLayout>
-

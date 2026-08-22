@@ -2,6 +2,7 @@ node_modules/
 .pnpm-store/
 dist/
 .astro/
+/qa/
 .env
 .env.*
 !.env.example
@@ -11,3 +12,7 @@ Thumbs.db
 # Local CV source and outdated export; publish only an explicitly updated CV.
 /main.tex
 /main.pdf
+/portrait.jpg
+
+# Private high-resolution photography sources; publish only sanitized derivatives.
+/private/

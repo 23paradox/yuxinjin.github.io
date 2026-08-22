@@ -1,9 +1,11 @@
 ---
+import ResearchAgenda from "../components/ResearchAgenda.astro";
+import ResearchThreadList from "../components/ResearchThreadList.astro";
 import SectionHeading from "../components/SectionHeading.astro";
-import { placeholders } from "../data/placeholders";
 import { siteData } from "../data/site";
 import {
   getSelectedResearchProjects,
+  loadPublications,
   loadResearchProjects,
 } from "../lib/content";
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -11,47 +13,38 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const researchProjects = getSelectedResearchProjects(
   await loadResearchProjects(),
 );
+const publications = await loadPublications();
 ---
 
 <BaseLayout pageTitle="Research">
-  <header class="page-section">
+  <header class="page-section page-intro">
     <h1>Research</h1>
     <p>{siteData.profile.researchIdentity}</p>
+    <p class="research-intro">
+      My research studies how strategic decisions are formed and revised when the
+      information available to agents is misspecified or limited. Across mean field
+      games and large-population stochastic systems, I am particularly interested in
+      three recurring problems: how information errors propagate through interacting
+      populations, what agents can infer from partial observations, and how beliefs
+      and strategies should be updated when heterogeneous or asymmetric information
+      structures make the underlying dynamics harder to predict.
+    </p>
   </header>
 
-  <section class="page-section" aria-labelledby="agenda-heading">
-    <SectionHeading id="agenda-heading" title="Research Agenda" />
-    <p data-placeholder={!siteData.research.agendaSummary}>
-      {siteData.research.agendaSummary ?? placeholders.researchAgenda}
-    </p>
-    <ol class="research-arc">
-      {siteData.research.arc.map((stage) => <li>{stage}</li>)}
-    </ol>
-  </section>
+  <ResearchAgenda
+    id="agenda-heading"
+    summary={siteData.research.agendaSummary}
+    stages={siteData.research.arc}
+  />
 
-  <section class="page-section" aria-labelledby="representative-work-heading">
-    <SectionHeading
-      id="representative-work-heading"
-      title="Representative Research"
-    />
-    {
-      researchProjects.length > 0 ? (
-        <div>
-          {researchProjects.map((project) => (
-            <article>
-              <h3>{project.data.title}</h3>
-              {project.data.researchQuestion && (
-                <p>
-                  <strong>Research question:</strong> {project.data.researchQuestion}
-                </p>
-              )}
-              {project.data.contribution && <p>{project.data.contribution}</p>}
-            </article>
-          ))}
-        </div>
-      ) : (
-        <p data-placeholder>{placeholders.selectedResearch}</p>
-      )
-    }
-  </section>
+  {researchProjects.length > 0 && (
+    <section class="page-section" aria-labelledby="research-threads-heading">
+      <SectionHeading
+        id="research-threads-heading"
+        title="Research Threads"
+      />
+      <ResearchThreadList items={researchProjects} publications={publications} />
+    </section>
+  )}
+
 </BaseLayout>

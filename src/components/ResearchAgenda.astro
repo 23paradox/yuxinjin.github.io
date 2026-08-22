@@ -1,0 +1,36 @@
+---
+import { placeholders } from "../data/placeholders";
+import type { ResearchArcStage } from "../data/site";
+import { developmentFallback } from "../lib/rendering";
+import SectionHeading from "./SectionHeading.astro";
+
+interface Props {
+  id: string;
+  summary: string | null;
+  stages: readonly ResearchArcStage[];
+}
+
+const { id, summary, stages } = Astro.props;
+const summaryText = developmentFallback(summary, placeholders.researchAgenda);
+const summaryIsPlaceholder = !summary && Boolean(summaryText);
+---
+
+<section class="page-section research-agenda-section" aria-labelledby={id}>
+  <SectionHeading id={id} title="Research Agenda" />
+  {summaryText && (
+    <p data-placeholder={summaryIsPlaceholder || undefined}>{summaryText}</p>
+  )}
+  {stages.length > 0 && (
+    <ol class="research-agenda" aria-label="Research agenda stages">
+      {stages.map((stage) => (
+        <li class="research-agenda__item">
+          <span class="research-agenda__number" aria-hidden="true">
+            {stage.number}
+          </span>
+          <h3>{stage.title}</h3>
+          {stage.description && <p>{stage.description}</p>}
+        </li>
+      ))}
+    </ol>
+  )}
+</section>

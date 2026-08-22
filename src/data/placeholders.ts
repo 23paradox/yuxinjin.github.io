@@ -8,6 +8,8 @@ export const placeholders = {
   recognition: "TODO: provide verified selected recognition",
   academicPath: "TODO: provide verified academic path",
   visitingExperience: "TODO: provide verified visiting experience",
+  teaching: "TODO: provide verified teaching experience",
+  presentations: "TODO: provide verified talks and presentations",
   personalIntroduction: "TODO: provide verified personal introduction",
   beyondResearch: "TODO: provide approved Beyond Research content",
   updatedCv: "TODO: provide updated public CV",

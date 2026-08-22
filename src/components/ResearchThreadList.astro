@@ -1,0 +1,65 @@
+---
+import type { PublicationEntry, ResearchProjectEntry } from "../lib/content";
+import { resolveReferencedPublications } from "../lib/content";
+
+interface Props {
+  items: readonly ResearchProjectEntry[];
+  publications?: readonly PublicationEntry[];
+  compact?: boolean;
+}
+
+const { items, publications = [], compact = false } = Astro.props;
+---
+
+<div class:list={["research-thread-list", compact && "research-thread-list--compact"]}>
+  {items.map((thread) => {
+    const relatedPublications = compact
+      ? []
+      : resolveReferencedPublications(thread, [...publications]);
+
+    return (
+      <article class="research-thread-list__item">
+        <h3>{thread.data.title}</h3>
+        <p>{compact ? thread.data.homepageSummary ?? thread.data.overview : thread.data.overview}</p>
+        {!compact && relatedPublications.length > 0 && (
+          <div class="research-thread-list__related">
+            <p class="research-thread-list__related-label">Related work:</p>
+            <ul class="inline-links">
+              {relatedPublications.map((publication) => {
+                const publicLink = publication.data.links?.find(
+                  (link) =>
+                    link.purpose === "paper" ||
+                    link.purpose === "preprint" ||
+                    link.purpose === "journal" ||
+                    link.purpose === "doi",
+                );
+
+                return (
+                  <li>
+                    {publicLink ? (
+                      <a href={publicLink.url}>{publication.data.title}</a>
+                    ) : (
+                      publication.data.title
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )}
+        {!compact && thread.data.links && thread.data.links.length > 0 && (
+          <div class="research-thread-list__related">
+            <p class="research-thread-list__related-label">Public links:</p>
+            <ul class="inline-links">
+              {thread.data.links.map((link) => (
+                <li>
+                  <a href={link.url}>{link.label ?? link.purpose}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </article>
+    );
+  })}
+</div>

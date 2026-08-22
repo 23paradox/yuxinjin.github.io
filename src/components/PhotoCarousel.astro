@@ -1,0 +1,141 @@
+---
+import { Image } from "astro:assets";
+import type { PhotographyAsset } from "../data/site";
+
+interface Props {
+  photos: readonly PhotographyAsset[];
+}
+
+const photos = [...Astro.props.photos].sort(
+  (first, second) => first.displayOrder - second.displayOrder,
+);
+const total = photos.length;
+---
+
+{total > 0 && (
+  <div
+    class="photo-carousel"
+    data-photo-carousel
+    role="group"
+    aria-label="Photography carousel"
+  >
+    <div
+      class="photo-carousel__stage"
+      data-photo-stage
+    >
+      {photos.map((photo, index) => (
+        <figure
+          class:list={["photo-carousel__slide", index === 0 && "is-active"]}
+          data-photo-slide
+          data-slide-index={index}
+          aria-hidden={index === 0 ? undefined : "true"}
+        >
+          <Image
+            class="photo-carousel__image"
+            src={photo.src}
+            alt={photo.alt}
+            widths={[480, 768, 1024, 1440, 1920, 2400]}
+            sizes="(max-width: 44rem) 100vw, min(68vw, 50rem)"
+            format="webp"
+            quality={85}
+            fit="contain"
+            priority={index === 0}
+          />
+          {photo.caption && (
+            <figcaption class="photo-carousel__caption">{photo.caption}</figcaption>
+          )}
+        </figure>
+      ))}
+    </div>
+
+    <div class="photo-carousel__controls">
+      <button
+        class="photo-carousel__button"
+        type="button"
+        data-photo-previous
+        aria-label="Previous photograph"
+      >
+        ←
+      </button>
+      <p class="photo-carousel__counter" aria-live="polite">
+        <span data-photo-current>01</span> / <span>{String(total).padStart(2, "0")}</span>
+      </p>
+      <button
+        class="photo-carousel__button photo-carousel__button--next"
+        type="button"
+        data-photo-next
+        aria-label="Next photograph"
+      >
+        →
+      </button>
+    </div>
+  </div>
+)}
+
+<script>
+  document.querySelectorAll("[data-photo-carousel]").forEach((carousel) => {
+    const slides = Array.from(carousel.querySelectorAll("[data-photo-slide]"));
+    const stage = carousel.querySelector("[data-photo-stage]");
+    const current = carousel.querySelector("[data-photo-current]");
+    const previous = carousel.querySelector("[data-photo-previous]");
+    const next = carousel.querySelector("[data-photo-next]");
+
+    if (!slides.length || !current || !previous || !next) return;
+
+    let activeIndex = 0;
+    let pointerStart: { id: number; x: number; y: number } | null = null;
+
+    const showSlide = (nextIndex: number) => {
+      activeIndex = (nextIndex + slides.length) % slides.length;
+
+      slides.forEach((slide, index) => {
+        const isActive = index === activeIndex;
+        slide.classList.toggle("is-active", isActive);
+        slide.setAttribute("aria-hidden", String(!isActive));
+      });
+
+      current.textContent = String(activeIndex + 1).padStart(2, "0");
+    };
+
+    previous.addEventListener("click", () => showSlide(activeIndex - 1));
+    next.addEventListener("click", () => showSlide(activeIndex + 1));
+
+    carousel.addEventListener("keydown", (event) => {
+      if (!(event instanceof KeyboardEvent)) return;
+
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        showSlide(activeIndex - 1);
+      }
+
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        showSlide(activeIndex + 1);
+      }
+    });
+
+    stage?.addEventListener("pointerdown", (event) => {
+      if (!(event instanceof PointerEvent)) return;
+      if (event.pointerType === "mouse" && event.button !== 0) return;
+      pointerStart = { id: event.pointerId, x: event.clientX, y: event.clientY };
+    });
+
+    stage?.addEventListener("pointerup", (event) => {
+      if (!(event instanceof PointerEvent)) return;
+      if (!pointerStart || event.pointerId !== pointerStart.id) return;
+
+      const distanceX = event.clientX - pointerStart.x;
+      const distanceY = event.clientY - pointerStart.y;
+      pointerStart = null;
+
+      if (Math.abs(distanceX) < 48 || Math.abs(distanceX) <= Math.abs(distanceY)) return;
+
+      if (distanceX < 0) showSlide(activeIndex + 1);
+      else showSlide(activeIndex - 1);
+    });
+
+    stage?.addEventListener("pointercancel", () => {
+      pointerStart = null;
+    });
+  });
+</script>

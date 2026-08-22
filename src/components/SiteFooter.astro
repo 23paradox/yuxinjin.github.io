@@ -4,31 +4,24 @@ import { siteData } from "../data/site";
 
 <footer class="site-footer">
   <div class="site-shell">
-    <p>{siteData.profile.researchIdentity}</p>
+    <p class="site-footer__identity">{siteData.profile.researchIdentity}</p>
     {
       siteData.profile.email && (
-        <p>
+        <p class="site-footer__email">
           <a href={`mailto:${siteData.profile.email}`}>{siteData.profile.email}</a>
         </p>
       )
     }
-    <nav aria-label="External profiles">
-      <ul>
-        {
-          siteData.profile.googleScholarUrl && (
-            <li>
-              <a href={siteData.profile.googleScholarUrl}>Google Scholar</a>
-            </li>
-          )
-        }
-        {
-          siteData.profile.researchGateUrl && (
-            <li>
-              <a href={siteData.profile.researchGateUrl}>ResearchGate</a>
-            </li>
-          )
-        }
-      </ul>
+    <nav class="site-footer__links" aria-label="External profiles">
+      {siteData.profile.googleScholarUrl && (
+        <a href={siteData.profile.googleScholarUrl}>Google Scholar</a>
+      )}
+      {siteData.profile.googleScholarUrl && siteData.profile.researchGateUrl && (
+        <span aria-hidden="true">·</span>
+      )}
+      {siteData.profile.researchGateUrl && (
+        <a href={siteData.profile.researchGateUrl}>ResearchGate</a>
+      )}
     </nav>
   </div>
 </footer>
