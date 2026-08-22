@@ -52,6 +52,7 @@
 html {
   color-scheme: light;
   background: var(--background);
+  overflow-x: clip;
 }
 
 body {
