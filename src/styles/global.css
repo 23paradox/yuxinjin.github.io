@@ -315,17 +315,19 @@ main {
 }
 
 .hero__research-title {
-  max-width: 46rem;
+  max-width: none;
   margin-block: calc(var(--space-5) + var(--space-1)) var(--space-5);
   color: var(--accent-forest);
-  font-size: var(--type-hero-identity);
+  font-size: clamp(1.7rem, 2vw, 1.9rem);
   font-weight: 400;
   letter-spacing: -0.01em;
   line-height: var(--leading-display);
 }
 
-.hero__research-title span {
-  display: block;
+@media (min-width: 72rem) {
+  .hero__research-title {
+    white-space: nowrap;
+  }
 }
 
 .hero__summary {
