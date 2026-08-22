@@ -20,7 +20,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const publicationEntries = await loadPublications();
 const selectedPublications = getSelectedPublications(publicationEntries);
-const homepagePublications = selectedPublications.slice(0, 3);
+const homepagePublicationIds = [
+  "lq-mean-field-games-heterogeneous-erroneous-information",
+  "major-minor-lq-mean-field-games-erroneous-initial-information",
+];
+const homepagePublications = homepagePublicationIds.flatMap((publicationId) => {
+  const publication = selectedPublications.find(
+    (entry) => entry.id === publicationId,
+  );
+
+  return publication ? [publication] : [];
+});
 const selectedRecognition = getSelectedRecognition(siteData.about.recognition);
 const mastheadPhoto = siteData.about.photography.find((photo) => photo.homepageMasthead);
 const heroName = developmentFallback(siteData.profile.name, placeholders.name);
@@ -144,6 +154,8 @@ if (!mastheadPhoto) {
 
   <section class="page-section home-section home-section--research" aria-labelledby="research-heading">
     <SectionHeading id="research-heading" number="01" title="Research" />
+    <p class="home-research-hook">{siteData.research.homeHook}</p>
+    <p class="home-research-introduction">{siteData.research.homeIntroduction}</p>
     <p class="home-research-flow" aria-label="Research flow: Misspecification, Inference, Revision">
       <span>Misspecification</span>
       <span aria-hidden="true">→</span>
