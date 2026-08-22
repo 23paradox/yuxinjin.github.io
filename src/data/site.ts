@@ -1,8 +1,13 @@
 import type { ImageMetadata } from "astro";
 import archwayPhoto from "../assets/images/photography/archway.jpg";
+import monumentEveningPhoto from "../assets/images/photography/monument-evening.jpg";
+import colonnadeShadowsPhoto from "../assets/images/photography/colonnade-shadows.jpg";
 import coastPhoto from "../assets/images/photography/coast.jpg";
+import homeCorridorPhoto from "../assets/images/photography/home-corridor.jpg";
+import mountainFlowersPhoto from "../assets/images/photography/mountain-flowers.jpg";
 import moonRiverPhoto from "../assets/images/photography/moon-river.jpg";
 import nightSkyPhoto from "../assets/images/photography/night-sky.jpg";
+import powerlinesSunsetPhoto from "../assets/images/photography/powerlines-sunset.jpg";
 import snowCabinPhoto from "../assets/images/photography/snow-cabin.jpg";
 
 export type InternalRoute = "/" | "/research/" | "/publications/" | "/about/";
@@ -78,10 +83,12 @@ export interface PersonalInterest {
 }
 
 export interface PhotographyAsset {
+  id: string;
   src: ImageMetadata;
   alt: string;
   displayOrder: number;
   orientation: "portrait" | "landscape";
+  carousel?: "portrait" | "landscape";
   homepageMasthead?: boolean;
   caption?: string;
   year?: number;
@@ -558,35 +565,84 @@ export const siteData: SiteData = {
     ],
     photography: [
       {
+        id: "archway",
         src: archwayPhoto,
         alt: "Cyclists and pedestrians passing through a shaded archway toward a sunlit street.",
         displayOrder: 1,
         orientation: "portrait",
+        carousel: "portrait",
       },
       {
-        src: coastPhoto,
-        alt: "Two people sitting among rocks beside the sea.",
-        displayOrder: 2,
-        orientation: "landscape",
-      },
-      {
+        id: "moon-river",
         src: moonRiverPhoto,
         alt: "A moon above a river valley with layered colored rock in the foreground.",
-        displayOrder: 3,
+        displayOrder: 2,
         orientation: "portrait",
+        carousel: "portrait",
       },
       {
-        src: snowCabinPhoto,
-        alt: "A small wooden building among snow-covered trees under a warm winter sky.",
-        displayOrder: 4,
+        id: "monument-evening",
+        src: monumentEveningPhoto,
+        alt: "A monumental stone structure beneath curved architectural elements and a pale evening sky.",
+        displayOrder: 3,
+        orientation: "portrait",
+        carousel: "portrait",
+      },
+      {
+        id: "home-corridor",
+        src: homeCorridorPhoto,
+        alt: "A sunlit covered walkway framed by foliage, columns, and geometric shadows.",
+        displayOrder: 1,
         orientation: "landscape",
         homepageMasthead: true,
       },
       {
-        src: nightSkyPhoto,
-        alt: "A star-filled night sky above a dark mountain silhouette.",
+        id: "colonnade-shadows",
+        src: colonnadeShadowsPhoto,
+        alt: "Long shadows from repeating columns across stone paving beside bright reflected water.",
+        displayOrder: 1,
+        orientation: "landscape",
+        carousel: "landscape",
+      },
+      {
+        id: "powerlines-sunset",
+        src: powerlinesSunsetPhoto,
+        alt: "Utility poles and crossing power lines silhouetted against an orange evening sky.",
+        displayOrder: 2,
+        orientation: "landscape",
+        carousel: "landscape",
+      },
+      {
+        id: "coast",
+        src: coastPhoto,
+        alt: "Two people sitting among rocks beside the sea.",
+        displayOrder: 3,
+        orientation: "landscape",
+        carousel: "landscape",
+      },
+      {
+        id: "mountain-flowers",
+        src: mountainFlowersPhoto,
+        alt: "Pale grasses and flowers in the foreground beneath a large mountain landscape.",
+        displayOrder: 4,
+        orientation: "landscape",
+        carousel: "landscape",
+      },
+      {
+        id: "snow-cabin",
+        src: snowCabinPhoto,
+        alt: "A small wooden building among snow-covered trees beneath a warm winter sky.",
         displayOrder: 5,
         orientation: "landscape",
+        carousel: "landscape",
+      },
+      {
+        id: "night-sky",
+        src: nightSkyPhoto,
+        alt: "A dense star-filled sky above a dark mountain silhouette.",
+        displayOrder: 6,
+        orientation: "landscape",
+        carousel: "landscape",
       },
     ],
   },

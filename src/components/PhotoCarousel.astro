@@ -4,9 +4,16 @@ import type { PhotographyAsset } from "../data/site";
 
 interface Props {
   photos: readonly PhotographyAsset[];
+  variant?: "portrait" | "landscape";
+  ariaLabel?: string;
 }
 
-const photos = [...Astro.props.photos].sort(
+const {
+  photos: providedPhotos,
+  variant = "landscape",
+  ariaLabel = "Photography carousel",
+} = Astro.props;
+const photos = [...providedPhotos].sort(
   (first, second) => first.displayOrder - second.displayOrder,
 );
 const total = photos.length;
@@ -14,10 +21,11 @@ const total = photos.length;
 
 {total > 0 && (
   <div
-    class="photo-carousel"
+    class:list={["photo-carousel", `photo-carousel--${variant}`]}
     data-photo-carousel
     role="group"
-    aria-label="Photography carousel"
+    aria-label={ariaLabel}
+    tabindex="0"
   >
     <div
       class="photo-carousel__stage"
@@ -35,7 +43,11 @@ const total = photos.length;
             src={photo.src}
             alt={photo.alt}
             widths={[480, 768, 1024, 1440, 1920, 2400]}
-            sizes="(max-width: 44rem) 100vw, min(68vw, 50rem)"
+            sizes={
+              variant === "portrait"
+                ? "(max-width: 44rem) min(100vw - 2rem, 18rem), min(30vw, 19rem)"
+                : "(max-width: 44rem) 100vw, min(68vw, 50rem)"
+            }
             format="webp"
             quality={85}
             fit="contain"

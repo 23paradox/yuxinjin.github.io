@@ -140,18 +140,6 @@ if (!mastheadPhoto) {
     </figure>
   </section>
 
-  <figure class="home-masthead">
-    <Image
-      class="home-masthead__image"
-      src={mastheadPhoto.src}
-      alt={mastheadPhoto.alt}
-      widths={[480, 768, 1024, 1440]}
-      sizes="(max-width: 44rem) calc(100vw - 2rem), min(100vw - 2rem, 73.75rem)"
-      format="webp"
-      quality={85}
-    />
-  </figure>
-
   <section class="page-section home-section home-section--research" aria-labelledby="research-heading">
     <SectionHeading id="research-heading" number="01" title="Research" />
     <p class="home-research-hook">{siteData.research.homeHook}</p>
@@ -173,6 +161,18 @@ if (!mastheadPhoto) {
     </div>
     <a class="text-link" href={withBase("/research/")}>Explore my research →</a>
   </section>
+
+  <figure class="home-masthead">
+    <Image
+      class="home-masthead__image"
+      src={mastheadPhoto.src}
+      alt={mastheadPhoto.alt}
+      widths={[480, 768, 1024, 1440]}
+      sizes="(max-width: 44rem) calc(100vw - 2rem), min(100vw - 2rem, 73.75rem)"
+      format="webp"
+      quality={85}
+    />
+  </figure>
 
   {(homepagePublications.length > 0 || showDevelopmentPlaceholders) && (
     <section class="page-section home-section home-section--work" aria-labelledby="selected-work-heading">

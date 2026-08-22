@@ -31,15 +31,32 @@ const publicationsById = new Map(
   publications.map((publication) => [publication.id, publication]),
 );
 const recognition = getRecognitionInDisplayOrder(siteData.about.recognition);
+const portraitPhotos = siteData.about.photography.filter(
+  (photo) => photo.carousel === "portrait",
+);
+const landscapePhotos = siteData.about.photography.filter(
+  (photo) => photo.carousel === "landscape",
+);
 ---
 
 <BaseLayout pageTitle="About">
-  <header class="page-section page-intro">
-    <h1>About</h1>
-    {biography &&
-      biography.map((paragraph) => (
-        <p data-placeholder={biographyIsPlaceholder || undefined}>{paragraph}</p>
-      ))}
+  <header class="page-section page-intro about-intro">
+    <div class="about-intro__copy">
+      <h1>About</h1>
+      {biography &&
+        biography.map((paragraph) => (
+          <p data-placeholder={biographyIsPlaceholder || undefined}>{paragraph}</p>
+        ))}
+    </div>
+    {portraitPhotos.length > 0 && (
+      <div class="about-intro__carousel">
+        <PhotoCarousel
+          photos={portraitPhotos}
+          variant="portrait"
+          ariaLabel="Portrait photography carousel"
+        />
+      </div>
+    )}
   </header>
 
   {(education.length > 0 || showDevelopmentPlaceholders) && (
@@ -217,7 +234,7 @@ const recognition = getRecognitionInDisplayOrder(siteData.about.recognition);
   )}
 
   {(siteData.about.beyondResearch ||
-    siteData.about.photography.length > 0 ||
+    landscapePhotos.length > 0 ||
     showDevelopmentPlaceholders) && (
     <section class="page-section beyond-research" aria-labelledby="about-beyond-research-heading">
       <SectionHeading id="about-beyond-research-heading" title="Beyond Research" />
@@ -227,8 +244,12 @@ const recognition = getRecognitionInDisplayOrder(siteData.about.recognition);
         <p data-placeholder>{placeholders.beyondResearch}</p>
       )}
 
-      {siteData.about.photography.length > 0 && (
-        <PhotoCarousel photos={siteData.about.photography} />
+      {landscapePhotos.length > 0 && (
+        <PhotoCarousel
+          photos={landscapePhotos}
+          variant="landscape"
+          ariaLabel="Landscape photography carousel"
+        />
       )}
     </section>
   )}
