@@ -594,7 +594,7 @@ export const siteData: SiteData = {
         alt: "A sunlit covered walkway framed by foliage, columns, and geometric shadows.",
         displayOrder: 1,
         orientation: "landscape",
-        homepageMasthead: true,
+        carousel: "landscape",
       },
       {
         id: "colonnade-shadows",
@@ -602,7 +602,7 @@ export const siteData: SiteData = {
         alt: "Long shadows from repeating columns across stone paving beside bright reflected water.",
         displayOrder: 1,
         orientation: "landscape",
-        carousel: "landscape",
+        homepageMasthead: true,
       },
       {
         id: "powerlines-sunset",
