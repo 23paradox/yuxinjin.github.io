@@ -314,7 +314,7 @@ main {
   font-weight: 600;
 }
 
-.hero__link--secondary {
+.hero__links a.hero__link--secondary {
   color: var(--text-secondary);
   font-size: var(--type-meta);
   font-weight: 400;
