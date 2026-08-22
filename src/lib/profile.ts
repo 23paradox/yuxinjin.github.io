@@ -67,16 +67,15 @@ function compareRecognition(
   left: RecognitionItem,
   right: RecognitionItem,
 ): number {
-  const yearDifference = (right.year ?? 0) - (left.year ?? 0);
+  const displayOrderDifference =
+    (left.displayOrder ?? Number.MAX_SAFE_INTEGER) -
+    (right.displayOrder ?? Number.MAX_SAFE_INTEGER);
 
-  if (yearDifference !== 0) {
-    return yearDifference;
+  if (displayOrderDifference !== 0) {
+    return displayOrderDifference;
   }
 
-  return (
-    (left.displayOrder ?? Number.MAX_SAFE_INTEGER) -
-    (right.displayOrder ?? Number.MAX_SAFE_INTEGER)
-  );
+  return (right.year ?? 0) - (left.year ?? 0);
 }
 
 export function getSelectedRecognition(

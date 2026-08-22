@@ -508,7 +508,7 @@ export const siteData: SiteData = {
         selected: true,
         displayOrder: 1,
         detail:
-          "China's highest national-level scholarship honor for graduate students, recognizing outstanding academic achievement, research ability, and development potential.",
+          "China's highest national-level scholarship honor for graduate students.",
       },
       {
         title: "2025 IEEE CDC & Workshop Student Travel Support",
@@ -524,7 +524,7 @@ export const siteData: SiteData = {
         selected: false,
         displayOrder: 3,
         detail:
-          "An annual graduate academic scholarship at Beihang University, awarded on the basis of academic and research performance.",
+          "A first-class graduate academic scholarship at Beihang University.",
       },
       {
         title: "CAST Young Talent Lifting Project — Doctoral Special Program",
@@ -532,7 +532,7 @@ export const siteData: SiteData = {
         selected: true,
         displayOrder: 1,
         detail:
-          "Inaugural cohort, 2024. A doctoral talent-support program established by the China Association for Science and Technology (CAST), providing research support and academic exchange opportunities to selected Ph.D. students. Certificate issued in 2025.",
+          "A doctoral talent-support program established by the China Association for Science and Technology (CAST). Inaugural cohort, 2024; certificate issued in 2025.",
       },
       {
         title: "2024 IEEE CDC Student Travel Support",

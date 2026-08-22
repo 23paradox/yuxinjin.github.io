@@ -127,6 +127,17 @@ const landscapePhotos = siteData.about.photography.filter(
     </section>
   )}
 
+  {(recognition.length > 0 || showDevelopmentPlaceholders) && (
+    <section class="page-section" aria-labelledby="recognition-heading">
+      <SectionHeading id="recognition-heading" title="Awards & Recognition" />
+      {recognition.length > 0 ? (
+        <RecognitionList items={recognition} />
+      ) : (
+        <p data-placeholder>{placeholders.recognition}</p>
+      )}
+    </section>
+  )}
+
   {(teaching.length > 0 || showDevelopmentPlaceholders) && (
     <section class="page-section" aria-labelledby="teaching-heading">
       <SectionHeading id="teaching-heading" title="Teaching" />
@@ -216,17 +227,6 @@ const landscapePhotos = siteData.about.photography.filter(
         </ol>
       ) : (
         <p data-placeholder>{placeholders.presentations}</p>
-      )}
-    </section>
-  )}
-
-  {(recognition.length > 0 || showDevelopmentPlaceholders) && (
-    <section class="page-section" aria-labelledby="recognition-heading">
-      <SectionHeading id="recognition-heading" title="Awards & Recognition" />
-      {recognition.length > 0 ? (
-        <RecognitionList items={recognition} />
-      ) : (
-        <p data-placeholder>{placeholders.recognition}</p>
       )}
     </section>
   )}
