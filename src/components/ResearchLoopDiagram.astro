@@ -1,15 +1,17 @@
 ---
 interface Props {
   steps: readonly string[];
+  caption: string;
 }
 
-const { steps } = Astro.props;
+const { steps, caption } = Astro.props;
 ---
 
 <figure class="research-loop-figure">
+  <p class="research-loop-figure__label">Information–Decision Loop</p>
   <svg
     class="research-loop-figure__diagram"
-    viewBox="0 0 1200 230"
+    viewBox="0 0 360 350"
     role="img"
     aria-labelledby="research-loop-figure-title research-loop-figure-description"
   >
@@ -25,49 +27,69 @@ const { steps } = Astro.props;
       </marker>
     </defs>
 
-    <path class="research-loop-figure__path" d="M 148 72 H 216" marker-end="url(#research-loop-arrow)" />
-    <path class="research-loop-figure__path" d="M 333 72 H 401" marker-end="url(#research-loop-arrow)" />
-    <path class="research-loop-figure__path" d="M 538 72 H 606" marker-end="url(#research-loop-arrow)" />
-    <path class="research-loop-figure__path" d="M 703 72 H 771" marker-end="url(#research-loop-arrow)" />
-    <path class="research-loop-figure__path" d="M 910 72 H 978" marker-end="url(#research-loop-arrow)" />
+    <path
+      class="research-loop-figure__path"
+      d="M 165 58 L 112 106"
+      marker-end="url(#research-loop-arrow)"
+    />
+    <path
+      class="research-loop-figure__path"
+      d="M 106 120 H 253"
+      marker-end="url(#research-loop-arrow)"
+    />
+    <path
+      class="research-loop-figure__path"
+      d="M 260 127 V 198"
+      marker-end="url(#research-loop-arrow)"
+    />
+    <path
+      class="research-loop-figure__path"
+      d="M 246 217 L 192 272"
+      marker-end="url(#research-loop-arrow)"
+    />
+    <path
+      class="research-loop-figure__path"
+      d="M 164 278 L 112 218"
+      marker-end="url(#research-loop-arrow)"
+    />
     <path
       class="research-loop-figure__feedback-path"
-      d="M 1056 102 C 1042 186, 318 186, 286 111"
+      d="M 83 202 C 48 181 48 139 84 122"
       marker-end="url(#research-loop-arrow)"
     />
 
-    <g class="research-loop-figure__node" transform="translate(70 72)">
+    <g class="research-loop-figure__node" transform="translate(180 46)">
       <circle r="5" />
-      <text y="-16" text-anchor="middle">Information</text>
-      <text y="6" text-anchor="middle">/ Belief</text>
+      <text y="-28" text-anchor="middle">Information</text>
+      <text y="-12" text-anchor="middle">/ Belief</text>
     </g>
-    <g class="research-loop-figure__node" transform="translate(286 72)">
+    <g class="research-loop-figure__node" transform="translate(98 120)">
       <circle r="5" />
-      <text y="-16" text-anchor="middle">Decision</text>
-      <text y="6" text-anchor="middle">/ Strategy</text>
+      <text y="-30" text-anchor="middle">Decision</text>
+      <text y="-14" text-anchor="middle">/ Strategy</text>
     </g>
-    <g class="research-loop-figure__node" transform="translate(470 72)">
+    <g class="research-loop-figure__node" transform="translate(260 120)">
       <circle r="5" />
-      <text y="-16" text-anchor="middle">System / Population</text>
-      <text y="6" text-anchor="middle">Dynamics</text>
+      <text y="-30" text-anchor="middle">System / Population</text>
+      <text y="-14" text-anchor="middle">Dynamics</text>
     </g>
-    <g class="research-loop-figure__node" transform="translate(634 72)">
+    <g class="research-loop-figure__node" transform="translate(260 206)">
       <circle r="5" />
-      <text y="-5" text-anchor="middle">Observation</text>
+      <text y="30" text-anchor="middle">Observation</text>
     </g>
-    <g class="research-loop-figure__node" transform="translate(840 72)">
+    <g class="research-loop-figure__node" transform="translate(180 284)">
       <circle r="5" />
-      <text y="-16" text-anchor="middle">Inference</text>
-      <text y="6" text-anchor="middle">/ Updating</text>
+      <text y="30" text-anchor="middle">Inference</text>
+      <text y="46" text-anchor="middle">/ Updating</text>
     </g>
-    <g class="research-loop-figure__node" transform="translate(1010 72)">
+    <g class="research-loop-figure__node" transform="translate(98 206)">
       <circle r="5" />
-      <text y="-16" text-anchor="middle">Strategy</text>
-      <text y="6" text-anchor="middle">Revision</text>
+      <text y="30" text-anchor="middle">Strategy</text>
+      <text y="46" text-anchor="middle">Revision</text>
     </g>
 
-    <text class="research-loop-figure__feedback-label" x="655" y="212" text-anchor="middle">
-      informs future decision and strategy
+    <text class="research-loop-figure__feedback-label" x="24" y="160">
+      feeds future decisions
     </text>
   </svg>
 
@@ -80,7 +102,9 @@ const { steps } = Astro.props;
     ))}
     <li class="research-loop-figure__mobile-feedback">
       <span aria-hidden="true">↺</span>
-      <span>informs future decision and strategy</span>
+      <span>feeds future decisions</span>
     </li>
   </ol>
+
+  <figcaption class="research-loop-figure__caption">{caption}</figcaption>
 </figure>
