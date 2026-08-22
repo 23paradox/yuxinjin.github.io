@@ -156,7 +156,7 @@ h3 {
 }
 
 .site-header--home-masthead {
-  height: clamp(6.875rem, 10.4vw, 9.375rem);
+  height: clamp(8rem, 12.5vw, 11.25rem);
   overflow: hidden;
   border: 0;
   background: var(--text-primary);
@@ -1389,7 +1389,7 @@ main {
   }
 
   .site-header--home-masthead {
-    height: clamp(4.5rem, 23vw, 6.25rem);
+    height: clamp(5.5rem, 28vw, 7rem);
   }
 
   .site-header--home-masthead::after {
