@@ -399,6 +399,33 @@ main {
   letter-spacing: -0.01em;
 }
 
+.about-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 2.15fr) minmax(17rem, 0.95fr);
+  align-items: start;
+  column-gap: clamp(var(--space-6), 6vw, var(--space-8));
+  max-width: none;
+}
+
+.about-intro__copy {
+  min-width: 0;
+  max-width: var(--measure-prose);
+}
+
+.about-intro__copy > p {
+  max-width: var(--measure-prose);
+}
+
+.about-intro__carousel {
+  width: min(100%, 19rem);
+  justify-self: end;
+}
+
+.about-intro__carousel .photo-carousel {
+  width: 100%;
+  margin: 0;
+}
+
 .section-heading {
   margin-block-end: var(--space-4);
 }
@@ -883,12 +910,21 @@ main {
   margin-block-start: var(--space-5);
 }
 
+.photo-carousel--portrait {
+  width: min(100%, 19rem);
+  margin: 0;
+}
+
 .photo-carousel__stage {
   --photo-stage-height: clamp(20rem, 44vw, 34rem);
   position: relative;
   height: var(--photo-stage-height);
   overflow: hidden;
   touch-action: pan-y;
+}
+
+.photo-carousel--portrait .photo-carousel__stage {
+  --photo-stage-height: clamp(20rem, 34vw, 27rem);
 }
 
 .photo-carousel__slide {
@@ -936,6 +972,11 @@ main {
   margin-block-start: var(--space-3);
 }
 
+.photo-carousel--portrait .photo-carousel__controls {
+  gap: var(--space-3);
+  margin-block-start: var(--space-2);
+}
+
 .photo-carousel__button {
   min-width: 3rem;
   min-height: 2.75rem;
@@ -948,6 +989,11 @@ main {
   font-size: 1rem;
   line-height: 1;
   text-align: start;
+}
+
+.photo-carousel--portrait .photo-carousel__button {
+  min-width: 2.75rem;
+  min-height: 2.5rem;
 }
 
 .photo-carousel__button:hover {
@@ -1082,6 +1128,16 @@ main {
     padding-block: var(--space-6) var(--space-7);
   }
 
+  .about-intro {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--space-6);
+  }
+
+  .about-intro__carousel {
+    width: min(100%, 18rem);
+    justify-self: center;
+  }
+
   .section-heading--numbered {
     grid-template-columns: minmax(2.75rem, auto) minmax(0, 1fr);
     column-gap: var(--space-3);
@@ -1098,6 +1154,10 @@ main {
   .home-research-questions {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--space-5);
+  }
+
+  .photo-carousel--portrait .photo-carousel__stage {
+    --photo-stage-height: clamp(20rem, 108vw, 25rem);
   }
 
   .research-loop {
