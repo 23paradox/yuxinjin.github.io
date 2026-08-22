@@ -77,6 +77,12 @@ Prefer typography, spacing, rules, and careful composition over decorative UI
 containers. Any motion must have a functional purpose and respect
 `prefers-reduced-motion`.
 
+Typography hierarchy: **Source Serif 4 is reserved for identity, page titles,
+and major section headings. IBM Plex Sans is used for content-level headings,
+publication and talk titles, navigation, metadata, and body text.** Serif
+communicates page architecture and identity; sans communicates academic content
+and information.
+
 ## Technology and architecture
 
 - Build with Astro as a static site. Use TypeScript where it improves content
