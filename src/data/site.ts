@@ -110,6 +110,7 @@ export interface ResearchNarrativeQuestion {
 export interface ResearchDifficultySetting {
   title: string;
   description: string;
+  detail?: string;
 }
 
 export interface ResearchNarrativeMilestone {
@@ -121,8 +122,8 @@ export interface ResearchNarrativeMilestone {
 
 export interface ResearchNarrative {
   subtitle: string;
-  openingQuestion: string;
-  opening: string;
+  leadStatement: string;
+  supportingParagraph: string;
   loop: {
     steps: readonly string[];
     caption: string;
@@ -256,10 +257,10 @@ export const siteData: SiteData = {
     narrative: {
       subtitle:
         "Information, Inference, and Strategic Revision in Stochastic Systems",
-      openingQuestion:
-        "I am broadly interested in stochastic decision-making and strategic interaction in systems where agents operate under uncertainty, incomplete information, or imperfect models.",
-      opening:
-        "A recurring question in my current work is what strategic agents should do when the information behind their decisions turns out to be wrong or incomplete. In stochastic games and large-population systems, information misspecification can change the strategies agents choose and therefore the dynamics the system actually realizes. Information and control are consequently coupled: agents may need to learn from subsequent observations, update their view of the system, and decide whether and how to revise their actions. I study the mathematical structure of this interaction between information, strategic behavior, inference, and decision revision, primarily through mean field games and stochastic control.",
+      leadStatement:
+        "I study how strategic decisions change when the information behind them is incomplete, misspecified, or unevenly distributed.",
+      supportingParagraph:
+        "A recurring question in my work is what agents should do when the information guiding their decisions turns out to be wrong, limited, or only partially observable. In stochastic games and large-population systems, such informational imperfections can alter both individual behavior and the collective dynamics that emerge. I am interested in the mathematical structure of this interaction between information, inference, and decision revision, primarily through mean field games and stochastic control.",
       loop: {
         steps: [
           "Information / Belief",
@@ -307,7 +308,9 @@ export const siteData: SiteData = {
         {
           title: "Asymmetric Information and Strategic Beliefs",
           description:
-            "In strategic systems, observing the physical state does not necessarily reveal what other agents believe or how those beliefs will shape their future actions. When information is asymmetric, misspecified, or privately updated, an agent may need to infer not only the underlying state of the system but also other agents' beliefs and the strategies induced by those beliefs. Major–minor systems provide one concrete example: the major state may be observable while the major's belief and the strategy induced by that belief remain opaque to the minor agents.",
+            "In strategic systems, observing the physical state does not necessarily reveal what other agents believe or how those beliefs will shape their future actions. When information is asymmetric, misspecified, or privately updated, an agent may need to infer not only the underlying state of the system but also other agents' beliefs and the strategies induced by those beliefs.",
+          detail:
+            "Major–minor systems provide one concrete example: the major state may be observable while the major's belief and the strategy induced by that belief remain opaque to the minor agents.",
         },
       ],
       milestones: [
