@@ -11,41 +11,38 @@ const { type } = Astro.props;
 {type === "heterogeneous" && (
   <figure class="research-difficulty-diagram">
     <svg
-      viewBox="0 0 480 220"
+      viewBox="0 0 480 230"
       role="img"
       aria-labelledby="heterogeneous-information-title heterogeneous-information-description"
     >
       <title id="heterogeneous-information-title">Heterogeneous information</title>
       <desc id="heterogeneous-information-description">
-        Three agents hold different beliefs. Their strategic responses jointly shape population
-        dynamics.
+        Three agents hold different beliefs and produce different responses. Their responses jointly
+        shape population dynamics.
       </desc>
       <defs>
         <marker id="heterogeneous-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
           <path d="M 0 0 L 7 4 L 0 8 z" class="research-difficulty-diagram__arrowhead" />
         </marker>
       </defs>
-      <g class="research-difficulty-diagram__agent">
-        <circle cx="82" cy="42" r="5" />
-        <text x="96" y="38">Agent 1</text>
-        <text x="96" y="56">belief θ̂₁</text>
-        <circle cx="232" cy="42" r="5" />
-        <text x="246" y="38">Agent 2</text>
-        <text x="246" y="56">belief θ̂₂</text>
-        <circle cx="382" cy="42" r="5" />
-        <text x="396" y="38">Agent 3</text>
-        <text x="396" y="56">belief θ̂₃</text>
-      </g>
-      <path class="research-difficulty-diagram__path" d="M 82 72 L 224 118" marker-end="url(#heterogeneous-arrow)" />
-      <path class="research-difficulty-diagram__path" d="M 232 72 V 118" marker-end="url(#heterogeneous-arrow)" />
-      <path class="research-difficulty-diagram__path" d="M 382 72 L 240 118" marker-end="url(#heterogeneous-arrow)" />
-      <text class="research-difficulty-diagram__label" x="232" y="144" text-anchor="middle">
-        strategic responses
-      </text>
-      <path class="research-difficulty-diagram__path" d="M 232 155 V 184" marker-end="url(#heterogeneous-arrow)" />
-      <text class="research-difficulty-diagram__label" x="232" y="210" text-anchor="middle">
-        population dynamics
-      </text>
+      <text class="research-difficulty-diagram__label" x="90" y="28" text-anchor="middle">Agent A</text>
+      <text class="research-difficulty-diagram__note" x="90" y="48" text-anchor="middle">Belief A</text>
+      <text class="research-difficulty-diagram__label" x="240" y="28" text-anchor="middle">Agent B</text>
+      <text class="research-difficulty-diagram__note" x="240" y="48" text-anchor="middle">Belief B</text>
+      <text class="research-difficulty-diagram__label" x="390" y="28" text-anchor="middle">Agent C</text>
+      <text class="research-difficulty-diagram__note" x="390" y="48" text-anchor="middle">Belief C</text>
+
+      <path class="research-difficulty-diagram__path" d="M 90 58 V 82" marker-end="url(#heterogeneous-arrow)" />
+      <path class="research-difficulty-diagram__path" d="M 240 58 V 82" marker-end="url(#heterogeneous-arrow)" />
+      <path class="research-difficulty-diagram__path" d="M 390 58 V 82" marker-end="url(#heterogeneous-arrow)" />
+      <text class="research-difficulty-diagram__response" x="90" y="105" text-anchor="middle">Response A</text>
+      <text class="research-difficulty-diagram__response" x="240" y="105" text-anchor="middle">Response B</text>
+      <text class="research-difficulty-diagram__response" x="390" y="105" text-anchor="middle">Response C</text>
+
+      <path class="research-difficulty-diagram__path" d="M 90 116 L 220 168" marker-end="url(#heterogeneous-arrow)" />
+      <path class="research-difficulty-diagram__path" d="M 240 116 V 168" marker-end="url(#heterogeneous-arrow)" />
+      <path class="research-difficulty-diagram__path" d="M 390 116 L 260 168" marker-end="url(#heterogeneous-arrow)" />
+      <text class="research-difficulty-diagram__outcome" x="240" y="204" text-anchor="middle">Population Dynamics</text>
     </svg>
   </figure>
 )}
@@ -53,43 +50,30 @@ const { type } = Astro.props;
 {type === "observations" && (
   <figure class="research-difficulty-diagram">
     <svg
-      viewBox="0 0 480 220"
+      viewBox="0 0 480 230"
       role="img"
       aria-labelledby="limited-observations-title limited-observations-description"
     >
       <title id="limited-observations-title">Limited and local observations</title>
       <desc id="limited-observations-description">
-        A population state is not directly available to an individual agent, which instead uses a
-        local trajectory and observations for inference or estimation.
+        Population-level information is not directly available to an agent, who instead uses local
+        observations to infer decision-relevant information.
       </desc>
       <defs>
         <marker id="observations-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
           <path d="M 0 0 L 7 4 L 0 8 z" class="research-difficulty-diagram__arrowhead" />
         </marker>
       </defs>
-      <text class="research-difficulty-diagram__label" x="240" y="20" text-anchor="middle">
-        population state / mean field
-      </text>
-      <g class="research-difficulty-diagram__population">
-        <circle cx="144" cy="48" r="4" /><circle cx="192" cy="48" r="4" />
-        <circle cx="240" cy="48" r="4" /><circle cx="288" cy="48" r="4" />
-        <circle cx="336" cy="48" r="4" /><circle cx="384" cy="48" r="4" />
-      </g>
-      <path class="research-difficulty-diagram__dashed-path" d="M 240 66 V 90" />
-      <text class="research-difficulty-diagram__note" x="252" y="83">not directly available</text>
-      <text class="research-difficulty-diagram__label" x="44" y="122">Agent i</text>
-      <path class="research-difficulty-diagram__path" d="M 109 120 H 316" marker-end="url(#observations-arrow)" />
-      <g class="research-difficulty-diagram__trajectory">
-        <circle cx="128" cy="120" r="4" /><circle cx="192" cy="120" r="4" />
-        <circle cx="256" cy="120" r="4" /><circle cx="320" cy="120" r="4" />
-      </g>
-      <text class="research-difficulty-diagram__note" x="128" y="145" text-anchor="middle">Xᵢ(t₀)</text>
-      <text class="research-difficulty-diagram__note" x="192" y="145" text-anchor="middle">Xᵢ(t₁)</text>
-      <text class="research-difficulty-diagram__note" x="256" y="145" text-anchor="middle">…</text>
-      <text class="research-difficulty-diagram__note" x="320" y="145" text-anchor="middle">Xᵢ(t)</text>
-      <text class="research-difficulty-diagram__label" x="224" y="174" text-anchor="middle">local observations</text>
-      <path class="research-difficulty-diagram__path" d="M 224 182 V 198" marker-end="url(#observations-arrow)" />
-      <text class="research-difficulty-diagram__label" x="224" y="217" text-anchor="middle">inference / estimation</text>
+      <text class="research-difficulty-diagram__label" x="240" y="28" text-anchor="middle">Population-level information</text>
+      <path class="research-difficulty-diagram__dashed-path" d="M 240 38 V 58" />
+      <text class="research-difficulty-diagram__note" x="240" y="76" text-anchor="middle">not directly observed</text>
+
+      <text class="research-difficulty-diagram__label" x="240" y="106" text-anchor="middle">Local observations</text>
+      <path class="research-difficulty-diagram__trajectory-line" d="M 92 124 C 138 100, 178 142, 222 120 S 310 100, 388 124" />
+      <path class="research-difficulty-diagram__path" d="M 240 132 V 158" marker-end="url(#observations-arrow)" />
+      <text class="research-difficulty-diagram__label" x="240" y="181" text-anchor="middle">Inference / Estimation</text>
+      <path class="research-difficulty-diagram__path" d="M 240 188 V 204" marker-end="url(#observations-arrow)" />
+      <text class="research-difficulty-diagram__outcome" x="240" y="222" text-anchor="middle">Decision-relevant information</text>
     </svg>
   </figure>
 )}
@@ -103,32 +87,35 @@ const { type } = Astro.props;
     >
       <title id="strategic-beliefs-title">Asymmetric information and strategic beliefs</title>
       <desc id="strategic-beliefs-description">
-        Agent j's private belief induces a strategy and behavior that agent i observes only
-        indirectly. Agent i may infer that belief and the induced strategy, while new information
-        can update agent j's belief and revise the strategy.
+        Another agent's hidden belief shapes a strategy and observable behavior. An observer can
+        use that behavior to infer the belief or likely strategy, while a private update can change
+        the hidden belief.
       </desc>
       <defs>
         <marker id="strategic-beliefs-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
           <path d="M 0 0 L 7 4 L 0 8 z" class="research-difficulty-diagram__arrowhead" />
         </marker>
+        <marker id="strategic-beliefs-private-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+          <path d="M 0 0 L 7 4 L 0 8 z" class="research-difficulty-diagram__private-arrowhead" />
+        </marker>
       </defs>
 
-      <text class="research-difficulty-diagram__label" x="118" y="28" text-anchor="middle">Agent j</text>
-      <text class="research-difficulty-diagram__note" x="118" y="48" text-anchor="middle">private belief</text>
-      <path class="research-difficulty-diagram__path" d="M 118 58 V 82" marker-end="url(#strategic-beliefs-arrow)" />
-      <text class="research-difficulty-diagram__label" x="118" y="105" text-anchor="middle">induced strategy</text>
-      <path class="research-difficulty-diagram__path" d="M 150 108 H 328" marker-end="url(#strategic-beliefs-arrow)" />
-      <text class="research-difficulty-diagram__label" x="362" y="105" text-anchor="middle">behavior</text>
-      <path class="research-difficulty-diagram__path" d="M 362 116 V 143" marker-end="url(#strategic-beliefs-arrow)" />
-      <text class="research-difficulty-diagram__label" x="362" y="165" text-anchor="middle">observations</text>
-      <path class="research-difficulty-diagram__path" d="M 330 168 H 150" marker-end="url(#strategic-beliefs-arrow)" />
-      <text class="research-difficulty-diagram__label" x="118" y="193" text-anchor="middle">Agent i may infer</text>
+      <text class="research-difficulty-diagram__label" x="110" y="28" text-anchor="middle">Other Agent's Belief</text>
+      <text class="research-difficulty-diagram__note" x="110" y="48" text-anchor="middle">(hidden)</text>
+      <path class="research-difficulty-diagram__path" d="M 110 58 V 70" marker-end="url(#strategic-beliefs-arrow)" />
+      <text class="research-difficulty-diagram__label" x="110" y="92" text-anchor="middle">Strategy</text>
+      <path class="research-difficulty-diagram__path" d="M 110 102 V 112" marker-end="url(#strategic-beliefs-arrow)" />
+      <text class="research-difficulty-diagram__label" x="110" y="134" text-anchor="middle">Observable Behavior</text>
 
-      <text class="research-difficulty-diagram__note" x="390" y="30" text-anchor="middle">new / private information</text>
-      <path class="research-difficulty-diagram__dashed-path" d="M 390 42 V 64" marker-end="url(#strategic-beliefs-arrow)" />
-      <text class="research-difficulty-diagram__note" x="390" y="83" text-anchor="middle">updated belief</text>
-      <path class="research-difficulty-diagram__dashed-path" d="M 390 90 V 208 H 278" marker-end="url(#strategic-beliefs-arrow)" />
-      <text class="research-difficulty-diagram__note" x="240" y="224" text-anchor="middle">revised strategy</text>
+      <path class="research-difficulty-diagram__path" d="M 176 130 H 330" marker-end="url(#strategic-beliefs-arrow)" />
+      <text class="research-difficulty-diagram__label" x="380" y="134" text-anchor="middle">My Observation</text>
+      <path class="research-difficulty-diagram__path" d="M 380 144 V 160" marker-end="url(#strategic-beliefs-arrow)" />
+      <text class="research-difficulty-diagram__label" x="380" y="181" text-anchor="middle">Inference</text>
+      <path class="research-difficulty-diagram__path" d="M 380 191 V 201" marker-end="url(#strategic-beliefs-arrow)" />
+      <text class="research-difficulty-diagram__outcome" x="380" y="221" text-anchor="middle">Belief / likely strategy</text>
+
+      <text class="research-difficulty-diagram__note" x="380" y="28" text-anchor="middle">Private update</text>
+      <path class="research-difficulty-diagram__dashed-path" d="M 320 36 H 166" marker-end="url(#strategic-beliefs-private-arrow)" />
     </svg>
   </figure>
 )}

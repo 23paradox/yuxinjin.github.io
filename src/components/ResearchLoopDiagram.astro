@@ -5,6 +5,9 @@ interface Props {
 }
 
 const { steps, caption } = Astro.props;
+const mobileSteps = steps.map((step) =>
+  step === "System / Population Dynamics" ? "System Dynamics" : step,
+);
 ---
 
 <figure class="research-loop-figure">
@@ -16,9 +19,8 @@ const { steps, caption } = Astro.props;
   >
     <title id="research-loop-figure-title">Information–decision loop</title>
     <desc id="research-loop-figure-description">
-      Information or belief informs a decision or strategy, which shapes system or population
-      dynamics. Observations support inference and updating, leading to strategy revision that
-      informs future decisions.
+      Information or belief feeds a decision or strategy, which shapes system dynamics. Observations
+      support inference and updating, leading to strategy revision that informs later decisions.
     </desc>
     <defs>
       <marker id="research-loop-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
@@ -31,7 +33,7 @@ const { steps, caption } = Astro.props;
 
     <path
       class="research-loop-figure__path"
-      d="M 240 54 V 86"
+      d="M 240 54 V 72 H 100 V 86"
       marker-end="url(#research-loop-arrow)"
     />
     <path
@@ -60,7 +62,7 @@ const { steps, caption } = Astro.props;
       marker-end="url(#research-loop-feedback-arrow)"
     />
 
-    <g class="research-loop-figure__node" transform="translate(240 24)">
+    <g class="research-loop-figure__node research-loop-figure__node--focus" transform="translate(240 24)">
       <text y="0" text-anchor="middle">Information</text>
       <text y="18" text-anchor="middle">/ Belief</text>
     </g>
@@ -69,7 +71,7 @@ const { steps, caption } = Astro.props;
       <text y="18" text-anchor="middle">/ Strategy</text>
     </g>
     <g class="research-loop-figure__node" transform="translate(370 100)">
-      <text y="0" text-anchor="middle">System / Population</text>
+      <text y="0" text-anchor="middle">System</text>
       <text y="18" text-anchor="middle">Dynamics</text>
     </g>
     <g class="research-loop-figure__node" transform="translate(370 200)">
@@ -86,16 +88,12 @@ const { steps, caption } = Astro.props;
   </svg>
 
   <ol class="research-loop-figure__mobile" aria-label="Information–decision loop">
-    {steps.map((step, index) => (
+    {mobileSteps.map((step, index) => (
       <li>
         <span>{step}</span>
-        {index < steps.length - 1 && <span aria-hidden="true">↓</span>}
+        {index < mobileSteps.length - 1 && <span aria-hidden="true">↓</span>}
       </li>
     ))}
-    <li class="research-loop-figure__mobile-feedback">
-      <span aria-hidden="true">↺</span>
-      <span>feeds future decisions</span>
-    </li>
   </ol>
 
   <figcaption class="research-loop-figure__caption">{caption}</figcaption>
