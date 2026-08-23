@@ -13,5 +13,4 @@ venue: "2022 IEEE International Conference on Agents (ICA), Adelaide, Australia,
 status: published
 authorship: collaborative
 highlightAuthor: "Y. Jin"
-contribution: "adaptation of an existing GAN-based MFG solver to three-dimensional trajectory planning with static and dynamic obstacles and computational experiments."
 ---

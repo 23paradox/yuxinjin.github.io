@@ -132,7 +132,6 @@ export interface ResearchNarrative {
   questions: readonly ResearchNarrativeQuestion[];
   difficultySettings: readonly ResearchDifficultySetting[];
   milestones: readonly ResearchNarrativeMilestone[];
-  doctoralNote: string;
   broaderDirections: {
     directions: readonly {
       title: string;
@@ -183,7 +182,6 @@ export interface SiteData {
     education: readonly EducationRecord[];
     visiting: readonly VisitingRecord[];
     teaching: readonly TeachingRecord[];
-    researchPractice: string | null;
     presentations: readonly PresentationRecord[];
     recognition: readonly RecognitionItem[];
     beyondResearch: string | null;
@@ -266,7 +264,7 @@ export const siteData: SiteData = {
     ],
     narrative: {
       subtitle:
-        "Information, Inference, and Strategic Revision in Stochastic Systems",
+        "Doctoral Research Agenda · Information, Inference, and Strategic Revision in Stochastic Systems",
       leadStatement:
         "How should strategic agents make and revise decisions when the information available to them is incomplete, misspecified, or asymmetric?",
       supportingParagraph:
@@ -357,8 +355,6 @@ export const siteData: SiteData = {
           relatedWorkLabels: ["Major–minor paper"],
         },
       ],
-      doctoralNote:
-        "The sections above summarize the main research agenda developed through my doctoral work.",
       broaderDirections: {
         directions: [
           {
@@ -387,7 +383,7 @@ export const siteData: SiteData = {
         "I am a Ph.D. candidate in Applied Mathematics at Beihang University, jointly trained by the School of Mathematical Sciences and Shen Yuan Honors College through the university's doctoral honors program.",
       long: [
         "I am a Ph.D. candidate in Applied Mathematics at Beihang University, jointly trained by the School of Mathematical Sciences and Shen Yuan Honors College through the university's doctoral honors program. I began my graduate studies in mathematics in 2022 and transferred to the integrated M.Sc.–Ph.D. track in 2023.",
-        "My research lies at the intersection of stochastic control, game theory, and information structures. I am particularly interested in decision-making when agents act under incorrect, incomplete, or delayed information: how information discrepancies can be identified from available observations, how beliefs or estimates should be updated, and how strategies should subsequently be revised. My current work develops these questions primarily in mean field games and large-population stochastic systems.",
+        "My research lies at the intersection of stochastic control, game theory, and information structures. I am particularly interested in decision-making when agents act under incorrect, incomplete, or delayed information: how information discrepancies can be identified from available observations, how beliefs or estimates should be updated, and how strategies should subsequently be revised. My current work develops these questions primarily in mean field games and large-population stochastic systems. Alongside theoretical analysis, I also work on numerical implementation and computational experiments for mean field game models.",
         "Since December 2025, I have been a visiting Ph.D. student at the Department of Mathematics, University of Padova.",
       ],
       teaser:
@@ -432,8 +428,6 @@ export const siteData: SiteData = {
         current: true,
       },
     ],
-    researchPractice:
-      "Alongside theoretical analysis, I build and adapt numerical mean field game solvers and design computational experiments for both linear–quadratic and nonlinear multi-agent models.",
     teaching: [
       {
         course: "Game Theory",

@@ -45,11 +45,6 @@ const Heading = headingLevel;
         {publication.data.researchSummary && (
           <p>{publication.data.researchSummary}</p>
         )}
-        {publication.data.contribution && (
-          <p class="publication-list__contribution">
-            <span>Numerical contribution:</span> {publication.data.contribution}
-          </p>
-        )}
         {publication.data.links && publication.data.links.length > 0 && (
           <ul class="inline-links" aria-label={`Links for ${publication.data.title}`}>
             {publication.data.links.map((link) => (

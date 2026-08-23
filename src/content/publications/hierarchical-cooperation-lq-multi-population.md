@@ -13,5 +13,4 @@ venue: "IEEE Transactions on Network Science and Engineering, 11(5), 5008–5022
 status: published
 authorship: collaborative
 highlightAuthor: "Y. Jin"
-contribution: "project-specific LQ mean field game solver for the cooperation structure studied in the paper and computational experiments."
 ---
