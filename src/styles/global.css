@@ -767,6 +767,11 @@ main {
   font-weight: 400;
 }
 
+.research-loop-figure__node--focus text {
+  fill: var(--accent-forest);
+  font-weight: 500;
+}
+
 .research-loop-figure__mobile {
   display: none;
 }
@@ -887,10 +892,13 @@ main {
 }
 
 .research-difficulty-diagram__path,
-.research-difficulty-diagram__dashed-path {
+.research-difficulty-diagram__dashed-path,
+.research-difficulty-diagram__trajectory-line {
   fill: none;
   stroke: var(--accent-slate-blue);
   stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .research-difficulty-diagram__dashed-path {
@@ -902,40 +910,32 @@ main {
   fill: var(--accent-slate-blue);
 }
 
-.research-difficulty-diagram__agent circle,
-.research-difficulty-diagram__population circle,
-.research-difficulty-diagram__trajectory circle {
+.research-difficulty-diagram__private-arrowhead {
   fill: var(--accent-forest);
 }
 
 .research-difficulty-diagram__label {
   fill: var(--text-primary);
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
-.research-difficulty-diagram__note,
-.research-difficulty-diagram__agent text {
+.research-difficulty-diagram__note {
   fill: var(--text-secondary);
   font-size: 12px;
+  font-weight: 400;
 }
 
-.research-difficulty-diagram__inference-box {
-  fill: none;
-  stroke: var(--rule);
-  stroke-width: 1.2;
+.research-difficulty-diagram__response {
+  fill: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 400;
 }
 
-.research-difficulty-diagram--strategic-beliefs circle {
+.research-difficulty-diagram__outcome {
   fill: var(--accent-forest);
-}
-
-.research-difficulty-diagram--strategic-beliefs .research-difficulty-diagram__label {
-  font-size: 16px;
-}
-
-.research-difficulty-diagram--strategic-beliefs .research-difficulty-diagram__note {
   font-size: 14px;
+  font-weight: 500;
 }
 
 @media (max-width: 60rem) {
@@ -991,14 +991,6 @@ main {
     font-weight: 400;
   }
 
-  .research-loop-figure__mobile-feedback {
-    grid-template-columns: auto minmax(0, 1fr);
-    align-items: center;
-    margin-block-start: var(--space-1);
-    color: var(--text-secondary) !important;
-    font-size: var(--type-meta) !important;
-    font-weight: 400 !important;
-  }
 }
 
 .research-evolution-list {
