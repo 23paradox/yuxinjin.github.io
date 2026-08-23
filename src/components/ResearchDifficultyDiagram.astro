@@ -71,10 +71,9 @@ const { type } = Astro.props;
         population state / mean field
       </text>
       <g class="research-difficulty-diagram__population">
-        <circle cx="102" cy="48" r="4" /><circle cx="132" cy="48" r="4" /><circle cx="162" cy="48" r="4" />
-        <circle cx="192" cy="48" r="4" /><circle cx="222" cy="48" r="4" /><circle cx="252" cy="48" r="4" />
-        <circle cx="282" cy="48" r="4" /><circle cx="312" cy="48" r="4" /><circle cx="342" cy="48" r="4" />
-        <circle cx="372" cy="48" r="4" />
+        <circle cx="144" cy="48" r="4" /><circle cx="192" cy="48" r="4" />
+        <circle cx="240" cy="48" r="4" /><circle cx="288" cy="48" r="4" />
+        <circle cx="336" cy="48" r="4" /><circle cx="384" cy="48" r="4" />
       </g>
       <path class="research-difficulty-diagram__dashed-path" d="M 240 66 V 90" />
       <text class="research-difficulty-diagram__note" x="252" y="83">not directly available</text>
@@ -98,16 +97,15 @@ const { type } = Astro.props;
 {type === "strategic-beliefs" && (
   <figure class="research-difficulty-diagram research-difficulty-diagram--strategic-beliefs">
     <svg
-      viewBox="0 0 480 330"
+      viewBox="0 0 480 230"
       role="img"
       aria-labelledby="strategic-beliefs-title strategic-beliefs-description"
     >
       <title id="strategic-beliefs-title">Asymmetric information and strategic beliefs</title>
       <desc id="strategic-beliefs-description">
-        Two agents form different beliefs about an underlying system and choose strategies. From
-        observations, agent i may need to infer the system state, agent j's belief, and the
-        strategy induced by that belief. New or private information can update agent j's belief
-        and induce a revised strategy.
+        Agent j's private belief induces a strategy and behavior that agent i observes only
+        indirectly. Agent i may infer that belief and the induced strategy, while new information
+        can update agent j's belief and revise the strategy.
       </desc>
       <defs>
         <marker id="strategic-beliefs-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
@@ -115,41 +113,22 @@ const { type } = Astro.props;
         </marker>
       </defs>
 
-      <text class="research-difficulty-diagram__label" x="240" y="20" text-anchor="middle">
-        underlying system
-      </text>
-      <text class="research-difficulty-diagram__note" x="240" y="42" text-anchor="middle">θ</text>
-      <path class="research-difficulty-diagram__path" d="M 240 52 V 65 H 110 V 78" marker-end="url(#strategic-beliefs-arrow)" />
-      <path class="research-difficulty-diagram__path" d="M 240 65 H 285 V 78" marker-end="url(#strategic-beliefs-arrow)" />
+      <text class="research-difficulty-diagram__label" x="118" y="28" text-anchor="middle">Agent j</text>
+      <text class="research-difficulty-diagram__note" x="118" y="48" text-anchor="middle">private belief</text>
+      <path class="research-difficulty-diagram__path" d="M 118 58 V 82" marker-end="url(#strategic-beliefs-arrow)" />
+      <text class="research-difficulty-diagram__label" x="118" y="105" text-anchor="middle">induced strategy</text>
+      <path class="research-difficulty-diagram__path" d="M 150 108 H 328" marker-end="url(#strategic-beliefs-arrow)" />
+      <text class="research-difficulty-diagram__label" x="362" y="105" text-anchor="middle">behavior</text>
+      <path class="research-difficulty-diagram__path" d="M 362 116 V 143" marker-end="url(#strategic-beliefs-arrow)" />
+      <text class="research-difficulty-diagram__label" x="362" y="165" text-anchor="middle">observations</text>
+      <path class="research-difficulty-diagram__path" d="M 330 168 H 150" marker-end="url(#strategic-beliefs-arrow)" />
+      <text class="research-difficulty-diagram__label" x="118" y="193" text-anchor="middle">Agent i may infer</text>
 
-      <text class="research-difficulty-diagram__label" x="110" y="95" text-anchor="middle">Agent i</text>
-      <circle cx="110" cy="109" r="5" />
-      <text class="research-difficulty-diagram__note" x="110" y="132" text-anchor="middle">belief θ̂ᶦ</text>
-      <path class="research-difficulty-diagram__path" d="M 110 140 V 154" marker-end="url(#strategic-beliefs-arrow)" />
-      <text class="research-difficulty-diagram__note" x="110" y="174" text-anchor="middle">strategy αᶦ</text>
-
-      <text class="research-difficulty-diagram__label" x="285" y="95" text-anchor="middle">Agent j</text>
-      <circle cx="285" cy="109" r="5" />
-      <text class="research-difficulty-diagram__note" x="285" y="132" text-anchor="middle">belief θ̂ʲ</text>
-      <path class="research-difficulty-diagram__path" d="M 285 140 V 154" marker-end="url(#strategic-beliefs-arrow)" />
-      <text class="research-difficulty-diagram__note" x="285" y="174" text-anchor="middle">strategy αʲ</text>
-
-      <text class="research-difficulty-diagram__note" x="407" y="94" text-anchor="middle">new / private</text>
-      <text class="research-difficulty-diagram__note" x="407" y="110" text-anchor="middle">information</text>
-      <path class="research-difficulty-diagram__dashed-path" d="M 407 118 V 137" marker-end="url(#strategic-beliefs-arrow)" />
-      <path class="research-difficulty-diagram__dashed-path" d="M 294 132 H 350 V 151" marker-end="url(#strategic-beliefs-arrow)" />
-      <text class="research-difficulty-diagram__note" x="407" y="157" text-anchor="middle">updated belief θ̂ʲ+</text>
-      <path class="research-difficulty-diagram__dashed-path" d="M 407 165 V 181" marker-end="url(#strategic-beliefs-arrow)" />
-      <text class="research-difficulty-diagram__note" x="407" y="200" text-anchor="middle">revised strategy</text>
-
-      <path class="research-difficulty-diagram__path" d="M 110 184 L 215 214" marker-end="url(#strategic-beliefs-arrow)" />
-      <path class="research-difficulty-diagram__path" d="M 285 184 L 230 214" marker-end="url(#strategic-beliefs-arrow)" />
-      <text class="research-difficulty-diagram__label" x="222" y="229" text-anchor="middle">observations</text>
-      <path class="research-difficulty-diagram__path" d="M 222 238 V 250" marker-end="url(#strategic-beliefs-arrow)" />
-      <text class="research-difficulty-diagram__label" x="222" y="268" text-anchor="middle">Agent i may infer</text>
-      <rect class="research-difficulty-diagram__inference-box" x="87" y="278" width="270" height="44" />
-      <text class="research-difficulty-diagram__note" x="105" y="295">system state</text>
-      <text class="research-difficulty-diagram__note" x="105" y="310">Agent j’s belief · induced strategy</text>
+      <text class="research-difficulty-diagram__note" x="390" y="30" text-anchor="middle">new / private information</text>
+      <path class="research-difficulty-diagram__dashed-path" d="M 390 42 V 64" marker-end="url(#strategic-beliefs-arrow)" />
+      <text class="research-difficulty-diagram__note" x="390" y="83" text-anchor="middle">updated belief</text>
+      <path class="research-difficulty-diagram__dashed-path" d="M 390 90 V 208 H 278" marker-end="url(#strategic-beliefs-arrow)" />
+      <text class="research-difficulty-diagram__note" x="240" y="224" text-anchor="middle">revised strategy</text>
     </svg>
   </figure>
 )}
