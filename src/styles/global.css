@@ -672,22 +672,31 @@ main {
 }
 
 .research-hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.82fr) minmax(18.75rem, 0.95fr);
-  align-items: start;
-  column-gap: clamp(var(--space-6), 8vw, var(--space-8));
+  display: block;
   max-width: none;
   padding-block: var(--space-5) var(--space-6);
 }
 
-.research-hero__copy {
-  min-width: 0;
+.research-hero__heading {
+  max-width: none;
 }
 
-.research-hero__copy h1 {
+.research-hero__heading h1 {
   margin-block: 0 var(--space-2);
   font-size: var(--type-page-title);
   letter-spacing: -0.01em;
+}
+
+.research-hero__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.82fr) minmax(18.75rem, 0.95fr);
+  align-items: start;
+  column-gap: clamp(var(--space-6), 8vw, var(--space-8));
+  margin-block-start: var(--space-5);
+}
+
+.research-hero__copy {
+  min-width: 0;
 }
 
 .research-page__subtitle {
@@ -721,16 +730,8 @@ main {
 .research-loop-figure {
   width: min(100%, 26rem);
   margin: var(--space-3) 0 0;
-  padding: var(--space-2) 0;
+  padding: 0;
   justify-self: end;
-}
-
-.research-loop-figure__label {
-  margin: 0 0 var(--space-3);
-  color: var(--text-secondary);
-  font-size: var(--type-meta);
-  font-weight: 500;
-  line-height: var(--leading-meta);
 }
 
 .research-loop-figure__diagram {
@@ -762,8 +763,8 @@ main {
 
 .research-loop-figure__node text {
   fill: var(--text-primary);
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 400;
 }
 
 .research-loop-figure__mobile {
@@ -938,7 +939,7 @@ main {
 }
 
 @media (max-width: 60rem) {
-  .research-hero {
+  .research-hero__body {
     grid-template-columns: minmax(0, 1fr);
     row-gap: var(--space-5);
   }
@@ -959,6 +960,9 @@ main {
     row-gap: var(--space-4);
   }
 
+}
+
+@media (max-width: 30rem) {
   .research-loop-figure__diagram {
     display: none;
   }
@@ -1546,14 +1550,6 @@ main {
     --type-content-title: clamp(1.125rem, 5.25vw, 1.25rem);
     --type-record-title: clamp(1.125rem, 5vw, 1.1875rem);
     --type-body-large: 1rem;
-  }
-
-  .research-difficulty-diagram--strategic-beliefs .research-difficulty-diagram__label {
-    font-size: 20px;
-  }
-
-  .research-difficulty-diagram--strategic-beliefs .research-difficulty-diagram__note {
-    font-size: 17px;
   }
 
   main {
