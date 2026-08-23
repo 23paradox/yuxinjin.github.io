@@ -193,7 +193,7 @@ export const siteData: SiteData = {
     academicTitle: "Ph.D. Candidate in Applied Mathematics",
     institution: "Beihang University",
     department: "School of Mathematical Sciences",
-    researchIdentity: "Stochastic Control and Games with Imperfect Information",
+    researchIdentity: "Stochastic Control, Games, and Decision-Making under Uncertainty",
     email: "yxjin@buaa.edu.cn",
     googleScholarUrl:
       "https://scholar.google.com/citations?hl=zh-CN&user=Jr37-eoAAAAJ",
@@ -237,7 +237,7 @@ export const siteData: SiteData = {
       "Information Structures",
     ],
     homeHook:
-      "What happens when strategic decisions are built on information that turns out to be wrong?",
+      "How should decisions adapt as agents learn from imperfect information and interact with one another?",
     homeIntroduction:
       "I study how information errors affect strategic behavior, what agents can recover from the observations available to them, and when updated information should lead to a change in strategy.",
     homeQuestions: [
@@ -364,7 +364,7 @@ export const siteData: SiteData = {
         "I am a Ph.D. candidate in Applied Mathematics at Beihang University, jointly trained by the School of Mathematical Sciences and Shen Yuan Honors College through the university's doctoral honors program.",
       long: [
         "I am a Ph.D. candidate in Applied Mathematics at Beihang University, jointly trained by the School of Mathematical Sciences and Shen Yuan Honors College through the university's doctoral honors program. I began my graduate studies in mathematics in 2022 and transferred to the integrated M.Sc.–Ph.D. track in 2023.",
-        "My research lies at the intersection of stochastic control, game theory, and information structures. I am particularly interested in decision-making when agents act under incorrect, incomplete, or delayed information: how information discrepancies can be identified from available observations, how beliefs or estimates should be updated, and how strategies should subsequently be revised. My current work develops these questions primarily in mean field games and large-population stochastic systems. Alongside theoretical analysis, I also work on numerical implementation and computational experiments for mean field game models.",
+        "My research is in stochastic control, game theory, and information structures, with current work on decision-making under imperfect information in mean field games and large-population stochastic systems. I also work on numerical implementation and computational experiments for mean field game models.",
         "Since December 2025, I have been a visiting Ph.D. student at the Department of Mathematics, University of Padova.",
       ],
       teaser:
@@ -379,7 +379,7 @@ export const siteData: SiteData = {
         startDate: "2023",
         expectedEndDate: "2027 (expected)",
         note:
-          "Jointly trained by the School of Mathematical Sciences and Shen Yuan Honors College through Beihang's doctoral honors program. Transferred to the integrated M.Sc.–Ph.D. track in 2023.",
+          "Jointly trained by the School of Mathematical Sciences and Shen Yuan Honors College through Beihang's doctoral honors program. Transferred to the integrated M.Sc.–Ph.D. track in 2023. The doctoral honors curriculum also included additional coursework in theoretical physics, including quantum mechanics, electrodynamics, and general relativity.",
       },
       {
         degree: "Master's Student",
@@ -396,7 +396,8 @@ export const siteData: SiteData = {
         institution: "Beihang University",
         startDate: "2018",
         endDate: "2022",
-        note: "Study track in Information Security.",
+        note:
+          "Study track in Information Security, including coursework in graph theory, cryptography, and related information-security subjects.",
       },
     ],
     visiting: [
@@ -662,5 +663,5 @@ export const siteData: SiteData = {
     { label: "About", href: "/about/" },
   ],
   siteDescription:
-    "Academic homepage for research in Stochastic Control and Games with Imperfect Information.",
+    "Academic homepage for research in stochastic control, games, and decision-making under uncertainty.",
 };
