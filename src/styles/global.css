@@ -1066,14 +1066,6 @@ main {
   padding-block: var(--space-7) var(--space-8);
 }
 
-.research-narrative__doctoral-note {
-  max-width: var(--measure-prose);
-  margin: var(--space-6) 0 var(--space-2);
-  color: var(--text-secondary);
-  font-size: var(--type-small-body);
-  line-height: var(--leading-body);
-}
-
 @media (max-width: 60rem) {
   .research-evolution-list {
     grid-template-columns: minmax(0, 1fr);
@@ -1192,18 +1184,6 @@ main {
 }
 
 .publication-list__author--highlighted {
-  font-weight: 600;
-}
-
-.publication-list__contribution {
-  max-width: var(--measure-prose);
-  margin: var(--space-2) 0 0;
-  color: var(--text-secondary);
-  font-size: var(--type-small-body);
-  line-height: var(--leading-body);
-}
-
-.publication-list__contribution span {
   font-weight: 600;
 }
 

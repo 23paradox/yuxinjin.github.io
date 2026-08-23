@@ -14,5 +14,4 @@ venue: "Systems & Control Letters, Vol. 183"
 status: published
 authorship: collaborative
 highlightAuthor: "Y. Jin"
-contribution: "adaptation of an existing GAN-based MFG solver to the multi-population pursuit–evasion setting and computational experiments."
 ---

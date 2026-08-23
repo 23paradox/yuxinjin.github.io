@@ -13,5 +13,4 @@ venue: "IEEE Transactions on Network Science and Engineering, 12(3), 2202–2216
 status: published
 authorship: collaborative
 highlightAuthor: "Y. Jin"
-contribution: "project-specific LQ mean field game solver framework and computational experiments."
 ---

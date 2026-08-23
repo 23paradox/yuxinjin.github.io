@@ -36,7 +36,6 @@ const publications = defineCollection({
     themes: z.array(z.string().min(1)).optional(),
     authorship: z.enum(["first-author", "collaborative"]),
     highlightAuthor: z.string().min(1).optional(),
-    contribution: z.string().min(1).optional(),
     selected: z.boolean().optional(),
     researchSummary: z.string().min(1).optional(),
     displayOrder: z.number().int().optional(),
