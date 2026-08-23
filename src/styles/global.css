@@ -324,12 +324,6 @@ main {
   line-height: var(--leading-display);
 }
 
-@media (min-width: 72rem) {
-  .hero__research-title {
-    white-space: nowrap;
-  }
-}
-
 .hero__summary {
   max-width: var(--hero-measure);
   font-size: var(--type-body-large);
