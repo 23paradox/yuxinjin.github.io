@@ -9,7 +9,7 @@ import { showDevelopmentPlaceholders } from "../lib/rendering";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const publications = sortPublicationsChronologically(await loadPublications());
-const researchPublications = publications.filter(
+const doctoralResearchPublications = publications.filter(
   (publication) => publication.data.authorship === "first-author",
 );
 const collaborativePublications = publications.filter(
@@ -26,17 +26,17 @@ const collaborativePublications = publications.filter(
     <section class="page-section publications-page" aria-label="All publications">
       {publications.length > 0 ? (
         <>
-          {researchPublications.length > 0 && (
-            <section class="publications-page__group" aria-labelledby="research-papers-heading">
-              <h2 id="research-papers-heading">Research Papers</h2>
-              <PublicationList items={researchPublications} headingLevel="h3" />
+          {doctoralResearchPublications.length > 0 && (
+            <section class="publications-page__group" aria-labelledby="doctoral-research-heading">
+              <h2 id="doctoral-research-heading">Doctoral Research</h2>
+              <PublicationList items={doctoralResearchPublications} headingLevel="h3" />
             </section>
           )}
           {collaborativePublications.length > 0 && (
             <section class="publications-page__group" aria-labelledby="collaborative-work-heading">
               <h2 id="collaborative-work-heading">Collaborative Work</h2>
               <p class="publications-page__introduction">
-                Computational work in these collaborations included project-specific LQ mean field game solver frameworks for the two LQ studies and adaptations of an existing GAN-based mean field game solver for the three nonlinear studies.
+                Computational work in these collaborations included LQ mean field game solver development and adaptations of an existing nonlinear MFG solver to application-specific settings.
               </p>
               <PublicationList items={collaborativePublications} headingLevel="h3" />
             </section>
