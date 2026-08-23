@@ -259,11 +259,11 @@ export const siteData: SiteData = {
     ],
     narrative: {
       subtitle:
-        "Doctoral research on information, inference, and strategic revision in stochastic systems",
+        "Stochastic control, games, and decision-making under uncertainty",
       leadStatement:
-        "How should strategic agents make and revise decisions when the information available to them is incomplete, misspecified, or asymmetric?",
+        "How should decisions adapt when agents have imperfect information, learn from what they observe, and influence the systems they are trying to understand?",
       supportingParagraph:
-        "A recurring theme in my current work is the feedback between information and strategic behavior. In stochastic games and large-population systems, imperfect information changes the decisions agents make and therefore the dynamics they later observe. I study what can be inferred from those observations and when new information should lead agents to revise their strategies, primarily through mean field games and stochastic control.",
+        "I am broadly interested in stochastic decision-making and strategic interaction under uncertainty. A central thread of my doctoral research studies how imperfect information changes behavior, what can be learned from subsequent observations, and when new information should lead to a revision of strategy. I approach these questions mainly through stochastic control, game theory, and mean field games.",
       questions: [
         {
           number: "01",
