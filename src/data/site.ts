@@ -125,10 +125,6 @@ export interface ResearchNarrative {
   subtitle: string;
   leadStatement: string;
   supportingParagraph: string;
-  loop: {
-    steps: readonly string[];
-    caption: string;
-  };
   questions: readonly ResearchNarrativeQuestion[];
   difficultySettings: readonly ResearchDifficultySetting[];
   milestones: readonly ResearchNarrativeMilestone[];
@@ -136,7 +132,6 @@ export interface ResearchNarrative {
     directions: readonly {
       title: string;
       description: string;
-      status: string;
     }[];
     broaderInterest: string;
   };
@@ -264,23 +259,11 @@ export const siteData: SiteData = {
     ],
     narrative: {
       subtitle:
-        "Doctoral Research Agenda · Information, Inference, and Strategic Revision in Stochastic Systems",
+        "Doctoral research on information, inference, and strategic revision in stochastic systems",
       leadStatement:
         "How should strategic agents make and revise decisions when the information available to them is incomplete, misspecified, or asymmetric?",
       supportingParagraph:
         "A recurring theme in my current work is the feedback between information and strategic behavior. In stochastic games and large-population systems, imperfect information changes the decisions agents make and therefore the dynamics they later observe. I study what can be inferred from those observations and when new information should lead agents to revise their strategies, primarily through mean field games and stochastic control.",
-      loop: {
-        steps: [
-          "Information / Belief",
-          "Decision / Strategy",
-          "System / Population Dynamics",
-          "Observation",
-          "Inference / Updating",
-          "Strategy Revision",
-        ],
-        caption:
-          "Different problems emphasize different parts of this loop; the interaction between information, behavior, observation, and revision is the recurring theme.",
-      },
       questions: [
         {
           number: "01",
@@ -359,19 +342,17 @@ export const siteData: SiteData = {
         directions: [
           {
             title: "Repeated and Asynchronous Strategy Revision",
-            status: "Current exploration",
             description:
               "I am currently exploring two-population settings in which agents may revise their strategies repeatedly and at asynchronous opportunities, with particular interest in how successive information updates and corrections interact over time.",
           },
           {
             title: "Imperfect Information beyond Linear–Quadratic Models",
-            status: "Next direction",
             description:
               "A natural next direction is to study how information errors, inference, and strategy revision behave in nonlinear stochastic models, where the linear–quadratic structure that supports much of the current analysis is no longer available.",
           },
         ],
         broaderInterest:
-          "Beyond the doctoral agenda above, I am broadly interested in stochastic control, games, and multi-agent decision-making in systems where agents learn, adapt, acquire information, or operate under imperfect models.",
+          "Beyond the doctoral research above, I am broadly interested in stochastic control, games, and multi-agent decision-making in systems where agents learn, adapt, acquire information, or operate under imperfect models.",
       },
     },
     structuredInformationNote:

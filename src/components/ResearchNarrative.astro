@@ -56,7 +56,7 @@ const difficultyDiagramTypes = [
 
 <div class="research-narrative">
   <section class="page-section research-narrative__questions" aria-labelledby="research-questions-heading">
-    <SectionHeading id="research-questions-heading" title="Three Questions I Study" />
+    <SectionHeading id="research-questions-heading" title="Research questions" />
     <ol class="research-question-list">
       {narrative.questions.map((item) => (
         <li class="research-question-list__item">
@@ -73,7 +73,7 @@ const difficultyDiagramTypes = [
   <section class="page-section research-narrative__difficulty" aria-labelledby="research-difficulty-heading">
     <SectionHeading
       id="research-difficulty-heading"
-      title="Where the Difficulty Comes From"
+      title="Key difficulties"
     />
     <div class="research-difficulty-list">
       {narrative.difficultySettings.map((setting, index) => (
@@ -93,7 +93,7 @@ const difficultyDiagramTypes = [
   <section class="page-section research-narrative__evolution" aria-labelledby="research-evolution-heading">
     <SectionHeading
       id="research-evolution-heading"
-      title="How This Agenda Has Evolved"
+      title="Development of the work"
     />
     <ol class="research-evolution-list">
       {milestones.map((milestone) => (
@@ -126,12 +126,11 @@ const difficultyDiagramTypes = [
   </section>
 
   <section class="page-section research-narrative__directions" aria-labelledby="broader-directions-heading">
-    <SectionHeading id="broader-directions-heading" title="Ongoing & Broader Directions" />
+    <SectionHeading id="broader-directions-heading" title="Current and future directions" />
     <p class="research-direction-list__intro">{narrative.broaderDirections.broaderInterest}</p>
     <div class="research-direction-list">
       {narrative.broaderDirections.directions.map((direction) => (
         <article>
-          <p class="research-direction-list__status">{direction.status}</p>
           <h3>{direction.title}</h3>
           <p>{direction.description}</p>
         </article>

@@ -1,6 +1,5 @@
 ---
 import ResearchNarrative from "../components/ResearchNarrative.astro";
-import ResearchLoopDiagram from "../components/ResearchLoopDiagram.astro";
 import { siteData } from "../data/site";
 import { loadPublications } from "../lib/content";
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -14,17 +13,11 @@ const publications = await loadPublications();
       <h1>Research</h1>
       <p class="research-page__subtitle">{siteData.research.narrative.subtitle}</p>
     </div>
-    <div class="research-hero__body">
-      <div class="research-hero__copy">
-        <p class="research-page__lead">{siteData.research.narrative.leadStatement}</p>
-        <p class="research-page__supporting">
-          {siteData.research.narrative.supportingParagraph}
-        </p>
-      </div>
-      <ResearchLoopDiagram
-        steps={siteData.research.narrative.loop.steps}
-        caption={siteData.research.narrative.loop.caption}
-      />
+    <div class="research-hero__copy">
+      <p class="research-page__lead">{siteData.research.narrative.leadStatement}</p>
+      <p class="research-page__supporting">
+        {siteData.research.narrative.supportingParagraph}
+      </p>
     </div>
   </header>
 
