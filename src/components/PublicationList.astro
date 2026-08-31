@@ -5,9 +5,10 @@ import { publicationStatusLabel } from "../data/publication-status";
 interface Props {
   items: readonly PublicationEntry[];
   headingLevel?: "h2" | "h3";
+  showResearchSummary?: boolean;
 }
 
-const { items, headingLevel = "h3" } = Astro.props;
+const { items, headingLevel = "h3", showResearchSummary = false } = Astro.props;
 const Heading = headingLevel;
 ---
 
@@ -42,8 +43,8 @@ const Heading = headingLevel;
               .join(" · ")}
           </p>
         )}
-        {publication.data.researchSummary && (
-          <p>{publication.data.researchSummary}</p>
+        {showResearchSummary && publication.data.researchSummary && (
+          <p class="publication-list__summary">{publication.data.researchSummary}</p>
         )}
         {publication.data.links && publication.data.links.length > 0 && (
           <ul class="inline-links" aria-label={`Links for ${publication.data.title}`}>

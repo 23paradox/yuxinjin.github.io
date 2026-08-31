@@ -1,57 +1,12 @@
 ---
 import type { ResearchNarrative } from "../data/site";
-import type { PublicationEntry } from "../lib/content";
-import ResearchDifficultyDiagram from "./ResearchDifficultyDiagram.astro";
 import SectionHeading from "./SectionHeading.astro";
 
 interface Props {
   narrative: ResearchNarrative;
-  publications: readonly PublicationEntry[];
 }
 
-const { narrative, publications } = Astro.props;
-
-function getPublicPaperLink(publication: PublicationEntry): string | undefined {
-  return publication.data.links?.find((link) =>
-    ["paper", "preprint", "journal", "doi"].includes(link.purpose),
-  )?.url;
-}
-
-const publicationsById = new Map(publications.map((publication) => [publication.id, publication]));
-
-const milestones = narrative.milestones.map((milestone) => {
-  const relatedWorks = milestone.publicationIds.map((publicationId) => {
-    const publication = publicationsById.get(publicationId);
-
-    if (!publication) {
-      throw new Error(
-        `Research narrative milestone references a missing publication: ${publicationId}`,
-      );
-    }
-
-    const paperUrl = getPublicPaperLink(publication);
-
-    if (!paperUrl) {
-      throw new Error(
-        `Research narrative milestone has no public paper link: ${publication.data.title}`,
-      );
-    }
-
-    return {
-      title: publication.data.title,
-      url: paperUrl,
-      label: milestone.relatedWorkLabels?.[milestone.publicationIds.indexOf(publicationId)] ?? publication.data.title,
-    };
-  });
-
-  return { ...milestone, relatedWorks };
-});
-
-const difficultyDiagramTypes = [
-  "heterogeneous",
-  "observations",
-  "strategic-beliefs",
-] as const;
+const { narrative } = Astro.props;
 ---
 
 <div class="research-narrative">
@@ -70,63 +25,23 @@ const difficultyDiagramTypes = [
     </ol>
   </section>
 
-  <section class="page-section research-narrative__difficulty" aria-labelledby="research-difficulty-heading">
+  <section class="page-section research-narrative__themes" aria-labelledby="research-themes-heading">
     <SectionHeading
-      id="research-difficulty-heading"
-      title="Key difficulties"
+      id="research-themes-heading"
+      title="Mathematical themes"
     />
-    <div class="research-difficulty-list">
-      {narrative.difficultySettings.map((setting, index) => (
-        <article class="research-difficulty-list__item">
-          <ResearchDifficultyDiagram
-            type={difficultyDiagramTypes[index] ?? "heterogeneous"}
-          />
-          <div class="research-difficulty-list__copy">
-            <h3>{setting.title}</h3>
-            <p>{setting.description}</p>
-          </div>
+    <div class="research-theme-list">
+      {narrative.mathematicalThemes.map((theme) => (
+        <article class="research-theme-list__item">
+          <h3>{theme.title}</h3>
+          <p>{theme.description}</p>
         </article>
       ))}
     </div>
   </section>
 
-  <section class="page-section research-narrative__evolution" aria-labelledby="research-evolution-heading">
-    <SectionHeading
-      id="research-evolution-heading"
-      title="Development of the work"
-    />
-    <ol class="research-evolution-list">
-      {milestones.map((milestone) => (
-        <li class="research-evolution-list__item">
-          <p class="research-evolution-list__year">{milestone.year}</p>
-          <div class="research-evolution-list__body">
-            <h3>{milestone.title}</h3>
-            <p>{milestone.description}</p>
-            {milestone.note && <p class="research-evolution-list__note">{milestone.note}</p>}
-            <div class="research-evolution-list__related">
-              <p class="research-evolution-list__related-label">Related work</p>
-              <ul class="research-evolution-list__related-list">
-                {milestone.relatedWorks.map((work) => (
-                  <li>
-                    <a
-                      href={work.url}
-                      aria-label={`${work.title}: ${work.label}`}
-                      title={work.title}
-                    >
-                      {work.label} <span aria-hidden="true">→</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </li>
-      ))}
-    </ol>
-  </section>
-
   <section class="page-section research-narrative__directions" aria-labelledby="broader-directions-heading">
-    <SectionHeading id="broader-directions-heading" title="Current and future directions" />
+    <SectionHeading id="broader-directions-heading" title="Current directions" />
     <p class="research-direction-list__intro">{narrative.broaderDirections.broaderInterest}</p>
     <div class="research-direction-list">
       {narrative.broaderDirections.directions.map((direction) => (

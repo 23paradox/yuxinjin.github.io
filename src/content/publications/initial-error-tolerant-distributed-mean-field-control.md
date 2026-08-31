@@ -14,6 +14,7 @@ authorship: first-author
 highlightAuthor: "Y. Jin"
 selected: true
 displayOrder: 3
+researchSummary: "Private-trajectory maximum-likelihood estimation, segmented state estimation, and consistency as observation frequency increases."
 themes:
   - Imperfect Information
   - Information Identification

@@ -14,6 +14,7 @@ authorship: first-author
 highlightAuthor: "Y. Jin"
 selected: true
 displayOrder: 2
+researchSummary: "Two n-dimensional error channels, observability-based recovery, and an O(N⁻¹) mean-square aggregate approximation."
 themes:
   - Imperfect Information
   - Strategy Revision

@@ -137,8 +137,8 @@ const aboutTeaser = developmentFallback(
   <section class="page-section home-section home-section--research" aria-labelledby="research-heading">
     <SectionHeading id="research-heading" number="01" title="Research" />
     <p class="home-research-hook">{siteData.research.homeHook}</p>
-    <p class="home-research-flow" aria-label="Research flow: misspecification, inference, revision">
-      <span>misspecification</span>
+    <p class="home-research-flow" aria-label="Research flow: information errors, inference, revision">
+      <span>information errors</span>
       <span aria-hidden="true">→</span>
       <span>inference</span>
       <span aria-hidden="true">→</span>
@@ -164,7 +164,7 @@ const aboutTeaser = developmentFallback(
       />
       {homepagePublications.length > 0 ? (
         <>
-          <PublicationList items={homepagePublications} />
+          <PublicationList items={homepagePublications} showResearchSummary />
           <a class="text-link" href={withBase("/publications/")}>View all publications →</a>
         </>
       ) : (

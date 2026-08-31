@@ -107,18 +107,9 @@ export interface ResearchNarrativeQuestion {
   description: string;
 }
 
-export interface ResearchDifficultySetting {
+export interface ResearchMathematicalTheme {
   title: string;
   description: string;
-}
-
-export interface ResearchNarrativeMilestone {
-  year: string;
-  title: string;
-  description: string;
-  note?: string;
-  publicationIds: readonly string[];
-  relatedWorkLabels?: readonly string[];
 }
 
 export interface ResearchNarrative {
@@ -126,8 +117,7 @@ export interface ResearchNarrative {
   leadStatement: string;
   supportingParagraph: string;
   questions: readonly ResearchNarrativeQuestion[];
-  difficultySettings: readonly ResearchDifficultySetting[];
-  milestones: readonly ResearchNarrativeMilestone[];
+  mathematicalThemes: readonly ResearchMathematicalTheme[];
   broaderDirections: {
     directions: readonly {
       title: string;
@@ -166,7 +156,6 @@ export interface SiteData {
     homeIntroduction: string;
     homeQuestions: readonly HomeResearchQuestion[];
     narrative: ResearchNarrative;
-    structuredInformationNote: string | null;
   };
   about: {
     biography: {
@@ -205,7 +194,7 @@ export const siteData: SiteData = {
   },
   research: {
     heroSummary:
-      "I am broadly interested in stochastic control, games, and decision-making under uncertainty in interacting systems. My current work studies how imperfect or misspecified information affects strategic behavior, what can be inferred from observations, and how decisions should be revised as information evolves.",
+      "I study stochastic control and mean field games with imperfect or misspecified information. My current work examines how information errors affect interacting agents, what can be recovered from constrained observations, and when strategies should be revised.",
     agendaSummary:
       "I organize this work around three connected questions.",
     arc: [
@@ -230,14 +219,12 @@ export const siteData: SiteData = {
     ],
     keywords: [
       "Stochastic Control",
-      "Game Theory",
       "Mean Field Games",
+      "Imperfect Information",
       "Multi-Agent Systems",
-      "Decision-Making under Uncertainty",
-      "Information Structures",
     ],
     homeHook:
-      "How should decisions adapt as agents learn from imperfect information and interact with one another?",
+      "The work is organized around three connected questions.",
     homeIntroduction:
       "I study how information errors affect strategic behavior, what agents can recover from the observations available to them, and when updated information should lead to a change in strategy.",
     homeQuestions: [
@@ -261,81 +248,50 @@ export const siteData: SiteData = {
       subtitle:
         "Stochastic control, games, and decision-making under uncertainty",
       leadStatement:
-        "How should decisions adapt when agents have imperfect information, learn from what they observe, and influence the systems they are trying to understand?",
+        "I study how imperfect or misspecified information changes strategic behavior in stochastic control and mean field games.",
       supportingParagraph:
-        "I am broadly interested in stochastic decision-making and strategic interaction under uncertainty. A central thread of my doctoral research studies how imperfect information changes behavior, what can be learned from subsequent observations, and when new information should lead to a revision of strategy. I approach these questions mainly through stochastic control, game theory, and mean field games.",
+        "Current work considers error propagation in linear–quadratic mean field games, recovery of error quantities from constrained observations, and strategy revision after an information update.",
       questions: [
         {
           number: "01",
           question: "How do information errors become system-level deviations?",
           description:
-            "I study how misspecified information changes strategic responses and propagates through population interactions, producing discrepancies between predicted and realized dynamics. This includes both population-level information errors and heterogeneous information across agents.",
+            "In linear–quadratic mean field game models, I study how population-level and heterogeneous initial errors change feedback responses and create discrepancies between predicted and realized mean-field dynamics.",
         },
         {
           number: "02",
           question:
             "What can an agent infer from the information it actually observes?",
           description:
-            "I study how agents identify information discrepancies and estimate decision-relevant quantities when the information required for control is not directly available. The observation structure may be continuous or discrete, local or population-dependent, and may require inference about the information or anticipated behavior of other strategic agents.",
+            "I study which error quantities can be recovered when decision-relevant population information is not directly observed, using continuous or discrete observations available locally to an agent.",
         },
         {
           number: "03",
           question: "When and how should a strategy be changed?",
           description:
-            "I study how controls and strategies should be revised after information is corrected or updated, and when such revisions can mitigate the effects of earlier misspecification. The resulting strategy modification may depend on newly inferred states, population quantities, or beliefs about other agents.",
+            "I study intermediate-time control modification after an information error has been estimated or corrected, and the resulting effect on subsequent system evolution.",
         },
       ],
-      difficultySettings: [
+      mathematicalThemes: [
         {
-          title: "Heterogeneous Information",
+          title: "Finite-dimensional error structure",
           description:
-            "Agents need not share the same misspecified view of the population. Heterogeneous information changes strategic responses at the individual level and can produce aggregate behavior that cannot be represented by a single common information error.",
+            "In a finite-horizon LQ mean field game with heterogeneous initial errors, the closed-loop deviations are described by two n-dimensional error channels for each agent: a private error and the population-average error.",
         },
         {
-          title: "Limited and Local Observations",
+          title: "Recoverability from observations",
           description:
-            "Decision-relevant population information may not be directly observable. Agents may therefore need to infer information errors or population-level quantities from their own trajectories or other locally available observations, under both continuous and discrete observation structures.",
+            "For the deterministic heterogeneous-information model, a nonsingular observability Gramian is necessary and sufficient for exact recovery from private state history. Related work uses maximum-likelihood estimation from discrete local observations.",
         },
         {
-          title: "Asymmetric Information and Strategic Beliefs",
+          title: "Mean-field and finite-population effects",
           description:
-            "In strategic systems, observing the physical state does not necessarily reveal what other agents believe or how those beliefs will shape their future actions. When information is asymmetric, misspecified, or privately updated, an agent may need to infer not only the underlying state of the system but also other agents' beliefs and the strategies induced by those beliefs.",
-        },
-      ],
-      milestones: [
-        {
-          year: "2024",
-          title: "From information errors to strategy correction",
-          description:
-            "I first studied how incorrect information about other populations changes the realized mean-field evolution and when an intermediate strategy modification can reduce or correct the resulting deviation.",
-          publicationIds: ["initial-error-affection-strategy-modification"],
-          relatedWorkLabels: ["CDC 2024 paper"],
+            "The population-average error determines the displacement of the actual mean field. In the heterogeneous-information model, the empirical aggregate admits a uniform O(N⁻¹) mean-square approximation.",
         },
         {
-          year: "2024–2025",
-          title: "From heterogeneous information to inference",
+          title: "Constrained major–minor observations",
           description:
-            "I then extended the problem to heterogeneous information across agents and to settings where decision-relevant information must be recovered from observed system evolution, under both continuous and limited/local observation structures.",
-          publicationIds: [
-            "lq-mean-field-games-heterogeneous-erroneous-information",
-            "initial-error-tolerant-distributed-mean-field-control",
-          ],
-          relatedWorkLabels: [
-            "Heterogeneous-information preprint",
-            "CDC 2025 paper",
-          ],
-        },
-        {
-          year: "2026",
-          title: "Toward asymmetric information and strategic beliefs",
-          description:
-            "My recent work moves toward asymmetric information structures, where understanding the physical state may not be enough to predict strategic behavior and agents may also need to reason about others' beliefs and belief-dependent strategies.",
-          note:
-            "Major–minor systems provide a setting where this issue is coupled with persistent stochasticity in the mean-field limit.",
-          publicationIds: [
-            "major-minor-lq-mean-field-games-erroneous-initial-information",
-          ],
-          relatedWorkLabels: ["Major–minor paper"],
+            "In the major–minor setting, the major agent has a non-negligible effect on the limiting population and the mean field remains stochastic through the major state. Current work treats erroneous initial information when neither side directly observes that mean field.",
         },
       ],
       broaderDirections: {
@@ -343,20 +299,18 @@ export const siteData: SiteData = {
           {
             title: "Repeated and Asynchronous Strategy Revision",
             description:
-              "I am currently exploring two-population settings in which agents may revise their strategies repeatedly and at asynchronous opportunities, with particular interest in how successive information updates and corrections interact over time.",
+              "I am interested in two-population settings with repeated or asynchronous revision opportunities, focusing on how successive error estimates and corrections interact over time.",
           },
           {
             title: "Imperfect Information beyond Linear–Quadratic Models",
             description:
-              "A natural next direction is to study how information errors, inference, and strategy revision behave in nonlinear stochastic models, where the linear–quadratic structure that supports much of the current analysis is no longer available.",
+              "I am interested in which aspects of information propagation, recoverability, and revision rely on linear–quadratic structure and which may persist in nonlinear stochastic models.",
           },
         ],
         broaderInterest:
-          "Beyond the doctoral research above, I am broadly interested in stochastic control, games, and multi-agent decision-making in systems where agents learn, adapt, acquire information, or operate under imperfect models.",
+          "These directions extend the information-error, inference, and revision questions studied in the current models.",
       },
     },
-    structuredInformationNote:
-      "Major–minor systems provide one setting in which information asymmetry becomes especially pronounced. Although minor agents can directly observe the major state, this does not reveal the major's possibly erroneous belief or the future strategy induced by that belief. Moreover, because the major agent remains non-negligible in the mean-field limit, its process noise does not average out, and the limiting population dynamics remain stochastic.",
   },
   about: {
     biography: {
@@ -520,7 +474,7 @@ export const siteData: SiteData = {
         selected: true,
         displayOrder: 1,
         detail:
-          "China's highest national-level scholarship honor for graduate students.",
+          "National graduate scholarship, China.",
       },
       {
         title: "2025 IEEE CDC & Workshop Student Travel Support",
@@ -540,7 +494,7 @@ export const siteData: SiteData = {
         selected: true,
         displayOrder: 1,
         detail:
-          "A doctoral talent-support program established by the China Association for Science and Technology (CAST). Inaugural cohort, 2024; certificate issued in 2025.",
+          "Doctoral talent-support program, China Association for Science and Technology; inaugural cohort, 2024.",
       },
       {
         title: "2024 IEEE CDC Student Travel Support",
