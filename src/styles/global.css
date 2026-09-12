@@ -675,7 +675,7 @@ main {
 }
 
 .research-hero__heading h1 {
-  margin-block: 0 var(--space-2);
+  margin-block: 0;
   font-size: var(--type-page-title);
   letter-spacing: -0.01em;
 }
@@ -684,15 +684,6 @@ main {
   max-width: 68ch;
   margin-block-start: var(--space-5);
   min-width: 0;
-}
-
-.research-page__subtitle {
-  max-width: 56ch;
-  margin: 0;
-  color: var(--accent-slate-blue);
-  font-size: var(--type-small-body);
-  font-weight: 400;
-  line-height: var(--leading-body);
 }
 
 .research-page__lead {
@@ -712,54 +703,6 @@ main {
 
 .research-narrative {
   max-width: none;
-}
-
-.research-question-list {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(var(--space-5), 4vw, var(--space-7));
-}
-
-.research-narrative__questions {
-  padding-block: var(--space-6) var(--space-7);
-}
-
-.research-narrative__questions > .section-heading {
-  margin-block-end: var(--space-5);
-}
-
-.research-question-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.research-question-list__item {
-  min-width: 0;
-}
-
-.research-question-list__number {
-  display: block;
-  margin-block-end: var(--space-2);
-  color: var(--accent-slate-blue);
-  font-size: var(--type-meta);
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: var(--leading-meta);
-}
-
-.research-question-list__item h3 {
-  margin: 0;
-  color: var(--accent-forest);
-  font-family: var(--font-body);
-  font-size: clamp(1.25rem, 1.6vw, 1.375rem);
-  font-weight: 600;
-  line-height: var(--leading-content);
-}
-
-.research-question-list__item p {
-  max-width: var(--measure-prose);
-  margin: var(--space-2) 0 0;
 }
 
 .research-narrative__themes {
@@ -800,13 +743,6 @@ main {
   margin: var(--space-2) 0 0;
 }
 
-@media (max-width: 60rem) {
-  .research-theme-list,
-  .research-direction-list {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
 .research-narrative__directions {
   padding-block: var(--space-7) var(--space-8);
 }
@@ -817,11 +753,6 @@ main {
 
 .research-narrative__directions .section-heading h2 {
   font-size: clamp(1.5rem, 1.9vw, 1.75rem);
-}
-
-.research-direction-list__intro {
-  max-width: var(--measure-prose);
-  margin: 0 0 var(--space-5);
 }
 
 .research-direction-list {
@@ -846,6 +777,13 @@ main {
 .research-direction-list article > p {
   max-width: var(--measure-prose);
   margin: var(--space-2) 0 0;
+}
+
+@media (max-width: 60rem) {
+  .research-theme-list,
+  .research-direction-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .publication-list {
@@ -1336,7 +1274,6 @@ main {
     --photo-stage-height: clamp(20rem, 108vw, 25rem);
   }
 
-  .research-question-list,
   .teaching-list {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--space-5);

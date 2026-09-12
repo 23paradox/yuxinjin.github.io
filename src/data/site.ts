@@ -1,5 +1,4 @@
 import type { ImageMetadata } from "astro";
-import venicePortraitPhoto from "../assets/images/portrait-venice.jpg";
 import archwayPhoto from "../assets/images/photography/archway.jpg";
 import monumentEveningPhoto from "../assets/images/photography/monument-evening.jpg";
 import coastPhoto from "../assets/images/photography/coast.jpg";
@@ -102,30 +101,16 @@ export interface HomeResearchQuestion {
   description: string;
 }
 
-export interface ResearchNarrativeQuestion {
-  number: string;
-  question: string;
-  description: string;
-}
-
-export interface ResearchMathematicalTheme {
+export interface ResearchTheme {
   title: string;
   description: string;
 }
 
 export interface ResearchNarrative {
-  subtitle: string;
   leadStatement: string;
   supportingParagraph: string;
-  questions: readonly ResearchNarrativeQuestion[];
-  mathematicalThemes: readonly ResearchMathematicalTheme[];
-  broaderDirections: {
-    directions: readonly {
-      title: string;
-      description: string;
-    }[];
-    broaderInterest: string;
-  };
+  currentResearch: readonly ResearchTheme[];
+  futureDirections: readonly ResearchTheme[];
 }
 
 export interface ResearchArcStage {
@@ -246,72 +231,39 @@ export const siteData: SiteData = {
       },
     ],
     narrative: {
-      subtitle:
-        "Stochastic control, games, and decision-making under uncertainty",
       leadStatement:
         "I study how imperfect or misspecified information changes strategic behavior in stochastic control and mean field games.",
       supportingParagraph:
-        "Current work considers information propagation and decision-relevant recoverability in linear–quadratic mean field games, together with asynchronous replanning from local observations and the robustness and stability of repeated continuation responses.",
-      questions: [
+        "My current work focuses on information propagation, decision-relevant inference, and asynchronous replanning in mean field systems.",
+      currentResearch: [
         {
-          number: "01",
-          question: "How does imperfect or heterogeneous information affect the system?",
+          title: "Information propagation and recoverability",
           description:
-            "In linear–quadratic mean field game models, I study how population-level or heterogeneous information discrepancies change control plans and create deviations in aggregate dynamics.",
+            "I study how information discrepancies propagate through mean-field dynamics and which quantities must be recovered for subsequent decisions. In linear–quadratic models, this leads to finite-dimensional error representations and explicit recoverability conditions from constrained observations.",
         },
         {
-          number: "02",
-          question:
-            "What information is required and recoverable for subsequent decisions?",
+          title: "Asynchronous replanning",
           description:
-            "I study the target quantities required by continuation control problems and when they can be recovered from continuous, discrete, or otherwise constrained local observations.",
-        },
-        {
-          number: "03",
-          question:
-            "How can replanning be implemented with limited information and revision opportunities?",
-          description:
-            "I study repeated and asynchronous continuation responses based on local aggregate observations and a limited public record of implemented revisions.",
-        },
-      ],
-      mathematicalThemes: [
-        {
-          title: "Information propagation and finite-dimensional structure",
-          description:
-            "In linear–quadratic mean field models, I study how heterogeneous or population-specific information discrepancies propagate through aggregate dynamics and control plans. In the heterogeneous-initial-information model, their closed-loop effects admit a two-channel, finite-dimensional representation for each agent.",
-        },
-        {
-          title: "Decision-relevant recoverability",
-          description:
-            "Rather than always recovering a full hidden belief, I study the information actually required by the subsequent control problem. In the two-population replanning model, this target is the aggregate state at the end of the initial observation interval together with the opponent’s active continuation plan. For linear observations, exact recoverability is characterized by a kernel inclusion, while a bounded factorization quantifies sensitivity to observation error.",
-        },
-        {
-          title: "Asynchronous replanning and response stability",
-          description:
-            "I study repeated continuation responses when two populations receive revision opportunities at different times. In the current model, local aggregate observations together with a public record of implemented revisions reproduce the ideal benchmark on every finite opportunity prefix. The analysis separates unique solvability of mutual continuation responses from spectral stability of alternating responses and, under the stated stability conditions, establishes convergence at a pre-terminal accumulation time to the equilibrium restarted from the actual limiting state.",
+            "I study how populations revise continuation strategies when revision opportunities occur at different times and only local observations and limited public information are available. Current results address local implementation and the stability of repeated responses.",
         },
         {
           title: "Stochastic and finite-population effects",
           description:
-            "I study how finite-population fluctuations and stochastic aggregate effects interact with information recovery and replanning. Current results include a uniform O(N⁻¹) mean-square approximation of the empirical aggregate in the heterogeneous-information model; for asynchronous replanning, they include an eventwise linear recursion for sampling errors, finite-prefix error bounds, and revision-record matching under an autonomous deadband rule with a positive decision margin. In major–minor models, the limiting mean field remains stochastic through the major state.",
+            "I study how finite-population fluctuations and stochastic aggregate dynamics affect inference and replanning, including empirical approximation and major–minor models with a stochastic limiting mean field.",
         },
       ],
-      broaderDirections: {
-        directions: [
-          {
-            title: "Endogenous Information and Revision Decisions",
-            description:
-              "I am interested in settings where information acquisition, revision opportunities, or both become part of the decision problem rather than being prescribed exogenously.",
-          },
-          {
-            title: "Beyond Linear–Quadratic Models",
-            description:
-              "I am interested in which aspects of information propagation, recoverability, and replanning rely on linear–quadratic structure and which may persist in nonlinear stochastic models.",
-          },
-        ],
-        broaderInterest:
-          "I am interested in two next steps beyond the current models.",
-      },
+      futureDirections: [
+        {
+          title: "Endogenous Information and Revision Decisions",
+          description:
+            "I am interested in settings where information acquisition, revision opportunities, or both become part of the decision problem rather than being prescribed exogenously.",
+        },
+        {
+          title: "Beyond Linear–Quadratic Models",
+          description:
+            "I am interested in which aspects of information propagation, recoverability, and replanning rely on linear–quadratic structure and which may persist in nonlinear stochastic models.",
+        },
+      ],
     },
   },
   about: {
@@ -597,18 +549,10 @@ export const siteData: SiteData = {
         carousel: "landscape",
       },
       {
-        id: "venice-portrait",
-        src: venicePortraitPhoto,
-        alt: "A portrait on a bridge above the Grand Canal in Venice.",
-        displayOrder: 7,
-        orientation: "landscape",
-        carousel: "landscape",
-      },
-      {
         id: "pastoral-sculpture",
         src: pastoralSculpturePhoto,
         alt: "A pastoral sculpture of a shepherd and sheep in a sunlit grove.",
-        displayOrder: 8,
+        displayOrder: 7,
         orientation: "landscape",
         carousel: "landscape",
       },
@@ -616,7 +560,7 @@ export const siteData: SiteData = {
         id: "temple-of-heaven-snow",
         src: templeOfHeavenSnowPhoto,
         alt: "The Temple of Heaven framed by bare branches and a snow-lined wall.",
-        displayOrder: 9,
+        displayOrder: 8,
         orientation: "landscape",
         carousel: "landscape",
       },
