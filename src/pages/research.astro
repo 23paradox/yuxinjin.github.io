@@ -1,7 +1,10 @@
 ---
 import ResearchNarrative from "../components/ResearchNarrative.astro";
 import { siteData } from "../data/site";
+import { loadPublications } from "../lib/content";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const publications = await loadPublications();
 ---
 
 <BaseLayout pageTitle="Research">
@@ -17,6 +20,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
   </header>
 
-  <ResearchNarrative narrative={siteData.research.narrative} />
+  <ResearchNarrative
+    narrative={siteData.research.narrative}
+    publications={publications}
+  />
 
 </BaseLayout>

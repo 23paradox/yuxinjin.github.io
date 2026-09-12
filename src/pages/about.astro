@@ -62,9 +62,9 @@ const landscapePhotos = siteData.about.photography.filter(
   <nav class="page-section about-page-index" aria-label="About page contents">
     <a href="#academic-path-heading">Academic Path</a><span aria-hidden="true"> · </span>
     <a href="#visiting-experience-heading">Visiting</a><span aria-hidden="true"> · </span>
+    <a href="#recognition-heading">Recognition</a><span aria-hidden="true"> · </span>
     <a href="#teaching-heading">Teaching Assistant</a><span aria-hidden="true"> · </span>
     <a href="#presentations-heading">Talks</a><span aria-hidden="true"> · </span>
-    <a href="#recognition-heading">Recognition</a><span aria-hidden="true"> · </span>
     <a href="#about-beyond-research-heading">Beyond Research</a>
   </nav>
 
@@ -136,6 +136,17 @@ const landscapePhotos = siteData.about.photography.filter(
         </ol>
       ) : (
         <p data-placeholder>{placeholders.visitingExperience}</p>
+      )}
+    </section>
+  )}
+
+  {(recognition.length > 0 || showDevelopmentPlaceholders) && (
+    <section class="page-section" aria-labelledby="recognition-heading">
+      <SectionHeading id="recognition-heading" title="Awards & Recognition" />
+      {recognition.length > 0 ? (
+        <RecognitionList items={recognition} />
+      ) : (
+        <p data-placeholder>{placeholders.recognition}</p>
       )}
     </section>
   )}
@@ -224,17 +235,6 @@ const landscapePhotos = siteData.about.photography.filter(
         </ol>
       ) : (
         <p data-placeholder>{placeholders.presentations}</p>
-      )}
-    </section>
-  )}
-
-  {(recognition.length > 0 || showDevelopmentPlaceholders) && (
-    <section class="page-section" aria-labelledby="recognition-heading">
-      <SectionHeading id="recognition-heading" title="Awards & Recognition" />
-      {recognition.length > 0 ? (
-        <RecognitionList items={recognition} />
-      ) : (
-        <p data-placeholder>{placeholders.recognition}</p>
       )}
     </section>
   )}

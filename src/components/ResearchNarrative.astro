@@ -1,12 +1,46 @@
 ---
 import type { ResearchNarrative } from "../data/site";
+import {
+  getPrimaryAcademicLink,
+  type PublicationEntry,
+} from "../lib/content";
 import SectionHeading from "./SectionHeading.astro";
 
 interface Props {
   narrative: ResearchNarrative;
+  publications: readonly PublicationEntry[];
 }
 
-const { narrative } = Astro.props;
+const { narrative, publications } = Astro.props;
+const publicationsById = new Map(
+  publications.map((publication) => [publication.id, publication]),
+);
+const currentResearch = narrative.currentResearch.map((theme) => ({
+  ...theme,
+  relatedPublications: theme.relatedPublications.map((reference) => {
+    const publication = publicationsById.get(reference.id);
+
+    if (!publication) {
+      throw new Error(
+        `Research theme "${theme.title}" references missing publication "${reference.id}".`,
+      );
+    }
+
+    const primaryLink = getPrimaryAcademicLink(publication);
+
+    if (!primaryLink) {
+      throw new Error(
+        `Research theme "${theme.title}" references publication "${reference.id}" without a primary academic link.`,
+      );
+    }
+
+    return {
+      href: primaryLink.url,
+      label: reference.label,
+      title: publication.data.title,
+    };
+  }),
+}));
 ---
 
 <div class="research-narrative">
@@ -16,10 +50,27 @@ const { narrative } = Astro.props;
       title="Current research"
     />
     <div class="research-theme-list">
-      {narrative.currentResearch.map((theme) => (
+      {currentResearch.map((theme) => (
         <article class="research-theme-list__item">
           <h3>{theme.title}</h3>
           <p>{theme.description}</p>
+          <p
+            class="research-theme-list__related"
+            aria-label={`Related work for ${theme.title}`}
+          >
+            <span class="research-theme-list__related-label">Related work</span>
+            {theme.relatedPublications.map((publication) => (
+              <>
+                <span aria-hidden="true"> · </span>
+                <a
+                  href={publication.href}
+                  aria-label={`${publication.label} — ${publication.title}`}
+                >
+                  {publication.label} <span aria-hidden="true">↗</span>
+                </a>
+              </>
+            ))}
+          </p>
         </article>
       ))}
     </div>

@@ -743,6 +743,13 @@ main {
   margin: var(--space-2) 0 0;
 }
 
+.research-theme-list__item .research-theme-list__related {
+  margin-block-start: var(--space-3);
+  color: var(--text-secondary);
+  font-size: var(--type-meta);
+  line-height: var(--leading-meta);
+}
+
 .research-narrative__directions {
   padding-block: var(--space-7) var(--space-8);
 }

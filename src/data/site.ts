@@ -101,7 +101,18 @@ export interface HomeResearchQuestion {
   description: string;
 }
 
+export interface ResearchPublicationReference {
+  id: string;
+  label: string;
+}
+
 export interface ResearchTheme {
+  title: string;
+  description: string;
+  relatedPublications: readonly ResearchPublicationReference[];
+}
+
+export interface ResearchDirection {
   title: string;
   description: string;
 }
@@ -110,7 +121,7 @@ export interface ResearchNarrative {
   leadStatement: string;
   supportingParagraph: string;
   currentResearch: readonly ResearchTheme[];
-  futureDirections: readonly ResearchTheme[];
+  futureDirections: readonly ResearchDirection[];
 }
 
 export interface ResearchArcStage {
@@ -240,16 +251,42 @@ export const siteData: SiteData = {
           title: "Information propagation and recoverability",
           description:
             "I study how information discrepancies propagate through mean-field dynamics and which quantities must be recovered for subsequent decisions. In linear–quadratic models, this leads to finite-dimensional error representations and explicit recoverability conditions from constrained observations.",
+          relatedPublications: [
+            {
+              id: "lq-mean-field-games-heterogeneous-erroneous-information",
+              label: "Heterogeneous erroneous information, 2024",
+            },
+            {
+              id: "initial-error-tolerant-distributed-mean-field-control",
+              label: "Partial & discrete information, CDC 2025",
+            },
+          ],
         },
         {
           title: "Asynchronous replanning",
           description:
             "I study how populations revise continuation strategies when revision opportunities occur at different times and only local observations and limited public information are available. Current results address local implementation and the stability of repeated responses.",
+          relatedPublications: [
+            {
+              id: "asynchronous-replanning-two-population-lq-mfg",
+              label: "Asynchronous replanning, 2026",
+            },
+          ],
         },
         {
           title: "Stochastic and finite-population effects",
           description:
             "I study how finite-population fluctuations and stochastic aggregate dynamics affect inference and replanning, including empirical approximation and major–minor models with a stochastic limiting mean field.",
+          relatedPublications: [
+            {
+              id: "lq-mean-field-games-heterogeneous-erroneous-information",
+              label: "Heterogeneous erroneous information, 2024",
+            },
+            {
+              id: "major-minor-lq-mean-field-games-erroneous-initial-information",
+              label: "Major–minor LQ MFGs, CDC 2026",
+            },
+          ],
         },
       ],
       futureDirections: [

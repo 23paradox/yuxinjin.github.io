@@ -22,6 +22,16 @@ export async function loadResearchProjects(): Promise<ResearchProjectEntry[]> {
     : [];
 }
 
+export function getPrimaryAcademicLink(publication: PublicationEntry) {
+  return publication.data.links?.find(
+    (link) =>
+      link.purpose === "paper" ||
+      link.purpose === "preprint" ||
+      link.purpose === "journal" ||
+      link.purpose === "doi",
+  );
+}
+
 export function sortPublicationsChronologically(
   entries: PublicationEntry[],
 ): PublicationEntry[] {
