@@ -1,15 +1,16 @@
 import type { ImageMetadata } from "astro";
+import venicePortraitPhoto from "../assets/images/portrait-venice.jpg";
 import archwayPhoto from "../assets/images/photography/archway.jpg";
 import monumentEveningPhoto from "../assets/images/photography/monument-evening.jpg";
-import colonnadeShadowsPhoto from "../assets/images/photography/colonnade-shadows.jpg";
 import coastPhoto from "../assets/images/photography/coast.jpg";
 import homeCorridorPhoto from "../assets/images/photography/home-corridor.jpg";
 import mountainFlowersPhoto from "../assets/images/photography/mountain-flowers.jpg";
 import moonRiverPhoto from "../assets/images/photography/moon-river.jpg";
 import nightSkyPhoto from "../assets/images/photography/night-sky.jpg";
-import powerlinesSunsetPhoto from "../assets/images/photography/powerlines-sunset.jpg";
+import pastoralSculpturePhoto from "../assets/images/photography/pastoral-sculpture.jpg";
 import snowCabinPhoto from "../assets/images/photography/snow-cabin.jpg";
 import streetBirdsPhoto from "../assets/images/photography/street-birds.jpg";
+import templeOfHeavenSnowPhoto from "../assets/images/photography/temple-of-heaven-snow.jpg";
 
 export type InternalRoute = "/" | "/research/" | "/publications/" | "/about/";
 
@@ -555,35 +556,19 @@ export const siteData: SiteData = {
         carousel: "landscape",
       },
       {
-        id: "colonnade-shadows",
-        src: colonnadeShadowsPhoto,
-        alt: "Long shadows from repeating columns across stone paving beside bright reflected water.",
-        displayOrder: 2,
-        orientation: "landscape",
-        carousel: "landscape",
-      },
-      {
         id: "street-birds",
         src: streetBirdsPhoto,
         alt: "A curved street beside low buildings beneath a pale sky with birds in flight.",
-        displayOrder: 3,
+        displayOrder: 2,
         orientation: "landscape",
         carousel: "landscape",
         headerMasthead: true,
       },
       {
-        id: "powerlines-sunset",
-        src: powerlinesSunsetPhoto,
-        alt: "Utility poles and crossing power lines silhouetted against an orange evening sky.",
-        displayOrder: 4,
-        orientation: "landscape",
-        carousel: "landscape",
-      },
-      {
         id: "coast",
         src: coastPhoto,
         alt: "Two people sitting among rocks beside the sea.",
-        displayOrder: 5,
+        displayOrder: 3,
         orientation: "landscape",
         carousel: "landscape",
       },
@@ -591,7 +576,7 @@ export const siteData: SiteData = {
         id: "mountain-flowers",
         src: mountainFlowersPhoto,
         alt: "Pale grasses and flowers in the foreground beneath a large mountain landscape.",
-        displayOrder: 6,
+        displayOrder: 4,
         orientation: "landscape",
         carousel: "landscape",
       },
@@ -599,7 +584,7 @@ export const siteData: SiteData = {
         id: "snow-cabin",
         src: snowCabinPhoto,
         alt: "A small wooden building among snow-covered trees beneath a warm winter sky.",
-        displayOrder: 7,
+        displayOrder: 5,
         orientation: "landscape",
         carousel: "landscape",
       },
@@ -607,7 +592,31 @@ export const siteData: SiteData = {
         id: "night-sky",
         src: nightSkyPhoto,
         alt: "A dense star-filled sky above a dark mountain silhouette.",
+        displayOrder: 6,
+        orientation: "landscape",
+        carousel: "landscape",
+      },
+      {
+        id: "venice-portrait",
+        src: venicePortraitPhoto,
+        alt: "A portrait on a bridge above the Grand Canal in Venice.",
+        displayOrder: 7,
+        orientation: "landscape",
+        carousel: "landscape",
+      },
+      {
+        id: "pastoral-sculpture",
+        src: pastoralSculpturePhoto,
+        alt: "A pastoral sculpture of a shepherd and sheep in a sunlit grove.",
         displayOrder: 8,
+        orientation: "landscape",
+        carousel: "landscape",
+      },
+      {
+        id: "temple-of-heaven-snow",
+        src: templeOfHeavenSnowPhoto,
+        alt: "The Temple of Heaven framed by bare branches and a snow-lined wall.",
+        displayOrder: 9,
         orientation: "landscape",
         carousel: "landscape",
       },
