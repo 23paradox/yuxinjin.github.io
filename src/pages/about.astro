@@ -125,7 +125,7 @@ const landscapePhotos = siteData.about.photography.filter(
                   {record.location && <p class="editorial-record__meta">{record.location}</p>}
                   {record.hostSupervisors && record.hostSupervisors.length > 0 && (
                     <p class="editorial-record__meta">
-                      Host supervisors: {record.hostSupervisors.join(" and ")}
+                      Co-supervised by {record.hostSupervisors.join(" and ")}
                     </p>
                   )}
                   {record.description && <p>{record.description}</p>}

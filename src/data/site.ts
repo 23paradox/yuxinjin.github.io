@@ -364,7 +364,7 @@ export const siteData: SiteData = {
         location: "Padova, Italy",
         startDate: "Dec. 2025",
         current: true,
-        hostSupervisors: ["Markus Fischer", "Alekos Cecchin"],
+        hostSupervisors: ["Prof. Markus Fischer", "Prof. Alekos Cecchin"],
       },
     ],
     teaching: [
