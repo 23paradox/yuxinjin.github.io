@@ -123,7 +123,11 @@ const landscapePhotos = siteData.about.photography.filter(
                     {record.department && ` · ${record.department}`}
                   </p>
                   {record.location && <p class="editorial-record__meta">{record.location}</p>}
-                  {record.host && <p class="editorial-record__meta">Host: {record.host}</p>}
+                  {record.hostSupervisors && record.hostSupervisors.length > 0 && (
+                    <p class="editorial-record__meta">
+                      Host supervisors: {record.hostSupervisors.join(" and ")}
+                    </p>
+                  )}
                   {record.description && <p>{record.description}</p>}
                 </div>
               </li>

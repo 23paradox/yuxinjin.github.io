@@ -14,7 +14,7 @@ authorship: first-author
 highlightAuthor: "Y. Jin"
 acceptance: "CDC 2026"
 selected: true
-displayOrder: 1
+displayOrder: 3
 researchSummary: "Explicit error propagation, local-observation maximum-likelihood estimation, and estimate-based mean-field reconstruction."
 themes:
   - Imperfect Information

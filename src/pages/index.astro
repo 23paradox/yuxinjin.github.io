@@ -21,8 +21,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const publicationEntries = await loadPublications();
 const selectedPublications = getSelectedPublications(publicationEntries);
 const homepagePublicationIds = [
+  "asynchronous-replanning-two-population-lq-mfg",
   "lq-mean-field-games-heterogeneous-erroneous-information",
-  "initial-error-tolerant-distributed-mean-field-control",
   "major-minor-lq-mean-field-games-erroneous-initial-information",
 ];
 const homepagePublications = homepagePublicationIds.flatMap((publicationId) => {
@@ -137,12 +137,12 @@ const aboutTeaser = developmentFallback(
   <section class="page-section home-section home-section--research" aria-labelledby="research-heading">
     <SectionHeading id="research-heading" number="01" title="Research" />
     <p class="home-research-hook">{siteData.research.homeHook}</p>
-    <p class="home-research-flow" aria-label="Research flow: information errors, inference, revision">
-      <span>information errors</span>
+    <p class="home-research-flow" aria-label="Research flow: imperfect information, inference, replanning">
+      <span>imperfect information</span>
       <span aria-hidden="true">→</span>
       <span>inference</span>
       <span aria-hidden="true">→</span>
-      <span>revision</span>
+      <span>replanning</span>
     </p>
     <div class="home-research-questions">
       {siteData.research.homeQuestions.map((question) => (

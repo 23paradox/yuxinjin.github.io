@@ -38,7 +38,7 @@ export interface VisitingRecord {
   startDate?: string;
   endDate?: string;
   current?: boolean;
-  host?: string;
+  hostSupervisors?: readonly string[];
   description?: string;
 }
 
@@ -194,7 +194,7 @@ export const siteData: SiteData = {
   },
   research: {
     heroSummary:
-      "I study stochastic control and mean field games with imperfect or misspecified information. My current work examines how information errors affect interacting agents, what can be recovered from constrained observations, and when strategies should be revised.",
+      "I study stochastic control and mean field games with imperfect or misspecified information. My current work examines how information discrepancies affect interacting agents, what decision-relevant information can be recovered from constrained observations, and how strategies can be replanned from local information.",
     agendaSummary:
       "I organize this work around three connected questions.",
     arc: [
@@ -206,15 +206,15 @@ export const siteData: SiteData = {
       },
       {
         number: "02",
-        title: "Inference and Updating",
+        title: "Decision-Relevant Inference",
         description:
-          "I investigate how agents detect information discrepancies, estimate hidden or population-level quantities from available observations, and update beliefs when decision-relevant data are incomplete or misspecified.",
+          "I investigate which quantities a subsequent decision actually requires and when they can be recovered from local or constrained observations.",
       },
       {
         number: "03",
-        title: "Strategy Revision",
+        title: "Replanning",
         description:
-          "I study how agents should update their controls or strategies after new or corrected information becomes available, and how such revisions affect subsequent system behavior.",
+          "I study repeated and asynchronous continuation responses when agents have limited observations and receive revision opportunities at different times.",
       },
     ],
     keywords: [
@@ -226,22 +226,22 @@ export const siteData: SiteData = {
     homeHook:
       "The work is organized around three connected questions.",
     homeIntroduction:
-      "I study how information errors affect strategic behavior, what agents can recover from the observations available to them, and when updated information should lead to a change in strategy.",
+      "I study how imperfect information affects strategic behavior, what decision-relevant quantities agents can recover, and how strategies can be replanned from local information.",
     homeQuestions: [
       {
-        title: "How does wrong information change collective behavior?",
+        title: "How does imperfect information change collective behavior?",
         description:
-          "I study how erroneous or heterogeneous information creates discrepancies between predicted and realized population dynamics.",
+          "I study how heterogeneous or misspecified information changes individual plans and creates discrepancies in aggregate dynamics.",
       },
       {
-        title: "What can agents recover from what they observe?",
+        title: "What decision-relevant information can agents recover?",
         description:
-          "I study what decision-relevant information can be inferred when population states, beliefs, or other relevant quantities are only partially available.",
+          "I study which quantities actually need to be identified for a subsequent decision, and when they can be recovered from local or constrained observations.",
       },
       {
-        title: "When is new information enough to change a strategy?",
+        title: "How can strategies be revised with local information?",
         description:
-          "I study how controls and strategic responses should be revised as information is corrected, inferred, or updated.",
+          "I study repeated and asynchronous replanning when agents observe only local aggregate behavior and limited public information about previous revisions.",
       },
     ],
     narrative: {
@@ -250,65 +250,66 @@ export const siteData: SiteData = {
       leadStatement:
         "I study how imperfect or misspecified information changes strategic behavior in stochastic control and mean field games.",
       supportingParagraph:
-        "Current work considers error propagation in linear–quadratic mean field games, recovery of error quantities from constrained observations, and strategy revision after an information update.",
+        "Current work considers information propagation and decision-relevant recoverability in linear–quadratic mean field games, together with asynchronous replanning from local observations and the robustness and stability of repeated continuation responses.",
       questions: [
         {
           number: "01",
-          question: "How do information errors become system-level deviations?",
+          question: "How does imperfect or heterogeneous information affect the system?",
           description:
-            "In linear–quadratic mean field game models, I study how population-level and heterogeneous initial errors change feedback responses and create discrepancies between predicted and realized mean-field dynamics.",
+            "In linear–quadratic mean field game models, I study how population-level or heterogeneous information discrepancies change control plans and create deviations in aggregate dynamics.",
         },
         {
           number: "02",
           question:
-            "What can an agent infer from the information it actually observes?",
+            "What information is required and recoverable for subsequent decisions?",
           description:
-            "I study which error quantities can be recovered when decision-relevant population information is not directly observed, using continuous or discrete observations available locally to an agent.",
+            "I study the target quantities required by continuation control problems and when they can be recovered from continuous, discrete, or otherwise constrained local observations.",
         },
         {
           number: "03",
-          question: "When and how should a strategy be changed?",
+          question:
+            "How can replanning be implemented with limited information and revision opportunities?",
           description:
-            "I study intermediate-time control modification after an information error has been estimated or corrected, and the resulting effect on subsequent system evolution.",
+            "I study repeated and asynchronous continuation responses based on local aggregate observations and a limited public record of implemented revisions.",
         },
       ],
       mathematicalThemes: [
         {
-          title: "Finite-dimensional error structure",
+          title: "Information propagation and finite-dimensional structure",
           description:
-            "In a finite-horizon LQ mean field game with heterogeneous initial errors, the closed-loop deviations are described by two n-dimensional error channels for each agent: a private error and the population-average error.",
+            "In linear–quadratic mean field models, I study how heterogeneous or population-specific information discrepancies propagate through aggregate dynamics and control plans. In the heterogeneous-initial-information model, their closed-loop effects admit a two-channel, finite-dimensional representation for each agent.",
         },
         {
-          title: "Recoverability from observations",
+          title: "Decision-relevant recoverability",
           description:
-            "For the deterministic heterogeneous-information model, a nonsingular observability Gramian is necessary and sufficient for exact recovery from private state history. Related work uses maximum-likelihood estimation from discrete local observations.",
+            "Rather than always recovering a full hidden belief, I study the information actually required by the subsequent control problem. In the two-population replanning model, this target is the aggregate state at the end of the initial observation interval together with the opponent’s active continuation plan. For linear observations, exact recoverability is characterized by a kernel inclusion, while a bounded factorization quantifies sensitivity to observation error.",
         },
         {
-          title: "Mean-field and finite-population effects",
+          title: "Asynchronous replanning and response stability",
           description:
-            "The population-average error determines the displacement of the actual mean field. In the heterogeneous-information model, the empirical aggregate admits a uniform O(N⁻¹) mean-square approximation.",
+            "I study repeated continuation responses when two populations receive revision opportunities at different times. In the current model, local aggregate observations together with a public record of implemented revisions reproduce the ideal benchmark on every finite opportunity prefix. The analysis separates unique solvability of mutual continuation responses from spectral stability of alternating responses and, under the stated stability conditions, establishes convergence at a pre-terminal accumulation time to the equilibrium restarted from the actual limiting state.",
         },
         {
-          title: "Constrained major–minor observations",
+          title: "Stochastic and finite-population effects",
           description:
-            "In the major–minor setting, the major agent has a non-negligible effect on the limiting population and the mean field remains stochastic through the major state. Current work treats erroneous initial information when neither side directly observes that mean field.",
+            "I study how finite-population fluctuations and stochastic aggregate effects interact with information recovery and replanning. Current results include a uniform O(N⁻¹) mean-square approximation of the empirical aggregate in the heterogeneous-information model; for asynchronous replanning, they include an eventwise linear recursion for sampling errors, finite-prefix error bounds, and revision-record matching under an autonomous deadband rule with a positive decision margin. In major–minor models, the limiting mean field remains stochastic through the major state.",
         },
       ],
       broaderDirections: {
         directions: [
           {
-            title: "Repeated and Asynchronous Strategy Revision",
+            title: "Endogenous Information and Revision Decisions",
             description:
-              "I am interested in two-population settings with repeated or asynchronous revision opportunities, focusing on how successive error estimates and corrections interact over time.",
+              "I am interested in settings where information acquisition, revision opportunities, or both become part of the decision problem rather than being prescribed exogenously.",
           },
           {
-            title: "Imperfect Information beyond Linear–Quadratic Models",
+            title: "Beyond Linear–Quadratic Models",
             description:
-              "I am interested in which aspects of information propagation, recoverability, and revision rely on linear–quadratic structure and which may persist in nonlinear stochastic models.",
+              "I am interested in which aspects of information propagation, recoverability, and replanning rely on linear–quadratic structure and which may persist in nonlinear stochastic models.",
           },
         ],
         broaderInterest:
-          "These directions extend the information-error, inference, and revision questions studied in the current models.",
+          "I am interested in two next steps beyond the current models.",
       },
     },
   },
@@ -332,6 +333,7 @@ export const siteData: SiteData = {
         department: "School of Mathematical Sciences",
         startDate: "2023",
         expectedEndDate: "2027 (expected)",
+        advisors: ["Prof. Xiao Zhang"],
         note:
           "Jointly trained by the School of Mathematical Sciences and Shen Yuan Honors College through Beihang's doctoral honors program. Transferred to the integrated M.Sc.–Ph.D. track in 2023. The doctoral honors curriculum also included additional coursework in theoretical physics, including quantum mechanics, electrodynamics, and general relativity.",
       },
@@ -362,6 +364,7 @@ export const siteData: SiteData = {
         location: "Padova, Italy",
         startDate: "Dec. 2025",
         current: true,
+        hostSupervisors: ["Markus Fischer", "Alekos Cecchin"],
       },
     ],
     teaching: [
