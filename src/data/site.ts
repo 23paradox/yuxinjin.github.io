@@ -1,13 +1,11 @@
 import type { ImageMetadata } from "astro";
 import archwayPhoto from "../assets/images/photography/archway.jpg";
-import monumentEveningPhoto from "../assets/images/photography/monument-evening.jpg";
 import coastPhoto from "../assets/images/photography/coast.jpg";
-import homeCorridorPhoto from "../assets/images/photography/home-corridor.jpg";
-import mountainFlowersPhoto from "../assets/images/photography/mountain-flowers.jpg";
+import mountainGardenPhoto from "../assets/images/photography/mountain-garden.jpg";
+import monumentEveningPhoto from "../assets/images/photography/monument-evening.jpg";
 import moonRiverPhoto from "../assets/images/photography/moon-river.jpg";
-import nightSkyPhoto from "../assets/images/photography/night-sky.jpg";
-import pastoralSculpturePhoto from "../assets/images/photography/pastoral-sculpture.jpg";
-import snowCabinPhoto from "../assets/images/photography/snow-cabin.jpg";
+import rockyCoastPhoto from "../assets/images/photography/rocky-coast.jpg";
+import santoriniRooftopPhoto from "../assets/images/photography/santorini-rooftop.jpg";
 import streetBirdsPhoto from "../assets/images/photography/street-birds.jpg";
 import templeOfHeavenSnowPhoto from "../assets/images/photography/temple-of-heaven-snow.jpg";
 
@@ -537,21 +535,20 @@ export const siteData: SiteData = {
         carousel: "portrait",
       },
       {
-        id: "home-corridor",
-        src: homeCorridorPhoto,
-        alt: "A sunlit covered walkway framed by foliage, columns, and geometric shadows.",
+        id: "santorini-rooftop",
+        src: santoriniRooftopPhoto,
+        alt: "A small weathered boat on a white rooftop overlooking a cliffside village.",
         displayOrder: 1,
         orientation: "landscape",
         carousel: "landscape",
       },
       {
-        id: "street-birds",
-        src: streetBirdsPhoto,
-        alt: "A curved street beside low buildings beneath a pale sky with birds in flight.",
+        id: "mountain-garden",
+        src: mountainGardenPhoto,
+        alt: "Wildflowers and garden roses beneath a mountain ridge.",
         displayOrder: 2,
         orientation: "landscape",
         carousel: "landscape",
-        headerMasthead: true,
       },
       {
         id: "coast",
@@ -562,42 +559,27 @@ export const siteData: SiteData = {
         carousel: "landscape",
       },
       {
-        id: "mountain-flowers",
-        src: mountainFlowersPhoto,
-        alt: "Pale grasses and flowers in the foreground beneath a large mountain landscape.",
+        id: "temple-of-heaven-snow",
+        src: templeOfHeavenSnowPhoto,
+        alt: "The Temple of Heaven framed by bare branches and a snow-lined wall.",
         displayOrder: 4,
         orientation: "landscape",
         carousel: "landscape",
       },
       {
-        id: "snow-cabin",
-        src: snowCabinPhoto,
-        alt: "A small wooden building among snow-covered trees beneath a warm winter sky.",
+        id: "street-birds",
+        src: streetBirdsPhoto,
+        alt: "A curved street beside low buildings beneath a pale sky with birds in flight.",
         displayOrder: 5,
         orientation: "landscape",
         carousel: "landscape",
+        headerMasthead: true,
       },
       {
-        id: "night-sky",
-        src: nightSkyPhoto,
-        alt: "A dense star-filled sky above a dark mountain silhouette.",
+        id: "rocky-coast",
+        src: rockyCoastPhoto,
+        alt: "A person sitting on a rocky shore facing the sea.",
         displayOrder: 6,
-        orientation: "landscape",
-        carousel: "landscape",
-      },
-      {
-        id: "pastoral-sculpture",
-        src: pastoralSculpturePhoto,
-        alt: "A pastoral sculpture of a shepherd and sheep in a sunlit grove.",
-        displayOrder: 7,
-        orientation: "landscape",
-        carousel: "landscape",
-      },
-      {
-        id: "temple-of-heaven-snow",
-        src: templeOfHeavenSnowPhoto,
-        alt: "The Temple of Heaven framed by bare branches and a snow-lined wall.",
-        displayOrder: 8,
         orientation: "landscape",
         carousel: "landscape",
       },
