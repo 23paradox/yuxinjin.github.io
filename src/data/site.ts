@@ -1,13 +1,13 @@
 import type { ImageMetadata } from "astro";
 import archwayPhoto from "../assets/images/photography/archway.jpg";
+import blueSkyLampPhoto from "../assets/images/photography/blue-sky-lamp.jpg";
 import coastPhoto from "../assets/images/photography/coast.jpg";
 import mountainGardenPhoto from "../assets/images/photography/mountain-garden.jpg";
 import monumentEveningPhoto from "../assets/images/photography/monument-evening.jpg";
 import moonRiverPhoto from "../assets/images/photography/moon-river.jpg";
-import rockyCoastPhoto from "../assets/images/photography/rocky-coast.jpg";
+import padovaStreetPhoto from "../assets/images/photography/padova-street.jpg";
 import santoriniRooftopPhoto from "../assets/images/photography/santorini-rooftop.jpg";
 import streetBirdsPhoto from "../assets/images/photography/street-birds.jpg";
-import templeOfHeavenSnowPhoto from "../assets/images/photography/temple-of-heaven-snow.jpg";
 
 export type InternalRoute = "/" | "/research/" | "/publications/" | "/about/";
 
@@ -559,26 +559,26 @@ export const siteData: SiteData = {
         carousel: "landscape",
       },
       {
-        id: "temple-of-heaven-snow",
-        src: templeOfHeavenSnowPhoto,
-        alt: "The Temple of Heaven framed by bare branches and a snow-lined wall.",
-        displayOrder: 4,
-        orientation: "landscape",
-        carousel: "landscape",
-      },
-      {
         id: "street-birds",
         src: streetBirdsPhoto,
         alt: "A curved street beside low buildings beneath a pale sky with birds in flight.",
-        displayOrder: 5,
+        displayOrder: 4,
         orientation: "landscape",
         carousel: "landscape",
         headerMasthead: true,
       },
       {
-        id: "rocky-coast",
-        src: rockyCoastPhoto,
-        alt: "A person sitting on a rocky shore facing the sea.",
+        id: "padova-street",
+        src: padovaStreetPhoto,
+        alt: "A city street with tram tracks, pedestrians, and a church in the distance.",
+        displayOrder: 5,
+        orientation: "landscape",
+        carousel: "landscape",
+      },
+      {
+        id: "blue-sky-lamp",
+        src: blueSkyLampPhoto,
+        alt: "A suspended streetlamp and overhead wires against a deep blue sky above a pale building.",
         displayOrder: 6,
         orientation: "landscape",
         carousel: "landscape",
