@@ -323,7 +323,7 @@ export const siteData: SiteData = {
         expectedEndDate: "2027 (expected)",
         advisors: ["Prof. Xiao Zhang"],
         note:
-          "Jointly trained by the School of Mathematical Sciences and Shen Yuan Honors College through Beihang's doctoral honors program. Transferred to the integrated M.Sc.–Ph.D. track in 2023.",
+          "Jointly trained by the School of Mathematical Sciences and Shen Yuan Honors College through Beihang's doctoral honors program.",
       },
       {
         degree: "Master's Student",
