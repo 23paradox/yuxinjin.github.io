@@ -306,7 +306,7 @@ export const siteData: SiteData = {
       short:
         "I am a Ph.D. candidate in Applied Mathematics at Beihang University, jointly trained by the School of Mathematical Sciences and Shen Yuan Honors College through the university's doctoral honors program.",
       long: [
-        "I am a Ph.D. candidate in Applied Mathematics at Beihang University, jointly trained by the School of Mathematical Sciences and Shen Yuan Honors College through the university's doctoral honors program. I began my graduate studies in mathematics in 2022 and transferred to the integrated M.Sc.–Ph.D. track in 2023.",
+        "I am a Ph.D. candidate in Applied Mathematics at Beihang University, jointly trained by the School of Mathematical Sciences and Shen Yuan Honors College through the university's doctoral honors program.",
         "My research is in stochastic control, game theory, and information structures, with current work on decision-making under imperfect information in mean field games and large-population stochastic systems. I also work on numerical implementation and computational experiments for mean field game models.",
         "Since December 2025, I have been a visiting Ph.D. student at the Department of Mathematics, University of Padova.",
       ],
