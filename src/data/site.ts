@@ -3,7 +3,6 @@ import archwayPhoto from "../assets/images/photography/archway.jpg";
 import blueSkyLampPhoto from "../assets/images/photography/blue-sky-lamp.jpg";
 import coastPhoto from "../assets/images/photography/coast.jpg";
 import mountainGardenPhoto from "../assets/images/photography/mountain-garden.jpg";
-import monumentEveningPhoto from "../assets/images/photography/monument-evening.jpg";
 import moonRiverPhoto from "../assets/images/photography/moon-river.jpg";
 import padovaStreetPhoto from "../assets/images/photography/padova-street.jpg";
 import santoriniRooftopPhoto from "../assets/images/photography/santorini-rooftop.jpg";
@@ -523,14 +522,6 @@ export const siteData: SiteData = {
         src: moonRiverPhoto,
         alt: "A moon above a river valley with layered colored rock in the foreground.",
         displayOrder: 2,
-        orientation: "portrait",
-        carousel: "portrait",
-      },
-      {
-        id: "monument-evening",
-        src: monumentEveningPhoto,
-        alt: "A monumental stone structure beneath curved architectural elements and a pale evening sky.",
-        displayOrder: 3,
         orientation: "portrait",
         carousel: "portrait",
       },
