@@ -15,7 +15,7 @@
   --measure-wide: 74ch;
   --hero-measure: var(--measure-prose);
   --hero-portrait-width: 15rem;
-  --type-hero-name: clamp(3.5rem, 4.3vw, 3.75rem);
+  --type-hero-name: clamp(2.5rem, 3.2vw, 2.75rem);
   --type-hero-identity: clamp(1.9rem, 2.25vw, 2.15rem);
   --type-page-title: clamp(2.5rem, 3vw, 2.75rem);
   --type-section-title: clamp(1.75rem, 2.15vw, 1.95rem);
@@ -1220,7 +1220,7 @@ main {
 @media (max-width: 44rem) {
   :root {
     --hero-portrait-width: 13rem;
-    --type-hero-name: clamp(2.625rem, 11vw, 2.875rem);
+    --type-hero-name: clamp(2rem, 8.5vw, 2.25rem);
     --type-hero-identity: clamp(1.625rem, 7vw, 1.8rem);
     --type-page-title: clamp(2.25rem, 9.5vw, 2.5rem);
     --type-section-title: clamp(1.55rem, 6.5vw, 1.7rem);
