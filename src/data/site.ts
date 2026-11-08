@@ -176,7 +176,7 @@ export const siteData: SiteData = {
     academicTitle: "Ph.D. Candidate in Applied Mathematics",
     institution: "Beihang University",
     department: "School of Mathematical Sciences",
-    researchIdentity: "Stochastic Control, Games, and Decision-Making under Uncertainty",
+    researchIdentity: "Stochastic Control and Games",
     email: "yxjin@buaa.edu.cn",
     googleScholarUrl:
       "https://scholar.google.com/citations?hl=zh-CN&user=Jr37-eoAAAAJ",
