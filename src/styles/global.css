@@ -14,6 +14,7 @@
   --measure-prose: 68ch;
   --measure-wide: 74ch;
   --hero-measure: var(--measure-prose);
+  --hero-portrait-width: 15rem;
   --type-hero-name: clamp(3.5rem, 4.3vw, 3.75rem);
   --type-hero-identity: clamp(1.9rem, 2.25vw, 2.15rem);
   --type-page-title: clamp(2.5rem, 3vw, 2.75rem);
@@ -366,8 +367,10 @@ main {
 }
 
 .hero__portrait {
-  width: min(100%, 18rem);
+  --portrait-position: 53% 100%;
+  width: min(100%, var(--hero-portrait-width));
   aspect-ratio: 4 / 5;
+  overflow: hidden;
   margin: 0;
   margin-block-start: clamp(var(--space-4), 4vw, var(--space-6));
   justify-self: end;
@@ -379,7 +382,10 @@ main {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 53% 45%;
+  object-position: var(--portrait-position);
+  /* Trim the extra sky while keeping the original photograph intact. */
+  transform: scale(1.3);
+  transform-origin: var(--portrait-position);
 }
 
 .page-section.home-section {
@@ -1213,6 +1219,7 @@ main {
 
 @media (max-width: 44rem) {
   :root {
+    --hero-portrait-width: 13rem;
     --type-hero-name: clamp(2.625rem, 11vw, 2.875rem);
     --type-hero-identity: clamp(1.625rem, 7vw, 1.8rem);
     --type-page-title: clamp(2.25rem, 9.5vw, 2.5rem);
@@ -1291,7 +1298,6 @@ main {
   }
 
   .hero__portrait {
-    width: min(100%, 17rem);
     margin-block-start: 0;
     justify-self: start;
   }
